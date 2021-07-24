@@ -5,9 +5,9 @@
     <modelVersion>4.0.0</modelVersion>
 
     <groupId>com.example</groupId>
-    <artifactId>WebProjectCoffeeHouse</artifactId>
+    <artifactId>webch</artifactId>
     <version>1.0-SNAPSHOT</version>
-    <name>WebProjectCoffeeHouse</name>
+    <name>webch</name>
     <packaging>war</packaging>
 
     <properties>

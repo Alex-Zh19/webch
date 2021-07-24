@@ -1,4 +1,4 @@
-package com.epam.webch.model.localization;
+package com.epam.webch.model.util.localization;
 
 public enum LocaleKey {
     PAGE_HELLO("page_hello"),

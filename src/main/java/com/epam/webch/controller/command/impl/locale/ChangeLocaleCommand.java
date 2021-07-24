@@ -4,12 +4,10 @@ import com.epam.webch.controller.PagePath;
 import com.epam.webch.controller.SessionAttribute;
 import com.epam.webch.controller.command.Command;
 import com.epam.webch.controller.command.Router;
-import com.epam.webch.model.localization.LocaleAttribute;
-import com.epam.webch.model.localization.LocalizationManager;
+import com.epam.webch.model.util.localization.LocaleAttribute;
+import com.epam.webch.model.util.localization.LocalizationManager;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
-
-import static com.epam.webch.controller.PagePath.HOME_PAGE;
 
 public class ChangeLocaleCommand implements Command {
     private final String LANGUAGE="language";

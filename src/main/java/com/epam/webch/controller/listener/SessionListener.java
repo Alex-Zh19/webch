@@ -2,10 +2,7 @@ package com.epam.webch.controller.listener;
 
 import com.epam.webch.controller.PagePath;
 import com.epam.webch.controller.SessionAttribute;
-import com.epam.webch.controller.command.CommandName;
-import com.epam.webch.model.localization.LocaleKey;
-import com.epam.webch.model.localization.LocalizationManager;
-import jakarta.servlet.ServletContext;
+import com.epam.webch.model.util.localization.LocalizationManager;
 import jakarta.servlet.annotation.WebListener;
 import jakarta.servlet.http.HttpSessionEvent;
 import jakarta.servlet.http.HttpSessionListener;

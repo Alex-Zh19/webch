@@ -7,6 +7,7 @@ import com.epam.webch.model.dao.UserDao;
 import com.epam.webch.model.dao.query.UserQueryFactory;
 import com.epam.webch.model.entity.user.User;
 import com.epam.webch.model.entity.user.UserCredentials;
+import com.epam.webch.model.util.Validator;
 import org.apache.logging.log4j.Level;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;

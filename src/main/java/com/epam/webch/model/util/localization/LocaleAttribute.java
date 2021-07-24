@@ -1,4 +1,4 @@
-package com.epam.webch.model.localization;
+package com.epam.webch.model.util.localization;
 
 import java.util.Locale;
 
