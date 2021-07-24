@@ -32,6 +32,8 @@ public class CommandFactory {
                 case OPEN_HOME_USER_PAGE -> new OpenHomeUserPage();
                 case OPEN_SETTINGS_PAGE -> new OpenSettingsPage();
                 case CHANGE_USER_INFO -> new ChangeUserInfo();
+                case OPEN_SHOP_PAGE -> new OpenShopPage();
+                case OPEN_PRODUCT_PAGE -> new OpenProductPage();
                 default -> throw new UnsupportedOperationException("such command doesnt exist");
             };
         } else {

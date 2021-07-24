@@ -60,8 +60,8 @@ public class ProductDaoImpl implements ProductDao {
         Optional<ProxyConnection> optionalProxyConnection = ConnectionPool.getInstance().getConnection();
         if (optionalProxyConnection.isPresent()) {
             try (ProxyConnection proxyConnection = optionalProxyConnection.get();
-                 Statement statement = proxyConnection.createStatement()) {
-                ResultSet resultSet = statement.executeQuery(query);
+                 Statement statement = proxyConnection.createStatement();
+                 ResultSet resultSet = statement.executeQuery(query)) {
                 while (resultSet.next()) {
                     Long productId = resultSet.getLong(ID_COLUMN);
                     String name = resultSet.getString(NAME_COLUMN);
@@ -150,10 +150,11 @@ public class ProductDaoImpl implements ProductDao {
         if (optionalProxyConnection.isPresent()) {
             Optional<Product> product;
             try (ProxyConnection proxyConnection = optionalProxyConnection.get();
-                 Statement statement = proxyConnection.createStatement()) {
-                ResultSet resultSet = statement.executeQuery(query);
+                 Statement statement = proxyConnection.createStatement();
+                 ResultSet resultSet = statement.executeQuery(query)) {
+
                 while (resultSet.next()) {
-                    Long productId = resultSet.getLong(ID_COLUMN);
+                    long productId = resultSet.getLong(ID_COLUMN);
                     String name = resultSet.getString(NAME_COLUMN);
                     Integer price = resultSet.getInt(PRICE_COLUMN);
                     Integer isInStock = resultSet.getInt(IN_STOCK_COLUMN);
@@ -161,7 +162,7 @@ public class ProductDaoImpl implements ProductDao {
                     products.add(product);
                 }
             } catch (SQLException e) {
-                logger.log(Level.ERROR, "createProduct SqlException {}", e);
+                logger.log(Level.ERROR, "findAllProducts SqlException {}", e);
                 throw new DaoException("getAllProducts SqlException " + e);
             }
         }

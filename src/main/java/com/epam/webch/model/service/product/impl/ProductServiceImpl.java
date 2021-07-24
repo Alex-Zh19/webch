@@ -16,10 +16,10 @@ import java.util.Optional;
 
 public class ProductServiceImpl implements ProductService {
     private static final Logger logger= LogManager.getLogger();
-    private ProductService instance;
+    private static ProductService instance;
     private ProductDao productDao= ProductDaoImpl.getInstance();
 
-    public ProductService getInstance(){
+    public static ProductService getInstance(){
         if(instance==null){
             instance=new ProductServiceImpl();
         }

@@ -8,7 +8,7 @@ public class ProductQueryFactory {
 
     private static final String PRODUCTS = "products ";
     private static final String ALL_FIELDS_INSERT = "(name,price) ";
-    private static final String ALL_FIELDS_FIND = "name,price,inStock ";
+    private static final String ALL_FIELDS_FIND = "id,name,price,inStock ";
     private static final int ON_STOCK=1;
     private static final int NOT_ON_STOCK=0;
 

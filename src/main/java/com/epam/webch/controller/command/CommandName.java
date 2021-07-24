@@ -14,6 +14,8 @@ public enum CommandName {
     OPEN_SIGN_IN_PAGE("open-sign-in-page"),
     OPEN_SIGN_UP_PAGE("open-sign-up-page"),
 
+    OPEN_PRODUCT_PAGE("open-product-page"),
+
     OPEN_HOME_GUEST_PAGE("open-home-guest-page"),
     OPEN_HOME_USER_PAGE("open-home-user-page"),
     OPEN_SHOP_PAGE("open-shop-page"),

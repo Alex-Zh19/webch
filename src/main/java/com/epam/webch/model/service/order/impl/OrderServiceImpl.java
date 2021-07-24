@@ -17,10 +17,10 @@ import java.util.Optional;
 
 public class OrderServiceImpl implements OrderService {
     private static final Logger logger = LogManager.getLogger();
-    private OrderService instance;
+    private static OrderService instance;
     private OrderDao orderDao = OrderDaoImpl.getInstance();
 
-    public OrderService getInstance() {
+    public static OrderService getInstance() {
         if (instance == null) {
             instance = new OrderServiceImpl();
         }

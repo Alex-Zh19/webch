@@ -8,10 +8,6 @@
         <form action="controller?command=sign-up-user" method="post" id="form-sign-up">
             <input type="text" id="email" class="fadeIn first" name="${EMAIL}" placeholder="${TEXT[EMAIL_TEXT]}" required
                    pattern="^\w{2,}[@]\w{2,8}[\.]?(\w{2,6})?$">
-            <div id="form-alien-create-name-invalid-feedback" class="invalid-feedback">HOLLY SHIT
-            </div>
-            <div id="form-alien-create-name-valid-feedback" class="valid-feedback">NICE COCK BRO
-            </div>
             <input type="password" id="password" class="fadeIn second" name="${PASSWORD}"
                    placeholder="${TEXT[PASSWORD_TEXT]}" required>
             <input type="password" id="confirm password" class="fadeIn third" name="${CONFIRM_PASSWORD}"

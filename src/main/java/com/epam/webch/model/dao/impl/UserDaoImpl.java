@@ -7,7 +7,6 @@ import com.epam.webch.model.dao.UserDao;
 import com.epam.webch.model.dao.query.UserQueryFactory;
 import com.epam.webch.model.entity.user.User;
 import com.epam.webch.model.entity.user.UserCredentials;
-import com.epam.webch.model.util.Validator;
 import org.apache.logging.log4j.Level;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -102,8 +101,8 @@ public class UserDaoImpl implements UserDao {
         Optional<ProxyConnection> optionalConnection = ConnectionPool.getInstance().getConnection();
         if (optionalConnection.isPresent()) {
             try (ProxyConnection connection = optionalConnection.get();
-                 Statement statement = connection.createStatement()) {
-                ResultSet resultSet = statement.executeQuery(query);
+                 Statement statement = connection.createStatement();
+                 ResultSet resultSet = statement.executeQuery(query)) {
                 while (resultSet.next()) {
                     long id = resultSet.getLong(ID_COLUMN);
                     String email = resultSet.getString(EMAIL_COLUMN);
@@ -142,8 +141,8 @@ public class UserDaoImpl implements UserDao {
         Optional<User> userFromBase;
         if (optionalConnection.isPresent()) {
             try (ProxyConnection connection = optionalConnection.get();
-                 Statement statement = connection.createStatement()) {
-                ResultSet resultSet = statement.executeQuery(query);
+                 Statement statement = connection.createStatement();
+                 ResultSet resultSet = statement.executeQuery(query)) {
                 while (resultSet.next()) {
                     long id = resultSet.getLong(ID_COLUMN);
                     String email = resultSet.getString(EMAIL_COLUMN);
@@ -182,8 +181,8 @@ public class UserDaoImpl implements UserDao {
         Optional<ProxyConnection> optionalConnection = ConnectionPool.getInstance().getConnection();
         if (optionalConnection.isPresent()) {
             try (ProxyConnection connection = optionalConnection.get();
-                 Statement statement = connection.createStatement()) {
-                ResultSet resultSet = statement.executeQuery(query);
+                 Statement statement = connection.createStatement();
+                 ResultSet resultSet = statement.executeQuery(query)) {
                 while (resultSet.next()) {
                     long userid = resultSet.getLong(ID_COLUMN);
                     String email = resultSet.getString(EMAIL_COLUMN);
@@ -286,8 +285,8 @@ public class UserDaoImpl implements UserDao {
         Optional<ProxyConnection> optionalConnection = ConnectionPool.getInstance().getConnection();
         if (optionalConnection.isPresent()) {
             try (ProxyConnection connection = optionalConnection.get();
-                 Statement statement = connection.createStatement()) {
-                ResultSet resultSet = statement.executeQuery(query);
+                 Statement statement = connection.createStatement();
+                 ResultSet resultSet = statement.executeQuery(query)) {
                 while (resultSet.next()) {
                     String hashPassword = resultSet.getString(PASSWORD_COLUMN);
                     String salt = resultSet.getString(SALT_COLUMN);

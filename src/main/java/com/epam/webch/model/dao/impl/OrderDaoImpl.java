@@ -49,8 +49,8 @@ public class OrderDaoImpl implements OrderDao {
         Optional<ProxyConnection> optionalConnection = ConnectionPool.getInstance().getConnection();
         if (optionalConnection.isPresent()) {
             try (ProxyConnection connection = optionalConnection.get();
-                 Statement statement = connection.createStatement()) {
-                ResultSet resultSet = statement.executeQuery(query);
+                 Statement statement = connection.createStatement();
+                 ResultSet resultSet = statement.executeQuery(query)) {
                 while (resultSet.next()) {
                     long id = resultSet.getLong(ID_COLUMN);
                     Product productName = (Product) resultSet.getObject(PRODUCT_NAME_COLUMN);
@@ -87,8 +87,8 @@ public class OrderDaoImpl implements OrderDao {
         Optional<ProxyConnection> optionalConnection = ConnectionPool.getInstance().getConnection();
         if (optionalConnection.isPresent()) {
             try (ProxyConnection connection = optionalConnection.get();
-                 Statement statement = connection.createStatement()) {
-                ResultSet resultSet = statement.executeQuery(query);
+                 Statement statement = connection.createStatement();
+                 ResultSet resultSet = statement.executeQuery(query)) {
                 while (resultSet.next()) {
                     long id = resultSet.getLong(ID_COLUMN);
                     Product productName = (Product) resultSet.getObject(PRODUCT_NAME_COLUMN);
@@ -124,8 +124,8 @@ public class OrderDaoImpl implements OrderDao {
         Optional<ProxyConnection> optionalConnection = ConnectionPool.getInstance().getConnection();
         if (optionalConnection.isPresent()) {
             try (ProxyConnection connection = optionalConnection.get();
-                 Statement statement = connection.createStatement()) {
-                ResultSet resultSet = statement.executeQuery(query);
+                 Statement statement = connection.createStatement();
+                 ResultSet resultSet = statement.executeQuery(query)) {
                 while (resultSet.next()) {
                     long id = resultSet.getLong(ID_COLUMN);
                     Product productName = (Product) resultSet.getObject(PRODUCT_NAME_COLUMN);

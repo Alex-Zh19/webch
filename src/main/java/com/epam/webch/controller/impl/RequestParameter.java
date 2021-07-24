@@ -11,7 +11,9 @@ public enum RequestParameter implements BaseEnum {
     NEW_PASSWORD("new-password"),
     CONFIRM_NEW_PASSWORD("confirm-new-password"),
     CONFIRM_PASSWORD("confirm-password"),
-    NEW_EMAIL("new-email");
+    NEW_EMAIL("new-email"),
+    PRODUCT_LIST("product-list"),
+    PRODUCT_ID("product-id");
 
 
     private String value;
