@@ -15,7 +15,7 @@
 <jsp:include page="${NAVIGATION_BAR_FROM_ROOT}"></jsp:include>
 <c:forEach var="pr" items="${PRODUCT_LIST}">
     <c:set var="product" value="${pr}" scope="request"></c:set>
-   <jsp:include page="${FORM_PRODUCT}"></jsp:include>
+    <jsp:include page="${FORM_PRODUCT}"></jsp:include>
 </c:forEach>
 </body>
 </html>

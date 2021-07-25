@@ -27,10 +27,8 @@ public class OpenShopPage implements Command {
             for(Optional<Product> product:list){
                 if(product.isPresent()&&product.get().IsInStock()!=0){
                     productList.add(product.get());
-                    System.out.println("1");
                 }
             }
-            System.out.println("here");
             request.setAttribute(RequestParameter.PRODUCT_LIST.name(), productList);
         } catch (ServiceException e) {
             return new Router(PagePath.ERROR_404_PAGE.getValue(), Router.RouterType.FORWARD);

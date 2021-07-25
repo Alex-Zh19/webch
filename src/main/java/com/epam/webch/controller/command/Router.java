@@ -4,8 +4,8 @@ public class Router {
     public enum RouterType{
         FORWARD,REDIRECT
     }
-    String pathToNextPage;
-    RouterType routerType;
+    private String pathToNextPage;
+    private RouterType routerType;
 
     public Router (String pathToNextPage,RouterType routerType){
         this.pathToNextPage=pathToNextPage;
