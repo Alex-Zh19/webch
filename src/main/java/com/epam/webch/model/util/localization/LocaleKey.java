@@ -29,15 +29,19 @@ public enum LocaleKey {
     CANCEL_TEXT("cancel-text"),
     SETTINGS_BUTTON("settings-button"),
     GENERAL_SETTINGS_FIELD_TEXT("general-settings-field-text"),
-    PASSWORD_SETTINGS_FIELD_TEXT("password-settings-field-text");
+    PASSWORD_SETTINGS_FIELD_TEXT("password-settings-field-text"),
+    ADD_TO_CART_TEXT("add-to-cart-text"),
+    OPEN_PRODUCT_PAGE_TEXT("open-product-page-text"),
+    PRODUCT_NAME_FIELD("product-name-field"),
+    PRODUCT_PRICE_FIELD("product-price-field");
 
     private String value;
 
     LocaleKey(String value) {
-        this.value=value;
+        this.value = value;
     }
 
-    public String getValue(){
+    public String getValue() {
         return value;
     }
 

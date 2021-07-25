@@ -6,7 +6,7 @@
 <link rel="stylesheet" href="${CSS_SIGN_IN_FORM}">
 <div class="wrapper fadeInDown">
     <div id="formContent">
-        <form action="controller?command=sign-in-user" method="post" id="form-sign-in" >
+        <form action="${CONTROLLER_PATH}${COMMAND}=${SIGN_IN_USER}" method="post" id="form-sign-in" >
             <input type="text" id="login" class="fadeIn first" name="${EMAIL}" placeholder="${TEXT[EMAIL_TEXT]}" required
                    pattern="^\w{2,}[@]\w{2,8}[\.]?(\w{2,6})?$">
             <input type="password" id="password" class="fadeIn second" name="${PASSWORD}" placeholder="${TEXT[PASSWORD_TEXT]}" required>

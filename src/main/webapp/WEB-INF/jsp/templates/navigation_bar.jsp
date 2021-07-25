@@ -21,7 +21,7 @@
             </li>-->
             <li class="nav-item">
                 <a class="nav-link"
-                   href="controller?command=sign-out-user">
+                   href="${CONTROLLER_PATH}${COMMAND}=${SIGN_OUT_USER}">
                     ${TEXT[SIGN_OUT_BUTTON]}</a>
             </li>
           <!--  <li class="nav-item">
@@ -43,11 +43,11 @@
                 </a>
                 <div class="dropdown-menu" aria-labelledby="navbarDropdown">
                     <a class="dropdown-item"
-                       href="controller?command=change-language&language=Russian">
+                       href="${CONTROLLER_PATH}${COMMAND}=${CHANGE_LANGUAGE}&${LANGUAGE}=${RUSSIAN_LANGUAGE}">
                         ${TEXT[LANGUAGE_RUSSIAN]}</a>
                     <input type="hidden" name="language" value="English"/>
                     <a class="dropdown-item"
-                       href="controller?command=change-language&language=English">
+                       href="${CONTROLLER_PATH}${COMMAND}=${CHANGE_LANGUAGE}&${LANGUAGE}=${ENGLISH_LANGUAGE}">
                         ${TEXT[LANGUAGE_ENGLISH]}</a>
                     <div class="dropdown-divider"></div>
                 </div>

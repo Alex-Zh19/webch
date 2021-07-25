@@ -3,6 +3,8 @@ package com.epam.webch.controller.impl;
 import com.epam.webch.controller.BaseEnum;
 
 public enum RequestParameter implements BaseEnum {
+
+
     NAME("name"),
     SURNAME("surname"),
     EMAIL("email"),
@@ -13,8 +15,10 @@ public enum RequestParameter implements BaseEnum {
     CONFIRM_PASSWORD("confirm-password"),
     NEW_EMAIL("new-email"),
     PRODUCT_LIST("product-list"),
-    PRODUCT_ID("product-id");
-
+    PRODUCT_ID("product-id"),
+    LANGUAGE("language"),
+    RUSSIAN_LANGUAGE("Russian"),
+    ENGLISH_LANGUAGE("English");
 
     private String value;
 

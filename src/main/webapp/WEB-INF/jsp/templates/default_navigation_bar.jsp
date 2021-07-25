@@ -13,24 +13,24 @@
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
         <ul class="navbar-nav mr-auto">
             <li class="nav-item active">
-                <a class="nav-link" href="controller?command=home">
+                <a class="nav-link" href="${CONTROLLER_PATH}${COMMAND}=${OPEN_HOME_PAGE}">
                     ${TEXT[PAGE_HOME]}
                 </a>
             </li>
             <li class="nav-item">
                 <a class="nav-link"
-                   href="controller?command=open-sign-in-page">
+                   href="${CONTROLLER_PATH}${COMMAND}=${OPEN_SIGN_IN_PAGE}">
                     ${TEXT[PAGE_SIGN_IN]}</a>
             </li>
             <li class="nav-item">
                 <a class="nav-link"
-                   href="controller?command=open-sign-up-page">
+                   href="${CONTROLLER_PATH}${COMMAND}=${OPEN_SIGN_UP_PAGE}">
                     ${TEXT[PAGE_SIGN_UP]}
                 </a>
             </li>
             <li class="nav-item">
                 <a class="nav-link"
-                   href="controller?command=open-home-guest-page">
+                   href="${CONTROLLER_PATH}${COMMAND}=${OPEN_HOME_GUEST_PAGE}">
                     ${TEXT[PAGE_CONTINUE_AS_GUEST]}</a>
             </li>
 
@@ -41,11 +41,11 @@
                 </a>
                 <div class="dropdown-menu" aria-labelledby="navbarDropdown">
                     <a class="dropdown-item"
-                       href="controller?command=change-language&language=Russian">
+                       href="${CONTROLLER_PATH}${COMMAND}=${CHANGE_LANGUAGE}&${LANGUAGE}=${RUSSIAN_LANGUAGE}">
                         ${TEXT[LANGUAGE_RUSSIAN]}</a>
                     <input type="hidden" name="language" value="English"/>
                     <a class="dropdown-item"
-                       href="controller?command=change-language&language=English">
+                       href="${CONTROLLER_PATH}${COMMAND}=${CHANGE_LANGUAGE}&${LANGUAGE}=${ENGLISH_LANGUAGE}">
                         ${TEXT[LANGUAGE_ENGLISH]}</a>
                     <div class="dropdown-divider"></div>
                 </div>

@@ -1,6 +1,7 @@
 package com.epam.webch.controller.listener;
 
 import com.epam.webch.controller.BaseEnum;
+import com.epam.webch.controller.command.CommandName;
 import com.epam.webch.controller.impl.IncludePagePath;
 import com.epam.webch.controller.impl.RequestParameter;
 import jakarta.servlet.ServletContext;
@@ -14,7 +15,7 @@ public class ServletContextListener implements jakarta.servlet.ServletContextLis
         jakarta.servlet.ServletContextListener.super.contextInitialized(sce);
         setEnumVariables(sce.getServletContext(), IncludePagePath.values());
         setEnumVariables(sce.getServletContext(), RequestParameter.values());
-        System.out.println("ok");
+        setEnumVariables(sce.getServletContext(), CommandName.values());
     }
 
 

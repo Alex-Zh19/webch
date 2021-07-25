@@ -1,13 +1,16 @@
 package com.epam.webch.controller.command;
 
+import com.epam.webch.controller.BaseEnum;
+
 import java.util.Optional;
 
-public enum CommandName {
-    CONTROLLER_PATH_AND_COMMAND("http://localhost:8080/webprojectch_war_exploded/controller?command="),
+public enum CommandName implements BaseEnum {
+    CONTROLLER_PATH("http://localhost:8080/webch_war_exploded//controller?"),
+    COMMAND("command"),
+
+
 
     CHANGE_LANGUAGE("change-language"),
-
-
 
     OPEN_HOME_PAGE("home"),// OPEN_FIRST_PAGE("open-first-page"),//
 
@@ -15,6 +18,7 @@ public enum CommandName {
     OPEN_SIGN_UP_PAGE("open-sign-up-page"),
 
     OPEN_PRODUCT_PAGE("open-product-page"),
+    ADD_TO_CART("add-to-cart"),
 
     OPEN_HOME_GUEST_PAGE("open-home-guest-page"),
     OPEN_HOME_USER_PAGE("open-home-user-page"),
