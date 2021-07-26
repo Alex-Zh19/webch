@@ -300,7 +300,7 @@ public class UserServiceImpl implements UserService {
          Optional<UserCredentials> userCredentials = userDao.findUserCredentialsByEmail(email);
          if (userCredentials.isPresent()) {
             String saltHex = userCredentials.get().getSaltHex();
-            byte[] salt = DatatypeConverter.parseHexBinary(saltHex);
+            byte[] salt = Base64.getDecoder().decode(saltHex);
             String enteredPasswordHex;
             try {
                enteredPasswordHex= Encryptor.generateCredentials(oldPass,salt);

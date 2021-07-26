@@ -2,6 +2,7 @@ package com.epam.webch.controller;
 
 public enum PagePath {
 
+
     HOME_PAGE("WEB-INF/jsp/home_page.jsp"),
     SIGN_IN_PAGE("WEB-INF/jsp/sign_in_page.jsp"),
     SIGN_UP_PAGE("WEB-INF/jsp/sign_up_page.jsp"),
@@ -10,6 +11,8 @@ public enum PagePath {
     SHOP_PAGE("WEB-INF/jsp/shop_page.jsp"),
     ERROR_404_PAGE("WEB-INF/error_page/error_404.jsp"),
     SETTINGS_PAGE("WEB-INF/jsp/settings_page.jsp"),
+    GUEST_CART_PAGE("WEB-INF/jsp/guest/cart_page.jsp"),
+    USER_CART_PAGE("WEB-INF/jsp/user/cart_page.jsp"),
 
     HELLO_PAGE("WEB-INF/jsp/hello.jsp"),
     FIRST_PAGE("WEB-INF/jsp/page.jsp"),

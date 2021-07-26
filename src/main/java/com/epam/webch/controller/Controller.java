@@ -3,6 +3,7 @@ package com.epam.webch.controller;
 
 import com.epam.webch.controller.command.Command;
 import com.epam.webch.controller.command.CommandFactory;
+import com.epam.webch.controller.command.CommandName;
 import com.epam.webch.controller.command.Router;
 import com.epam.webch.model.connection.ConnectionPool;
 import jakarta.servlet.ServletException;
@@ -15,6 +16,7 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
 import java.io.IOException;
+import java.util.Optional;
 
 @WebServlet(name = "Controller", urlPatterns = "/controller")
 public class Controller extends HttpServlet {
@@ -45,6 +47,11 @@ public class Controller extends HttpServlet {
         System.out.println(commandFromPage);
         Command command = CommandFactory.createCommand(commandFromPage);
         Router router = command.execute(request, response);
+        Optional<CommandName> optionalCommand = router.getCommandOptional();
+        if (optionalCommand.isPresent()) {
+            Command command1=CommandFactory.createCommand(optionalCommand.get().getValue());
+            router = command1.execute(request,response);
+        }
         switch (router.getRouterType()) {
             case FORWARD:
                 request.getRequestDispatcher(router.getPathToNextPage()).forward(request, response);
@@ -53,7 +60,7 @@ public class Controller extends HttpServlet {
                 response.sendRedirect(router.getPathToNextPage());
                 break;
             default:
-                logger.log(Level.ERROR,"unknown routerType exception");
+                logger.log(Level.ERROR, "unknown routerType exception");
                 //todo redirect to error page
         }
     }

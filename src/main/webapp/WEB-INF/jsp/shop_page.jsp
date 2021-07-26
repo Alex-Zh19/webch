@@ -10,9 +10,17 @@
 <html>
 <head>
     <title>Title</title>
+
 </head>
 <body>
-<jsp:include page="${NAVIGATION_BAR_FROM_ROOT}"></jsp:include>
+<c:set var="currentRole" value="${sessionScope.CURRENT_USER}"></c:set>
+<c:set var="role" value="${guest}"></c:set>
+<c:if test="${currentRole==role}">
+    <jsp:include page="${GUEST_NAVIGATION_BAR_FROM_ROOT}"></jsp:include>
+</c:if>
+<c:if test="${currentRole!=role}">
+    <jsp:include page="${NAVIGATION_BAR_FROM_ROOT}"></jsp:include>
+</c:if>
 <c:forEach var="pr" items="${PRODUCT_LIST}">
     <c:set var="product" value="${pr}" scope="request"></c:set>
     <jsp:include page="${FORM_PRODUCT}"></jsp:include>

@@ -5,6 +5,7 @@ public enum SessionAttribute {
     TEXT,
     CURRENT_USER_ROLE,
     LOCALE,
-    PREVIOUS_PAGE;
+    PREVIOUS_PAGE,
+    USER_CART
 
 }

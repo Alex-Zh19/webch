@@ -16,7 +16,7 @@ import jakarta.servlet.http.HttpServletResponse;
 import java.util.List;
 import java.util.Optional;
 
-public class AddToCart implements Command {
+public class DeleteFromCart implements Command {
     private ProductService productService = ProductServiceImpl.getInstance();
     @Override
     public Router execute(HttpServletRequest request, HttpServletResponse response) {
@@ -30,8 +30,8 @@ public class AddToCart implements Command {
         }
         if (productOptional.isPresent()) {
             List<Product> productList = (List<Product>) request.getSession().getAttribute(SessionAttribute.USER_CART.name());
-            productList.add(productOptional.get());
-            result = new Router(PagePath.SHOP_PAGE.getValue(), Router.RouterType.FORWARD, CommandName.OPEN_SHOP_PAGE);
+            productList.remove(productOptional.get());
+            result = new Router(PagePath.SHOP_PAGE.getValue(), Router.RouterType.FORWARD, CommandName.OPEN_CART_PAGE);
         }else{
             result=new Router(PagePath.ERROR_404_PAGE.getValue(), Router.RouterType.FORWARD);
         }

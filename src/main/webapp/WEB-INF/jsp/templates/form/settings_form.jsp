@@ -57,10 +57,10 @@
                 </div>
             </div>
             </div>
-        </div>${CONTROLLER_PATH}${COMMAND}=${CHANGE_USER_INFO}
-        <button type="submit" formaction="${CONTROLLER_PATH}${COMMAND}=${CHANGE_USER_INFO}" class="btn btn-primary">
+        </div>
+        <button type="submit" formaction="${CONTROLLER_PATH}?${COMMAND}=${CHANGE_USER_INFO}" class="btn btn-primary">
             ${TEXT[SAVE_CHANGES_TEXT]}</button>
-        <button type="submit" formaction="${CONTROLLER_PATH}${COMMAND}=${OPEN_HOME_USER_PAGE}" class="btn btn-default">
+        <button type="submit" formaction="${CONTROLLER_PATH}?${COMMAND}=${OPEN_HOME_USER_PAGE}" class="btn btn-default">
             ${TEXT[CANCEL_TEXT]}</button>
     </form>
 </div>

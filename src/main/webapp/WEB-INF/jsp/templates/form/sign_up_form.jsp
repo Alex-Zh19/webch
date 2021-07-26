@@ -5,7 +5,7 @@
 <script var pass=""></script>
 <div class="wrapper fadeInDown">
     <div id="formContent">
-        <form action="${CONTROLLER_PATH}${COMMAND}=${SIGN_UP_USER}" method="post" id="form-sign-up">
+        <form action="${CONTROLLER_PATH}?${COMMAND}=${SIGN_UP_USER}" method="post" id="form-sign-up">
             <input type="text" id="email" class="fadeIn first" name="${EMAIL}" placeholder="${TEXT[EMAIL_TEXT]}" required
                    pattern="^\w{2,}[@]\w{2,8}[\.]?(\w{2,6})?$">
             <input type="password" id="password" class="fadeIn second" name="${PASSWORD}"

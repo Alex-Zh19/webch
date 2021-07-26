@@ -43,11 +43,11 @@
                 </a>
                 <div class="dropdown-menu" aria-labelledby="navbarDropdown">
                     <a class="dropdown-item"
-                       href="${CONTROLLER_PATH}${COMMAND}=${CHANGE_LANGUAGE}&${LANGUAGE}=${RUSSIAN_LANGUAGE}">
+                       href="${CONTROLLER_PATH}?${COMMAND}=${CHANGE_LANGUAGE}&${LANGUAGE}=${RUSSIAN_LANGUAGE}">
                         ${TEXT[LANGUAGE_RUSSIAN]}</a>
                     <input type="hidden" name="language" value="English"/>
                     <a class="dropdown-item"
-                       href="${CONTROLLER_PATH}${COMMAND}=${CHANGE_LANGUAGE}&${LANGUAGE}=${ENGLISH_LANGUAGE}">
+                       href="${CONTROLLER_PATH}?${COMMAND}=${CHANGE_LANGUAGE}&${LANGUAGE}=${ENGLISH_LANGUAGE}">
                         ${TEXT[LANGUAGE_ENGLISH]}</a>
                     <div class="dropdown-divider"></div>
                 </div>

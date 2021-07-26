@@ -5,7 +5,7 @@ import com.epam.webch.controller.BaseEnum;
 import java.util.Optional;
 
 public enum CommandName implements BaseEnum {
-    CONTROLLER_PATH("http://localhost:8080/webch_war_exploded//controller?"),
+    CONTROLLER_PATH("http://localhost:8080/webch_war_exploded/controller"),
     COMMAND("command"),
 
     CHANGE_LANGUAGE("change-language"),
@@ -18,8 +18,10 @@ public enum CommandName implements BaseEnum {
     OPEN_HOME_USER_PAGE("open-home-user-page"),
     OPEN_SHOP_PAGE("open-shop-page"),
     OPEN_SETTINGS_PAGE("open-settings-page"),
+    OPEN_CART_PAGE("open-cart-page"),
 
     ADD_TO_CART("add-to-cart"),
+    DELETE_FROM_CART("delete-from-cart"),
     CHANGE_USER_INFO("change-user-info"),
     SIGN_IN_USER("sign-in-user"),
     SIGN_UP_USER("sign-up-user"),

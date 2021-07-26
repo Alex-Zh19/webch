@@ -6,9 +6,9 @@
         <button type="submit" formaction="${CONTROLLER_PATH}?${COMMAND}=${OPEN_PRODUCT_PAGE}&${PRODUCT_ID}=${product.id}"
                 class="open-product-button">
             ${TEXT[OPEN_PRODUCT_PAGE_TEXT]}</button>
-        <button type="submit" formaction="${CONTROLLER_PATH}?${COMMAND}=${ADD_TO_CART}&${PRODUCT_ID}=${product.id}"
+        <button type="submit" formaction="${CONTROLLER_PATH}?${COMMAND}=${DELETE_FROM_CART}&${PRODUCT_ID}=${product.id}"
                 class="add-to-cart-button">
-            ${TEXT[ADD_TO_CART_TEXT]}</button>
+            ${TEXT[DELETE_FROM_CART_TEXT]}</button>
 
     </div>
 </form>

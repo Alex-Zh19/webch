@@ -1,5 +1,7 @@
 package com.epam.webch.model.entity.user;
 
+import com.epam.webch.controller.BaseEnum;
+
 public class User {
     long id;
     String email;
@@ -9,18 +11,36 @@ public class User {
     UserRole userRole;
     UserStatus userStatus;
 
-    public enum UserRole {
-        root,
-        admin,
-        employee,
-        user,
-        guest
+    public enum UserRole implements BaseEnum {
+        root("root"),
+        admin("admin"),
+        employee("employee"),
+        user("user"),
+        guest("guest");
+
+        private String value;
+        UserRole(String value){
+            this.value=value;
+        }
+        @Override
+        public String getValue() {
+            return value;
+        }
     }
 
-    public enum UserStatus {
-        active,
-        blocked,
-        deleted
+    public enum UserStatus implements BaseEnum{
+        active("active"),
+        blocked("blocked"),
+        deleted("deleted");
+
+        private String value;
+        UserStatus(String value){
+            this.value=value;
+        }
+        @Override
+        public String getValue() {
+            return value;
+        }
     }
 
 

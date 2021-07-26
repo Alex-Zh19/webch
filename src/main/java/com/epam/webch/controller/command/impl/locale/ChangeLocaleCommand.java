@@ -19,8 +19,7 @@ public class ChangeLocaleCommand implements Command {
         PagePath path = (PagePath) request.getSession().getAttribute(SessionAttribute.PREVIOUS_PAGE.name());
         Router router;
         if (path == PagePath.SHOP_PAGE) {
-            Command command = CommandFactory.createCommand(CommandName.OPEN_SHOP_PAGE.getValue());
-            router = command.execute(request, response);
+            router = new Router(path.getValue(), Router.RouterType.FORWARD,CommandName.OPEN_SHOP_PAGE);
         } else {
             router = new Router(path.getValue(), Router.RouterType.FORWARD);
         }
@@ -29,4 +28,5 @@ public class ChangeLocaleCommand implements Command {
         LocalizationManager.getCurrentInstance(request).setLocale(localeAttribute.getLocale());
         return router;
     }
+
 }

@@ -19,6 +19,11 @@
             </li>
             <li class="nav-item">
                 <a class="nav-link"
+                   href="controller?command=open-shop-page">
+                    ${TEXT[SHOP]}</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link"
                    href="${CONTROLLER_PATH}?${COMMAND}=${OPEN_SIGN_IN_PAGE}">
                     ${TEXT[PAGE_SIGN_IN]}</a>
             </li>
@@ -30,10 +35,10 @@
             </li>
             <li class="nav-item">
                 <a class="nav-link"
-                   href="${CONTROLLER_PATH}?${COMMAND}=${OPEN_HOME_GUEST_PAGE}">
-                    ${TEXT[PAGE_CONTINUE_AS_GUEST]}</a>
+                   href="${CONTROLLER_PATH}?${COMMAND}=${OPEN_CART_PAGE}">
+                    ${TEXT[CART_TEXT]}
+                </a>
             </li>
-
             <li class="nav-item dropdown">
                 <a class="nav-link dropdown-toggle"
                    id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
@@ -52,10 +57,5 @@
             </li>
         </ul>
 
-
-        <!-- <form class="form-inline" >
-             <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
-             <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
-         </form>-->
     </div>
 </nav>

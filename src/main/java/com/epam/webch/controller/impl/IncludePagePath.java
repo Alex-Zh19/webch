@@ -4,12 +4,17 @@ import com.epam.webch.controller.BaseEnum;
 
 public enum IncludePagePath implements BaseEnum {
     DEFAULT_NAVIGATION_BAR("templates/default_navigation_bar.jsp"),
+    GUEST_NAVIGATION_BAR("../templates/guest_nav_bar.jsp"),
+    GUEST_NAVIGATION_BAR_FROM_ROOT("templates/guest_nav_bar.jsp"),
     NAVIGATION_BAR("../templates/navigation_bar.jsp"),
     NAVIGATION_BAR_FROM_ROOT("templates/navigation_bar.jsp"),
     FORM_SIGN_IN("templates/form/sign_in_form.jsp"),
     FORM_SIGN_UP("templates/form/sign_up_form.jsp"),
     FORM_SETTINGS("templates/form/settings_form.jsp"),
     FORM_PRODUCT("templates/form/product_form.jsp"),
+    FORM_PRODUCT_FROM_ROOT("../templates/form/product_form.jsp"),
+    FORM_CART_PRODUCT("templates/form/product_cart_form.jsp"),
+    FORM_CART_PRODUCT_FROM_ROOT("../templates/form/product_cart_form.jsp"),
 
     CSS_SETTINGS_FORM("css/settings_form.css"),
     CSS_SIGN_IN_FORM("css/sign_in_form.css"),
