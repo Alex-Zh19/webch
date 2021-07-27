@@ -17,5 +17,8 @@
     <c:set var="product" value="${pr}" scope="request"></c:set>
     <jsp:include page="${FORM_CART_PRODUCT_FROM_ROOT}"></jsp:include>
 </c:forEach>
+<form method="post" class="submit-button-form">
+    <button type="submit" formaction="${CONTROLLER_PATH}?${COMMAND}=${OPEN_ORDERING_PAGE}" >oformit' zakaz</button>
+</form>
 </body>
 </html>

@@ -2,10 +2,10 @@ package com.epam.webch.model.entity.product;
 
 
 public class Product {
-    long id;
-    String name;
-    int price;
-    int isInStock;
+    private long id;
+    private String name;
+    private int price;
+    private int isInStock;
 
 
     public Product(long id, String name, int price, int isInStock) {

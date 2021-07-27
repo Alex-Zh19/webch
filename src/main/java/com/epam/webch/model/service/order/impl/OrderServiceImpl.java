@@ -12,6 +12,7 @@ import org.apache.logging.log4j.Level;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
+import java.util.Date;
 import java.util.List;
 import java.util.Optional;
 
@@ -67,26 +68,30 @@ public class OrderServiceImpl implements OrderService {
     }
 
     @Override
-    public boolean addOrder(Product product, Order.OrderStatus status, Optional<String> details,
+    public Optional<Long> findLastOrderId() throws ServiceException {
+        Optional<Long> id;
+        try {
+            id = orderDao.findLastOrderId();
+        } catch (DaoException e) {
+            logger.log(Level.ERROR, "DaoException at findLastOrderId method. {}", e);
+            throw new ServiceException("DaoException at findLastOrderId method. " + e);
+        }
+        return id;
+    }
+
+    @Override
+    public boolean addOrder(long productId, Order.OrderStatus status, long detailsId, String details, Date date,
                             User creator, Optional<User> recipient) throws ServiceException {
 
-        if (product == null) {
-            return false;
-            //todo redirect on error page
-        }
         if (creator == null) {
             return false;
             //todo redirect on error page
         }
         try {
-            if (details.isPresent() && recipient.isPresent()) {
-                orderDao.addOrder(product, status, details.get(), creator, recipient.get());
-            } else if (details.isPresent()) {
-                orderDao.addOrder(product, status, details.get(), creator);
-            } else if (recipient.isPresent()) {
-                orderDao.addOrder(product, status, creator, recipient.get());
-            } else {
-                orderDao.addOrder(product, status, creator);
+            if ( recipient.isPresent()) {
+                orderDao.addOrder(productId, status, detailsId,details,date, creator, recipient.get());
+            } else  {
+                orderDao.addOrder(productId, status,detailsId,details,date, creator);
             }
             return true;
         } catch (DaoException e) {

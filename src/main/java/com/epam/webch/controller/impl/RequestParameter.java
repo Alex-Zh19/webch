@@ -18,7 +18,9 @@ public enum RequestParameter implements BaseEnum {
     PRODUCT_ID("product-id"),
     LANGUAGE("language"),
     RUSSIAN_LANGUAGE("Russian"),
-    ENGLISH_LANGUAGE("English");
+    ENGLISH_LANGUAGE("English"),
+    DETAILS("details"),
+    DATE("date");
 
     private String value;
 

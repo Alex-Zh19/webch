@@ -3,13 +3,13 @@ package com.epam.webch.model.entity.user;
 import com.epam.webch.controller.BaseEnum;
 
 public class User {
-    long id;
-    String email;
-    String name;
-    String surname;
-    int balance;
-    UserRole userRole;
-    UserStatus userStatus;
+    private long id;
+    private String email;
+    private String name;
+    private String surname;
+    private int balance;
+    private UserRole userRole;
+    private UserStatus userStatus;
 
     public enum UserRole implements BaseEnum {
         root("root"),

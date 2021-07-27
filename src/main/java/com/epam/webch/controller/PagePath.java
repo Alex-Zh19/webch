@@ -13,6 +13,7 @@ public enum PagePath {
     SETTINGS_PAGE("WEB-INF/jsp/settings_page.jsp"),
     GUEST_CART_PAGE("WEB-INF/jsp/guest/cart_page.jsp"),
     USER_CART_PAGE("WEB-INF/jsp/user/cart_page.jsp"),
+    ORDERING_PAGE("WEB-INF/jsp/ordering_page.jsp"),
 
     HELLO_PAGE("WEB-INF/jsp/hello.jsp"),
     FIRST_PAGE("WEB-INF/jsp/page.jsp"),

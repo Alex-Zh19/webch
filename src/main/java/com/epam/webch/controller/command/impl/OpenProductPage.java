@@ -1,6 +1,7 @@
 package com.epam.webch.controller.command.impl;
 
 import com.epam.webch.controller.PagePath;
+import com.epam.webch.controller.SessionAttribute;
 import com.epam.webch.controller.command.Command;
 import com.epam.webch.controller.command.Router;
 import com.epam.webch.controller.impl.RequestParameter;
@@ -18,6 +19,7 @@ public class OpenProductPage implements Command {
 
     @Override
     public Router execute(HttpServletRequest request, HttpServletResponse response) {
+       // request.getSession().setAttribute(SessionAttribute.PREVIOUS_PAGE.name(), PagePath.PRO);
         String stringId = request.getParameter(RequestParameter.PRODUCT_ID.getValue());
         Optional<Product> product;
         Long id = Long.parseLong(stringId);

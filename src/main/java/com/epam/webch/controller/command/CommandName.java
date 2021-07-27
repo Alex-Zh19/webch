@@ -19,6 +19,8 @@ public enum CommandName implements BaseEnum {
     OPEN_SHOP_PAGE("open-shop-page"),
     OPEN_SETTINGS_PAGE("open-settings-page"),
     OPEN_CART_PAGE("open-cart-page"),
+    OPEN_ORDERING_PAGE("open-ordering-page"),
+    CREATE_ORDER("create-order"),
 
     ADD_TO_CART("add-to-cart"),
     DELETE_FROM_CART("delete-from-cart"),

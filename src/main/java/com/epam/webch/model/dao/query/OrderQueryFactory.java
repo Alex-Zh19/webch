@@ -1,65 +1,82 @@
 package com.epam.webch.model.dao.query;
 
 import com.epam.webch.model.entity.order.Order;
-import com.epam.webch.model.entity.product.Product;
 import com.epam.webch.model.entity.user.User;
+
+import java.util.Date;
 
 import static com.epam.webch.model.dao.query.SQLQuery.*;
 
 public class OrderQueryFactory {
+//maybe cross join
+    private static final String ORDERS = "coffee_house.orders ";
+    private static final String ORDERS_DETAILS = "coffee_house.orders_details ";
+    private static final String PRODUCTS = "coffee_house.products ";
+    private static final String ID_FIELD_ORDERS_DETAILS_FIND="orders_details.id";
+    private static final String ORDER_ID_FIELD_ORDERS_DETAILS_FIND="orders_details.order_id";
+    private static final String ALL_FIELDS_ORDERS_DETAILS_INSERT = "(order_id,details,order_date) ";
+    private static final String ALL_FIELDS_ORDERS_INSERT = "(order_id,productName,status,details,creator,recipient) ";
+    private static final String INSERT_WITHOUT_RECIPIENT = "(order_id,productName,status,details,creator) ";
+    private static final String ALL_FIELDS_ORDERS_FIND =
+            "orders.id,orders.status,orders.creator,orders.recipient,orders_details.id," +
+                    "orders_details.details,orders_details.order_date,products.id,products.name,products.price," +
+                    "products.description,products.inStock ";
 
-    private static final String ORDERS = "orders ";
-    private static final String ALL_FIELDS_INSERT = "(productName,status,details,creator,recipient) ";
-    private static final String INSERT_WITHOUT_DETAILS = "(productName,status,creator,recipient) ";
-    private static final String INSERT_WITHOUT_RECIPIENT = "(productName,status,details,creator) ";
-    private static final String INSERT_WITHOUT_BOTH = "(productName,status,creator) ";
-    private static final String ALL_FIELDS_FIND = "id,productName,status,details,creator,recipient ";
-
-    public  String findAllOrdersQuery() {
+    public String findAllOrdersQuery() {
         StringBuilder query = new StringBuilder(SELECT);
-        query.append(ALL_FIELDS_FIND).append(FROM).append(ORDERS);
+        query.append(ALL_FIELDS_ORDERS_FIND)
+                .append(FROM).append(ORDERS).append(JOIN).append(ORDERS_DETAILS).append(ON).
+                append("coffee_house.orders.order_id=coffee_house.orders_details.order_id").append(JOIN).
+                append(PRODUCTS).append(ON).append("coffee_house.orders.productName=coffee_house.products.id");
         return query.toString();
     }
 
-
-    public  String addOrderQuery(Product product, Order.OrderStatus status, String details, User creator, User recipient) {
+    public String addOrderDetailsQuery(long order_id, String details, Date order_date){
         StringBuilder query = new StringBuilder(INSERT);
-        query.append(INTO).append(ORDERS).append(ALL_FIELDS_INSERT);
-        query.append("values(\"");
-        query.append(product.getId()).append("\"").append(",");
-        query.append("\"").append(status).append("\"").append(",");
+        query.append(INTO).append(ORDERS).append(ALL_FIELDS_ORDERS_DETAILS_INSERT);
+        query.append("values(");
+        query.append(order_id).append(",");
         query.append("\"").append(details).append("\"").append(",");
+        query.append(order_date).append(")");
+        return query.toString();
+    }
+
+    public String findLastOrderId(){
+        StringBuilder query=new StringBuilder(SELECT);
+        query.append(MAX).append("(").append(ORDER_ID_FIELD_ORDERS_DETAILS_FIND).append(") ").append(AS).append("id").
+                append(FROM).append(ORDERS_DETAILS);
+        return query.toString();
+    }
+
+
+    public  String findOrdersDetailsQuery(long details_Id) {
+        StringBuilder query = new StringBuilder(SELECT);
+        query.append(ID_FIELD_ORDERS_DETAILS_FIND)
+                .append(FROM).append(ORDERS_DETAILS).append(WHERE).append("order_id=").append(details_Id);
+        return query.toString();
+    }
+
+
+    public String addOrderQuery(long prodId, Order.OrderStatus status, long details, User creator, User recipient) {
+        StringBuilder query = new StringBuilder(INSERT);
+        query.append(INTO).append(ORDERS).append(ALL_FIELDS_ORDERS_INSERT);
+        query.append("values(");
+        query.append(prodId).append(",");
+        query.append("\"").append(status).append("\"").append(",");
+        query.append(details).append(",");
         query.append("\"").append(creator).append("\"").append(",");
         query.append("\"").append(recipient).append("\"").append(")");
         return query.toString();
     }
 
-    public  String addOrderQuery(Product product, Order.OrderStatus status, User creator, User recipient) {
-        StringBuilder query = new StringBuilder(INSERT);
-        query.append(INTO).append(ORDERS).append(INSERT_WITHOUT_DETAILS);
-        query.append("values(\"");
-        query.append(product.getId()).append("\"").append(",");
-        query.append("\"").append(status).append("\"").append(",");
-        query.append("\"").append(creator).append("\"").append(",");
-        query.append("\"").append(recipient).append("\"").append(")");
-        return query.toString();
-    }
-    public  String addOrderQuery(Product product, Order.OrderStatus status, String details, User creator) {
+
+    public String addOrderQuery(long prodId, Order.OrderStatus status, long details, User creator) {
         StringBuilder query = new StringBuilder(INSERT);
         query.append(INTO).append(ORDERS).append(INSERT_WITHOUT_RECIPIENT);
-        query.append("values(\"");
-        query.append(product.getId()).append("\"").append(",");
+        query.append("values(");
+        query.append(prodId).append(",");
         query.append("\"").append(status).append("\"").append(",");
-        query.append("\"").append(details).append("\"").append(",");
-        query.append("\"").append(creator).append("\"").append(")");
-        return query.toString();
-    }
-    public  String addOrderQuery(Product product, Order.OrderStatus status, User creator) {
-        StringBuilder query = new StringBuilder(INSERT);
-        query.append(INTO).append(ORDERS).append(INSERT_WITHOUT_BOTH);
-        query.append("values(\"");
-        query.append(product.getId()).append("\"").append(",");
-        query.append("\"").append(status).append("\"").append(",");
+        query.append(details).append(",");
         query.append("\"").append(creator).append("\"").append(")");
         return query.toString();
     }
@@ -75,32 +92,37 @@ public class OrderQueryFactory {
 
     public  String reallyDeleteOrderQuery(Order order) {
         StringBuilder query = new StringBuilder(DELETE);
-        query.append(FROM).append(ORDERS).append(WHERE).append("id=").
-                append("\"").append(order.getId()).append("\"");
+        query.append(FROM).append(ORDERS).append(WHERE).append("id=").append(order.getId());
         return query.toString();
     }
 
     public  String selectCommandQuery(Order order) {
         StringBuilder query = new StringBuilder(SELECT);
-        query.append(ALL_FIELDS_FIND);
-        query.append(FROM).append(ORDERS).append(WHERE).append("id=").
-                append("\"").append(order.getId()).append("\"");
+        query.append(ALL_FIELDS_ORDERS_FIND)
+                .append(FROM).append(ORDERS).append(JOIN).append(ORDERS_DETAILS).append(ON).
+                append("coffee_house.orders.order_id=coffee_house.orders_details.order_id").append(JOIN).
+                append(PRODUCTS).append(ON).append("coffee_house.orders.productName=coffee_house.products.id").
+                append(WHERE).append("orders.order_id=").append(order.getId());
         return query.toString();
     }
 
     public  String findOrdersByCreatorQuery(User creator) {
         StringBuilder query = new StringBuilder(SELECT);
-        query.append(ALL_FIELDS_FIND);
-        query.append(FROM).append(ORDERS).append(WHERE).append("creator=").
-                append("\"").append(creator.getId()).append("\"");
+        query.append(ALL_FIELDS_ORDERS_FIND)
+                .append(FROM).append(ORDERS).append(JOIN).append(ORDERS_DETAILS).append(ON).
+                append("coffee_house.orders.order_id=coffee_house.orders_details.order_id").append(JOIN).
+                append(PRODUCTS).append(ON).append("coffee_house.orders.productName=coffee_house.products.id").
+                append(WHERE).append("orders.creator=").append(creator.getId());
         return query.toString();
     }
 
     public  String findOrderQuery(Long id) {
         StringBuilder query = new StringBuilder(SELECT);
-        query.append(ALL_FIELDS_FIND);
-        query.append(FROM).append(ORDERS).append(WHERE).append("id=").
-                append("\"").append(id).append("\"");
+        query.append(ALL_FIELDS_ORDERS_FIND)
+                .append(FROM).append(ORDERS).append(JOIN).append(ORDERS_DETAILS).append(ON).
+                append("coffee_house.orders.order_id=coffee_house.orders_details.order_id").append(JOIN).
+                append(PRODUCTS).append(ON).append("coffee_house.orders.productName=coffee_house.products.id").
+                append(WHERE).append("orders.order_id=").append(id);
         return query.toString();
     }
 
