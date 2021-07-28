@@ -1,4 +1,5 @@
 <!--<link rel="stylesheet" href="${CSS_NAV_BAR}">-->
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css" rel="stylesheet"
       integrity="sha384-+0n0xVW2eSR5OomGNYDnhzAbDsOXxcvSN1TPprVMTNDbiYZCxYbOOl7+AMvyTG2x" crossorigin="anonymous">
 <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
@@ -11,31 +12,42 @@
         integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
         crossorigin="anonymous"></script>
 
+<c:set var="currentRole" value="${sessionScope.CURRENT_USER_ROLE}"></c:set>
+<c:set var="roleGuest" value="${guest}"></c:set>
+<c:set var="roleUser" value="${user}"></c:set>
+<c:set var="roleEmployee" value="${employee}"></c:set>
+<c:set var="roleAdmin" value="${admin}"></c:set>
+
 <nav class="navbar navbar-expand-lg navbar navbar-dark bg-dark">
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
         <ul class="navbar-nav mr-auto">
-           <!-- <li class="nav-item active">
-                <a class="nav-link" href="controller?command=home">
-                    ${TEXT[PAGE_HOME]}
-                    </a>
-            </li>-->
+            <li class="nav-item active">
+                <c:if test="${currentRole==roleUser}">
+                    <a class="nav-link" href="${CONTROLLER_PATH}?${COMMAND}=${OPEN_HOME_USER_PAGE}" value="${TEXT[PAGE_HOME]}">
+                </c:if>
+                <c:if test="${currentRole==roleEmployee}">
+                    <a class="nav-link" href="${CONTROLLER_PATH}?${COMMAND}=${OPEN_HOME_EMPLOYEE_PAGE}" value="${TEXT[PAGE_HOME]}">
+                </c:if>
+                <c:if test="${currentRole==roleAdmin}">
+                    <a class="nav-link" href="${CONTROLLER_PATH}?${COMMAND}=${OPEN_HOME_ADMIN_PAGE}" value="${TEXT[PAGE_HOME]}">
+                </c:if>
+            </li>
             <li class="nav-item">
                 <a class="nav-link"
                    href="${CONTROLLER_PATH}?${COMMAND}=${SIGN_OUT_USER}">
                     ${TEXT[SIGN_OUT_BUTTON]}</a>
             </li>
-          <!--  <li class="nav-item">
+            <li class="nav-item">
                 <a class="nav-link"
-                   href="controller?command=open-sign-up-page">
-                    ${TEXT[PAGE_SIGN_UP]}
-                </a>
+                   href="controller?command=open-shop-page">
+                    ${TEXT[SHOP]}</a>
             </li>
             <li class="nav-item">
                 <a class="nav-link"
-                   href="controller?command=open-home-guest-page">
-                    ${TEXT[PAGE_CONTINUE_AS_GUEST]}</a>
+                   href="${CONTROLLER_PATH}?${COMMAND}=${OPEN_CART_PAGE}">
+                    ${TEXT[CART_TEXT]}
+                </a>
             </li>
--->
             <li class="nav-item dropdown">
                 <a class="nav-link dropdown-toggle"
                    id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">

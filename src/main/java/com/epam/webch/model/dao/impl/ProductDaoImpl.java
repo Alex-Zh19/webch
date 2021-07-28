@@ -25,6 +25,7 @@ public class ProductDaoImpl implements ProductDao {
     private static final String ID_COLUMN = "id";
     private static final String NAME_COLUMN = "name";
     private static final String PRICE_COLUMN = "price";
+    private static final String DESCRIPTION_COLUMN = "description";
     private static final String IN_STOCK_COLUMN = "inStock";
     //products columns end
 
@@ -37,9 +38,9 @@ public class ProductDaoImpl implements ProductDao {
     }
 
     @Override
-    public void addProduct(String name,int price) throws DaoException {
+    public void addProduct(String name, int price, String description) throws DaoException {
         ProductQueryFactory factory = new ProductQueryFactory();
-        String query = factory.addProductQuery(name, price);
+        String query = factory.addProductQuery(name, price, description);
         Optional<ProxyConnection> optionalProxyConnection = ConnectionPool.getInstance().getConnection();
         if (optionalProxyConnection.isPresent()) {
             try (ProxyConnection proxyConnection = optionalProxyConnection.get();
@@ -66,8 +67,9 @@ public class ProductDaoImpl implements ProductDao {
                     Long productId = resultSet.getLong(ID_COLUMN);
                     String name = resultSet.getString(NAME_COLUMN);
                     Integer price = resultSet.getInt(PRICE_COLUMN);
+                    String description = resultSet.getString(DESCRIPTION_COLUMN);
                     Integer isInStock = resultSet.getInt(IN_STOCK_COLUMN);
-                    product = Optional.of(new Product(productId, name, price, isInStock));
+                    product = Optional.of(new Product(productId, name, price, description, isInStock));
                 }
             } catch (SQLException e) {
                 logger.log(Level.ERROR, "getProductById SqlException {}", e);
@@ -136,7 +138,39 @@ public class ProductDaoImpl implements ProductDao {
                 statement.executeUpdate(query);
             } catch (SQLException e) {
                 logger.log(Level.ERROR, "changeProductRole SqlException {}", e);
-                throw new DaoException("changeProductRole SqlException "+ e);
+                throw new DaoException("changeProductRole SqlException " + e);
+            }
+        }
+    }
+
+    @Override
+    public void changeProductDescription(Long id, String description) throws DaoException {
+        ProductQueryFactory factory = new ProductQueryFactory();
+        String query = factory.changeProductDescriptionQuery(id, description);
+        Optional<ProxyConnection> optionalConnection = ConnectionPool.getInstance().getConnection();
+        if (optionalConnection.isPresent()) {
+            try (ProxyConnection connection = optionalConnection.get();
+                 Statement statement = connection.createStatement()) {
+                statement.executeUpdate(query);
+            } catch (SQLException e) {
+                logger.log(Level.ERROR, "changeProductRole SqlException {}", e);
+                throw new DaoException("changeProductRole SqlException " + e);
+            }
+        }
+    }
+
+    @Override
+    public void changeProductInStock(Long id, int inStock) throws DaoException {
+        ProductQueryFactory factory = new ProductQueryFactory();
+        String query = factory.changeProductInStockQuery(id, inStock);
+        Optional<ProxyConnection> optionalConnection = ConnectionPool.getInstance().getConnection();
+        if (optionalConnection.isPresent()) {
+            try (ProxyConnection connection = optionalConnection.get();
+                 Statement statement = connection.createStatement()) {
+                statement.executeUpdate(query);
+            } catch (SQLException e) {
+                logger.log(Level.ERROR, "changeProductRole SqlException {}", e);
+                throw new DaoException("changeProductRole SqlException " + e);
             }
         }
     }
@@ -157,8 +191,9 @@ public class ProductDaoImpl implements ProductDao {
                     long productId = resultSet.getLong(ID_COLUMN);
                     String name = resultSet.getString(NAME_COLUMN);
                     Integer price = resultSet.getInt(PRICE_COLUMN);
+                    String description = resultSet.getString(DESCRIPTION_COLUMN);
                     Integer isInStock = resultSet.getInt(IN_STOCK_COLUMN);
-                    product = Optional.of(new Product(productId, name, price, isInStock));
+                    product = Optional.of(new Product(productId, name, price, description, isInStock));
                     products.add(product);
                 }
             } catch (SQLException e) {

@@ -37,7 +37,12 @@ public enum LocaleKey {
     CART_TEXT("cart-text"),
     DELETE_FROM_CART_TEXT("delete-from-cart-text"),
     SUCCESSFUL_MESSAGE_TEXT("successful-message-text"),
-    ERROR_MESSAGE_TEXT("error-message-text");
+    ERROR_MESSAGE_TEXT("error-message-text"),
+    DESCRIPTION_LABEL_TEXT("description-label-text"),
+    ADDRESS_LABEL_TEXT("address-label-text"),
+    DATE_LABEL_TEXT("date-label-text"),
+    FULL_NAME_LABEL_TEXT("full-name-label-text");
+
 
     private String value;
 

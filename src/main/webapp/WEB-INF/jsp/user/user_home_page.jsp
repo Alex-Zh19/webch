@@ -12,7 +12,7 @@
     <link rel="stylesheet" href="${CSS_HOME_USER_PAGE}">
 </head>
 <body style="background-color: #61ADB0">
-<jsp:include page="${NAVIGATION_BAR}"></jsp:include>
+<jsp:include page="${USER_NAVIGATION_BAR}"></jsp:include>
 <form class="userAbout" name="userAbout" action="${CONTROLLER_PATH}?${COMMAND}=${OPEN_SETTINGS_PAGE}" method="post">
     <h2>${TEXT[WELCOME_TEXT]}, ${sessionScope.CURRENT_USER.name} ${sessionScope.CURRENT_USER.surname}!</h2>
     <input type="submit"  value="${TEXT[SETTINGS_BUTTON]}">

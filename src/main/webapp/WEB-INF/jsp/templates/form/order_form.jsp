@@ -11,41 +11,32 @@
         <div class="row">
             <div class="row mx-4">
                 <div class="col-12 mb-2">
-                    <label class="order-form-label">Name</label>
+                    <label class="order-form-label">${TEXT[FULL_NAME_LABEL_TEXT]}</label>
                 </div>
                 <div class="col-12 col-sm-6">
-                    <input class="order-form-input" name="${NAME_OF_ORDER_CREATOR}" required placeholder="First">
+                    <input class="order-form-input" name="${NAME_OF_ORDER_CREATOR}" required placeholder="${TEXT[NAME_TEXT]}">
                 </div>
                 <div class="col-12 col-sm-6 mt-2 mt-sm-0">
-                    <input class="order-form-input" name="${SURNAME_OF_ORDER_CREATOR}" required placeholder="Last">
+                    <input class="order-form-input" name="${SURNAME_OF_ORDER_CREATOR}" required placeholder="${TEXT[SURNAME_TEXT]}">
                 </div>
             </div>
 
 
             <div class="row mt-3 mx-4">
                 <div class="col-12">
-                    <label class="order-form-label">Adress</label>
+                    <label class="order-form-label">${TEXT[ADDRESS_LABEL_TEXT]}</label>
                 </div>
                 <div class="col-12">
-                    <input class="order-form-input" name="${ADDRESS_ORDER_CREATOR}" required placeholder="Address">
-                </div>
-            </div>
-
-            <div class="row mt-3 mx-4">
-                <div class="col-12">
-                    <label class="order-form-label">Date</label>
-                </div>
-                <div class="col-12">
-                    <input class="order-form-input" name="${DATE}" required type="date" placeholder="Date">
+                    <input class="order-form-input" name="${ADDRESS_ORDER_CREATOR}" required placeholder="${TEXT[ADDRESS_LABEL_TEXT]}">
                 </div>
             </div>
 
             <div class="row mt-3 mx-4">
                 <div class="col-12">
-                    <div class="form-check">
-                        <input type="checkbox" class="form-check-input" name="validation" id="validation" value="1">
-                        <label for="validation" class="form-check-label">I know what I need to know</label>
-                    </div>
+                    <label class="order-form-label">${TEXT[DATE_LABEL_TEXT]}</label>
+                </div>
+                <div class="col-12">
+                    <input class="order-form-input" name="${DATE}" required type="date" placeholder="${TEXT[DATE_LABEL_TEXT]}">
                 </div>
             </div>
         </div>

@@ -13,7 +13,7 @@ import java.util.Optional;
 public interface OrderService {
     List<Optional<Order>> findAllOrders() throws ServiceException;
     List<Optional<Order>> findOrdersByCreator(User creator) throws ServiceException;
-    Optional<Order> findOrder(Long idInBase) throws ServiceException;
+    List<Optional<Order>> findOrder(Long idInBase) throws ServiceException;
     boolean addOrderDetails( long detailsId, String details, Date date) throws ServiceException;
     Optional<Long> findOrderDetails(long detailsId) throws ServiceException;
     boolean addOrder(long orderId,long productId, Order.OrderStatus status, long detailsId, User creator) throws ServiceException;

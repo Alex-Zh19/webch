@@ -16,6 +16,7 @@ public enum RequestParameter implements BaseEnum {
     NEW_EMAIL("new-email"),
     PRODUCT_LIST("product-list"),
     PRODUCT_ID("product-id"),
+    PRODUCT("product"),
     LANGUAGE("language"),
     RUSSIAN_LANGUAGE("Russian"),
     ENGLISH_LANGUAGE("English"),

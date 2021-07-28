@@ -7,7 +7,7 @@ import static com.epam.webch.model.dao.query.SQLQuery.*;
 public class ProductQueryFactory {
 
     private static final String PRODUCTS = "products ";
-    private static final String ALL_FIELDS_INSERT = "(name,price) ";
+    private static final String ALL_FIELDS_INSERT = "(name,price,description) ";
     private static final String ALL_FIELDS_FIND = "id,name,price,inStock ";
     private static final int ON_STOCK=1;
     private static final int NOT_ON_STOCK=0;
@@ -29,11 +29,12 @@ public class ProductQueryFactory {
         return query.toString();
     }
 
-    public  String addProductQuery(String name, int price) {
+    public  String addProductQuery(String name, int price,String description) {
         StringBuilder query = new StringBuilder(INSERT);
         query.append(INTO).append(PRODUCTS).append(ALL_FIELDS_INSERT).append("values(\"");
         query.append(name).append("\"").append(",");
-        query.append("\"").append(price).append("\")");
+        query.append(price);
+        query.append("\"").append(description).append("\"").append(")");
         return query.toString();
     }
 
@@ -71,7 +72,21 @@ public class ProductQueryFactory {
     public  String changeProductNameQuery(Long id, String name) {
         StringBuilder query = new StringBuilder(UPDATE);
         query.append(PRODUCTS).append(SET);
-        query.append("name=").append("\"").append(name).append("\"");
+        query.append("name=").append("\"").append(name).append("\" ");
+        query.append(WHERE).append("id=").append(id);
+        return query.toString();
+    }
+    public  String changeProductDescriptionQuery(Long id, String description) {
+        StringBuilder query = new StringBuilder(UPDATE);
+        query.append(PRODUCTS).append(SET);
+        query.append("description=").append("\"").append(description).append("\" ");
+        query.append(WHERE).append("id=").append(id);
+        return query.toString();
+    }
+    public  String changeProductInStockQuery(Long id, int inStock) {
+        StringBuilder query = new StringBuilder(UPDATE);
+        query.append(PRODUCTS).append(SET);
+        query.append("inStock=").append(inStock).append(" ");
         query.append(WHERE).append("id=").append(id);
         return query.toString();
     }

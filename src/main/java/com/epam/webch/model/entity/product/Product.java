@@ -5,13 +5,31 @@ public class Product {
     private long id;
     private String name;
     private int price;
+    private String description;
     private int isInStock;
 
 
-    public Product(long id, String name, int price, int isInStock) {
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
+    }
+
+    public int getIsInStock() {
+        return isInStock;
+    }
+
+    public void setIsInStock(int isInStock) {
+        this.isInStock = isInStock;
+    }
+
+    public Product(long id, String name, int price, String description, int isInStock) {
         this.id = id;
         this.name = name;
         this.price = price;
+        this.description=description;
         this.isInStock = isInStock;
     }
 
@@ -52,7 +70,9 @@ public class Product {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Product product = (Product) o;
-        return id == product.id && price == product.price && name.equals(product.name) && isInStock == product.isInStock;
+        return id == product.id && price == product.price && name.equals(product.name)&&
+                description.equals(product.description)
+                && isInStock == product.isInStock;
     }
 
     @Override
@@ -63,6 +83,7 @@ public class Product {
         result += multiplier * idLong.hashCode();
         result = multiplier * result + name.hashCode();
         result = multiplier * result + price;
+        result = multiplier * result + description.hashCode();
         result = multiplier * result + isInStock;
         return result;
     }
@@ -75,6 +96,8 @@ public class Product {
         result.append(name);
         result.append(", price=");
         result.append(price);
+        result.append(", description=");
+        result.append(description);
         result.append(", inStock=");
         result.append(isInStock);
         result.append("}");

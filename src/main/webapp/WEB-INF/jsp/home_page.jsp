@@ -13,6 +13,6 @@
 
 </head>
 <body style="background-color: #61ADB0">
-<jsp:include page="${DEFAULT_NAVIGATION_BAR}"></jsp:include>
+<jsp:include page="${GUEST_NAVIGATION_BAR}"></jsp:include>
 </body>
 </html>

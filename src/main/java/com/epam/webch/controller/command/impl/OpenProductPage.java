@@ -19,7 +19,7 @@ public class OpenProductPage implements Command {
 
     @Override
     public Router execute(HttpServletRequest request, HttpServletResponse response) {
-       // request.getSession().setAttribute(SessionAttribute.PREVIOUS_PAGE.name(), PagePath.PRO);
+        request.getSession().setAttribute(SessionAttribute.PREVIOUS_PAGE.name(), PagePath.PRODUCT_PAGE);
         String stringId = request.getParameter(RequestParameter.PRODUCT_ID.getValue());
         Optional<Product> product;
         Long id = Long.parseLong(stringId);
@@ -29,7 +29,8 @@ public class OpenProductPage implements Command {
             return new Router(PagePath.ERROR_404_PAGE.getValue(), Router.RouterType.FORWARD);
         }
         if(product.isPresent()){
-            System.out.println(product.get());
+            request.setAttribute(RequestParameter.PRODUCT.name(),product.get());
+            return new Router(PagePath.PRODUCT_PAGE.getValue(), Router.RouterType.FORWARD);
         }
         return new Router(PagePath.ERROR_404_PAGE.getValue(), Router.RouterType.FORWARD);
     }

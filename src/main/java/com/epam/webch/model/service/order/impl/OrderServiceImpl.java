@@ -55,15 +55,15 @@ public class OrderServiceImpl implements OrderService {
     }
 
     @Override
-    public Optional<Order> findOrder(Long idInBase) throws ServiceException {
-        Optional<Order> order;
+    public List<Optional<Order>> findOrder(Long order_id) throws ServiceException {
+        List<Optional<Order>> list;
         try {
-            order = orderDao.findOrder(idInBase);
+            list = orderDao.findOrder(order_id);
         } catch (DaoException e) {
             logger.log(Level.ERROR, "DaoException at getOrderById method. {}", e);
             throw new ServiceException("DaoException at getOrderById method. " + e);
         }
-        return order;
+        return list;
     }
 
     @Override

@@ -10,11 +10,10 @@ public enum CommandName implements BaseEnum {
 
     CHANGE_LANGUAGE("change-language"),
 
-    OPEN_HOME_PAGE("home"),// OPEN_FIRST_PAGE("open-first-page"),
+    OPEN_HOME_PAGE("home"),
     OPEN_SIGN_IN_PAGE("open-sign-in-page"),
     OPEN_SIGN_UP_PAGE("open-sign-up-page"),
     OPEN_PRODUCT_PAGE("open-product-page"),
-    OPEN_HOME_GUEST_PAGE("open-home-guest-page"),
     OPEN_HOME_USER_PAGE("open-home-user-page"),
     OPEN_HOME_EMPLOYEE_PAGE("open-home-employee-page"),
     OPEN_HOME_ADMIN_PAGE("open-home-admin-page"),

@@ -158,10 +158,11 @@ public class OrderDaoImpl implements OrderDao {
     }
 
     @Override
-    public Optional<Order> findOrder(Long idInBase) throws DaoException {
+    public List<Optional<Order>> findOrder(Long order_id) throws DaoException {
+        List<Optional<Order>> list=new ArrayList<>();
         OrderQueryFactory factory = new OrderQueryFactory();
-        String query = factory.findOrderQuery(idInBase);
-        Optional<Order> order = Optional.empty();
+        String query = factory.findOrderQuery(order_id);
+        Optional<Order> order ;
         Optional<ProxyConnection> optionalConnection = ConnectionPool.getInstance().getConnection();
         if (optionalConnection.isPresent()) {
             try (ProxyConnection connection = optionalConnection.get();
@@ -169,7 +170,7 @@ public class OrderDaoImpl implements OrderDao {
                  ResultSet resultSet = statement.executeQuery()) {
                 while (resultSet.next()) {
                     long orderId = resultSet.getLong(ID_COLUMN);//auto-incremented
-                    long order_id = resultSet.getLong(ORDER_ID_COLUMN);
+                    long idOrder = resultSet.getLong(ORDER_ID_COLUMN);
                     //product
                     long productId = resultSet.getLong(ID_PRODUCT_COLUMN);
                     String productName = resultSet.getString(NAME_PRODUCT_COLUMN);
@@ -182,7 +183,7 @@ public class OrderDaoImpl implements OrderDao {
                     Order.OrderStatus status = Order.OrderStatus.valueOf(statusString);
                     //details
                     long detailsId = resultSet.getLong(ID_DETAILS_COLUMN);
-                    long details_id = order_id;
+                    long details_id = idOrder;
                     String details = resultSet.getString(DETAILS_ORDER_DETAILS_COLUMN);
                     Date detailsDate = resultSet.getDate(DATE_ORDER_COLUMN);
                     //details
@@ -190,19 +191,20 @@ public class OrderDaoImpl implements OrderDao {
 
                     Optional<User> orderRecipient = Optional.of((User) resultSet.getObject(RECIPIENT_COLUMN));
                     if (orderRecipient.isPresent()) {
-                        order = Optional.of(new Order(orderId, order_id, product, status, detailsId, details_id, details,
+                        order = Optional.of(new Order(orderId, idOrder, product, status, detailsId, details_id, details,
                                 detailsDate, orderCreator, orderRecipient.get()));
                     } else {
-                        order = Optional.of(new Order(orderId, order_id, product, status, detailsId, details_id, details,
+                        order = Optional.of(new Order(orderId, idOrder, product, status, detailsId, details_id, details,
                                 detailsDate, orderCreator));
                     }
+                    list.add(order);
                 }
             } catch (SQLException e) {
                 logger.log(Level.ERROR, "findOrder SqlException {}", e);
                 throw new DaoException("findOrder SqlException " + e);
             }
         }
-        return order;
+        return list;
     }
 
     @Override
