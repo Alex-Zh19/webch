@@ -15,7 +15,6 @@ public enum IncludePagePath implements BaseEnum {
     FORM_PRODUCT_FROM_ROOT("../templates/form/product_form.jsp"),
     FORM_CART_PRODUCT("templates/form/product_cart_form.jsp"),
     FORM_CART_PRODUCT_FROM_ROOT("../templates/form/product_cart_form.jsp"),
-
     FORM_ORDER("templates/form/order_form.jsp"),
 
     CSS_FORM_ORDER("css/order_form.css"),
@@ -32,7 +31,9 @@ public enum IncludePagePath implements BaseEnum {
 
     CSS_HOME_PAGE("css/home_page.css"),
 
-    CSS_FORM_PRODUCT("css/product_form.css");
+    CSS_FORM_PRODUCT("css/product_form.css"),
+
+    CSS_SUCCESS_OPERATION_PAGE("css/success_operation_page.css");
 
     private String value;
 

@@ -19,7 +19,9 @@ public enum RequestParameter implements BaseEnum {
     LANGUAGE("language"),
     RUSSIAN_LANGUAGE("Russian"),
     ENGLISH_LANGUAGE("English"),
-    DETAILS("details"),
+    ADDRESS_ORDER_CREATOR("address"),
+    NAME_OF_ORDER_CREATOR("name-of-order-creator"),
+    SURNAME_OF_ORDER_CREATOR("surname-of-order-creator"),
     DATE("date");
 
     private String value;

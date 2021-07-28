@@ -16,7 +16,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
-import java.util.Date;
+import java.sql.Date;
 import java.util.List;
 import java.util.Optional;
 
@@ -206,12 +206,11 @@ public class OrderDaoImpl implements OrderDao {
     }
 
     @Override
-    public void addOrder(long productId, Order.OrderStatus status, long detailsId, String details, Date date, User creator, User recipient)
-            throws DaoException {
+    public void addOrder(long orderId,long productId, Order.OrderStatus status, long detailsId) throws DaoException {
         OrderQueryFactory factory = new OrderQueryFactory();
-        Optional<Long> details_id = addOrderDetails(detailsId, details, date);
+        Optional<Long> details_id = findOrderDetails(detailsId);
         if (details_id.isPresent()) {
-            String query = factory.addOrderQuery(productId, status, details_id.get(), creator, recipient);
+            String query = factory.addOrderQuery(orderId,productId, status, details_id.get());
             Optional<ProxyConnection> optionalConnection = ConnectionPool.getInstance().getConnection();
             if (optionalConnection.isPresent()) {
                 try (ProxyConnection connection = optionalConnection.get();
@@ -224,6 +223,26 @@ public class OrderDaoImpl implements OrderDao {
             }
         }
     }
+
+    @Override
+    public void addOrder(long orderId,long productId, Order.OrderStatus status, long detailsId, User creator) throws DaoException {
+        OrderQueryFactory factory = new OrderQueryFactory();
+        Optional<Long> details_id = findOrderDetails(detailsId);
+        if (details_id.isPresent()) {
+            String query = factory.addOrderQuery(orderId,productId, status, details_id.get(), creator);
+            Optional<ProxyConnection> optionalConnection = ConnectionPool.getInstance().getConnection();
+            if (optionalConnection.isPresent()) {
+                try (ProxyConnection connection = optionalConnection.get();
+                     PreparedStatement statement = connection.prepareStatement(query)) {
+                    statement.executeUpdate();
+                } catch (SQLException e) {
+                    logger.log(Level.ERROR, "createOrder SqlException {}", e);
+                    throw new DaoException("createOrder SqlException " + e);
+                }
+            }
+        }
+    }
+
 
     @Override
     public void deleteOrder(Order order) throws DaoException {
@@ -271,33 +290,13 @@ public class OrderDaoImpl implements OrderDao {
                     details_id = Optional.of(resultSet.getLong(ID_DETAILS_COLUMN));
                 }
             } catch (SQLException e) {
-                logger.log(Level.ERROR, "addOrderDetails SqlException {}", e);
-                throw new DaoException("addOrderDetails SqlException " + e);
+                logger.log(Level.ERROR, "findLastOrderId SqlException {}", e);
+                throw new DaoException("findLastOrderId SqlException " + e);
             }
-
-
         }
         return details_id;
     }
 
-    @Override
-    public void addOrder(long productId, Order.OrderStatus status, long detailsId,String details,Date date, User creator) throws DaoException {
-        OrderQueryFactory factory = new OrderQueryFactory();
-        Optional<Long> details_id = addOrderDetails(detailsId, details, date);
-        if (details_id.isPresent()) {
-            String query = factory.addOrderQuery(productId, status, details_id.get(), creator);
-            Optional<ProxyConnection> optionalConnection = ConnectionPool.getInstance().getConnection();
-            if (optionalConnection.isPresent()) {
-                try (ProxyConnection connection = optionalConnection.get();
-                     PreparedStatement statement = connection.prepareStatement(query)) {
-                    statement.executeUpdate();
-                } catch (SQLException e) {
-                    logger.log(Level.ERROR, "createOrder SqlException {}", e);
-                    throw new DaoException("createOrder SqlException " + e);
-                }
-            }
-        }
-    }
 
     @Override
     public void changeOrderStatus(Long id, Order.OrderStatus status) throws DaoException {
@@ -316,32 +315,40 @@ public class OrderDaoImpl implements OrderDao {
     }
 
 
-    private Optional<Long> addOrderDetails(long detailsId, String details, Date date) throws DaoException {
-        Optional<Long> details_id = Optional.empty();
+    public boolean addOrderDetails(long detailsId, String details, Date date) throws DaoException {
+        System.out.println("add order details impl");
         OrderQueryFactory factory = new OrderQueryFactory();
         String query = factory.addOrderDetailsQuery(detailsId, details, date);
-        String queryToFind = factory.findOrdersDetailsQuery(detailsId);
+        System.out.println("factory working");
         Optional<ProxyConnection> optionalConnection = ConnectionPool.getInstance().getConnection();
         if (optionalConnection.isPresent()) {
             try (ProxyConnection connection = optionalConnection.get();
                  PreparedStatement statement = connection.prepareStatement(query)) {
+                System.out.println(date);
+                System.out.println(query);
                 statement.executeUpdate();
             } catch (SQLException e) {
                 logger.log(Level.ERROR, "addOrderDetails SqlException {}", e);
                 throw new DaoException("addOrderDetails SqlException " + e);
             }
-            try (ProxyConnection connection = optionalConnection.get();
-                 PreparedStatement preparedStatement = connection.prepareStatement(queryToFind);
-                 ResultSet resultSet = preparedStatement.executeQuery()) {
-                while (resultSet.next()) {
-                    details_id = Optional.of(resultSet.getLong(ID_DETAILS_COLUMN));
-                }
-            } catch (SQLException e) {
-                logger.log(Level.ERROR, "addOrderDetails SqlException {}", e);
-                throw new DaoException("addOrderDetails SqlException " + e);
+        }
+        return true;
+    }
+
+    public Optional<Long> findOrderDetails(long detailsId) throws DaoException{
+        Optional<Long> details_id = Optional.empty();
+        OrderQueryFactory factory = new OrderQueryFactory();
+        String queryToFind = factory.findOrdersDetailsQuery(detailsId);
+        Optional<ProxyConnection> optionalConnection = ConnectionPool.getInstance().getConnection();
+        try (ProxyConnection connection = optionalConnection.get();
+             PreparedStatement preparedStatement = connection.prepareStatement(queryToFind);
+             ResultSet resultSet = preparedStatement.executeQuery()) {
+            while (resultSet.next()) {
+                details_id = Optional.of(resultSet.getLong(ID_DETAILS_COLUMN));
             }
-
-
+        } catch (SQLException e) {
+            logger.log(Level.ERROR, "findOrderDetails SqlException {}", e);
+            throw new DaoException("findOrderDetails SqlException " + e);
         }
         return details_id;
     }

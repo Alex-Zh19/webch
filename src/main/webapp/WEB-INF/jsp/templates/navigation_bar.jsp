@@ -21,7 +21,7 @@
             </li>-->
             <li class="nav-item">
                 <a class="nav-link"
-                   href="${CONTROLLER_PATH}${COMMAND}=${SIGN_OUT_USER}">
+                   href="${CONTROLLER_PATH}?${COMMAND}=${SIGN_OUT_USER}">
                     ${TEXT[SIGN_OUT_BUTTON]}</a>
             </li>
           <!--  <li class="nav-item">

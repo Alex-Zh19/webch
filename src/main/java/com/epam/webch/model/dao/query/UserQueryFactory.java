@@ -173,10 +173,11 @@ public class UserQueryFactory {
         return query.toString();
     }
 
-    public String changeUserPasswordQuery(String email, String password) {
+    public String changeUserPasswordQuery(String email, String password,String salt) {
         StringBuilder query = new StringBuilder(UPDATE);
         query.append(USERS).append(SET);
-        query.append("password=").append("\"").append(password).append("\" ");
+        query.append("password=").append("\"").append(password).append("\"").append(",");
+        query.append("salt=").append("\"").append(salt).append("\" ");
         query.append(WHERE).append("email=").append("\"").append(email).append("\" ");
         return query.toString();
     }

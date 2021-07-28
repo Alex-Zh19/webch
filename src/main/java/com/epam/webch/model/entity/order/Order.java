@@ -3,9 +3,7 @@ package com.epam.webch.model.entity.order;
 import com.epam.webch.model.entity.product.Product;
 import com.epam.webch.model.entity.user.User;
 
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.List;
+import java.sql.Date;
 
 public class Order {
     private long id;

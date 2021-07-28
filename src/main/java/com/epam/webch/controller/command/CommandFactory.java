@@ -39,6 +39,8 @@ public class CommandFactory {
                 case DELETE_FROM_CART -> new DeleteFromCart();
                 case OPEN_ORDERING_PAGE -> new OpenOrderingPage();
                 case CREATE_ORDER -> new CreateOrder();
+                case OPEN_SUCCESSFUL_OPERATION_PAGE -> new OpenSuccessfulOperationPage();
+                case OPEN_ERROR_OPERATION_PAGE -> new OpenErrorOperationPage();
                 default -> throw new UnsupportedOperationException("such command doesnt exist");
             };
         } else {

@@ -13,7 +13,7 @@ public class SQLQuery {
     public static final String ON="on ";
     public static final String JOIN="JOIN ";
     public static final String HAVING="HAVING ";
-    public static final String MAX="MAX ";
+    public static final String MAX="MAX";
     public static final String AS="AS ";
     private SQLQuery(){
     }

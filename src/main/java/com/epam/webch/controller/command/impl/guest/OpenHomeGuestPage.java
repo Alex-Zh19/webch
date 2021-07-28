@@ -12,7 +12,7 @@ public class OpenHomeGuestPage implements Command {
     @Override
     public Router execute(HttpServletRequest request, HttpServletResponse response) {
         request.getSession().setAttribute(SessionAttribute.PREVIOUS_PAGE.name(), PagePath.HOME_GUEST_PAGE);
-        request.getSession().setAttribute(SessionAttribute.CURRENT_USER.name(), User.UserRole.guest);
+        request.getSession().setAttribute(SessionAttribute.CURRENT_USER_ROLE.name(), User.UserRole.guest);
         return new Router(PagePath.HOME_GUEST_PAGE.getValue(), Router.RouterType.FORWARD);
     }
 }

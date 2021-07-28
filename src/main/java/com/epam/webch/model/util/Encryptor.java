@@ -2,7 +2,6 @@ package com.epam.webch.model.util;
 
 import com.epam.webch.exception.UtilException;
 import com.epam.webch.model.entity.user.UserCredentials;
-import jakarta.xml.bind.DatatypeConverter;
 import org.apache.logging.log4j.Level;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -18,7 +17,7 @@ import java.util.Base64;
 public class Encryptor {
     private static final Logger logger = LogManager.getLogger();
 
-    public static UserCredentials generateCredentials(String password) throws UtilException {
+    public static UserCredentials generateCredentials(String password) {
         byte[] salt = generateSalt();
         byte[] hashPass = generateHash(password, salt);
         String hashPassHex = Base64.getEncoder().encodeToString(hashPass);
@@ -27,13 +26,13 @@ public class Encryptor {
         return userCredentials;
     }
 
-    public static String generateCredentials(String password, byte[] salt) throws UtilException {
+    public static String generateCredentials(String password, byte[] salt)  {
         byte[] hashPass = generateHash(password, salt);
         String hashPassHex = Base64.getEncoder().encodeToString(hashPass);
         return hashPassHex;
     }
 
-    private static byte[] generateHash(String password, byte[] salt) throws UtilException {
+    private static byte[] generateHash(String password, byte[] salt) {
         KeySpec spec = new PBEKeySpec(password.toCharArray(), salt, 65536, 128);
         final String ALGORITHM_NAME = "PBKDF2WithHmacSHA1";
         try {
@@ -42,7 +41,7 @@ public class Encryptor {
             return hash;
         } catch (NoSuchAlgorithmException | InvalidKeySpecException e) {
             logger.log(Level.ERROR, "Util exception in encryptPassword method. {}", e.getMessage());
-            throw new UtilException("Service exception in encryptPassword method. " + e.getMessage());
+            return null;
         }
     }
 

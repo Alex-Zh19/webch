@@ -5,14 +5,13 @@ import com.epam.webch.exception.ServiceException;
 import com.epam.webch.model.dao.OrderDao;
 import com.epam.webch.model.dao.impl.OrderDaoImpl;
 import com.epam.webch.model.entity.order.Order;
-import com.epam.webch.model.entity.product.Product;
 import com.epam.webch.model.entity.user.User;
 import com.epam.webch.model.service.order.OrderService;
 import org.apache.logging.log4j.Level;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
-import java.util.Date;
+import java.sql.Date;
 import java.util.List;
 import java.util.Optional;
 
@@ -80,19 +79,48 @@ public class OrderServiceImpl implements OrderService {
     }
 
     @Override
-    public boolean addOrder(long productId, Order.OrderStatus status, long detailsId, String details, Date date,
-                            User creator, Optional<User> recipient) throws ServiceException {
+    public Optional<Long> findOrderDetails(long detailsId) throws ServiceException {
+        Optional<Long> id = Optional.empty();
+        try {
+            id = orderDao.findOrderDetails(detailsId);
+        } catch (DaoException e) {
+            logger.log(Level.ERROR, "DaoException at findOrderDetails method. {}", e);
+            throw new ServiceException("DaoException at findOrderDetails method. " + e);
+        }
+        return id;
+    }
+
+    @Override
+    public boolean addOrderDetails(long detailsId, String details, Date date) throws ServiceException {
+        try {
+            orderDao.addOrderDetails(detailsId, details, date);
+            return true;
+        } catch (DaoException e) {
+            logger.log(Level.ERROR, "DaoException at addOrderDetails method. {}", e);
+            throw new ServiceException("DaoException at addOrderDetails method. " + e);
+        }
+    }
+
+    @Override
+    public boolean addOrder(long orderId,long productId, Order.OrderStatus status, long detailsId) throws ServiceException {
+        try {
+            orderDao.addOrder(orderId,productId, status, detailsId);
+            return true;
+        } catch (DaoException e) {
+            logger.log(Level.ERROR, "DaoException at addOrder method. {}", e);
+            throw new ServiceException("DaoException at addOrder method. " + e);
+        }
+    }
+
+    @Override
+    public boolean addOrder(long orderId,long productId, Order.OrderStatus status, long detailsId, User creator) throws ServiceException {
 
         if (creator == null) {
             return false;
             //todo redirect on error page
         }
         try {
-            if ( recipient.isPresent()) {
-                orderDao.addOrder(productId, status, detailsId,details,date, creator, recipient.get());
-            } else  {
-                orderDao.addOrder(productId, status,detailsId,details,date, creator);
-            }
+            orderDao.addOrder(orderId,productId, status, detailsId, creator);
             return true;
         } catch (DaoException e) {
             logger.log(Level.ERROR, "DaoException at addOrder method. {}", e);

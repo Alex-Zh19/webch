@@ -333,9 +333,9 @@ public class UserDaoImpl implements UserDao {
     }
 
     @Override
-    public void changeUserPassword(String email, String password) throws DaoException {
+    public void changeUserPassword(String email, String password,String salt) throws DaoException {
         UserQueryFactory factory = new UserQueryFactory();
-        String query = factory.changeUserPasswordQuery(email, password);
+        String query = factory.changeUserPasswordQuery(email, password,salt);
         Optional<ProxyConnection> optionalConnection = ConnectionPool.getInstance().getConnection();
         if (optionalConnection.isPresent()) {
             try (ProxyConnection connection = optionalConnection.get();

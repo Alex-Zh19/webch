@@ -35,7 +35,9 @@ public enum LocaleKey {
     PRODUCT_NAME_FIELD("product-name-field"),
     PRODUCT_PRICE_FIELD("product-price-field"),
     CART_TEXT("cart-text"),
-    DELETE_FROM_CART_TEXT("delete-from-cart-text");
+    DELETE_FROM_CART_TEXT("delete-from-cart-text"),
+    SUCCESSFUL_MESSAGE_TEXT("successful-message-text"),
+    ERROR_MESSAGE_TEXT("error-message-text");
 
     private String value;
 

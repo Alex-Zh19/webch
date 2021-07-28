@@ -14,7 +14,8 @@ public enum PagePath {
     GUEST_CART_PAGE("WEB-INF/jsp/guest/cart_page.jsp"),
     USER_CART_PAGE("WEB-INF/jsp/user/cart_page.jsp"),
     ORDERING_PAGE("WEB-INF/jsp/ordering_page.jsp"),
-
+    SUCCESSFUL_OPERATION_PAGE("WEB-INF/jsp/success_operation_page.jsp"),
+    ERROR_OPERATION_PAGE("WEB-INF/jsp/error_operation_page.jsp"),
     HELLO_PAGE("WEB-INF/jsp/hello.jsp"),
     FIRST_PAGE("WEB-INF/jsp/page.jsp"),
     USER_NOT_FOUND("WEB-INF/jsp/userNotFound.jsp");

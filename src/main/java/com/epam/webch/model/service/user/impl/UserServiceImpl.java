@@ -7,20 +7,16 @@ import com.epam.webch.model.dao.OrderDao;
 import com.epam.webch.model.dao.UserDao;
 import com.epam.webch.model.dao.impl.OrderDaoImpl;
 import com.epam.webch.model.dao.impl.UserDaoImpl;
-import com.epam.webch.model.entity.order.Order;
-import com.epam.webch.model.entity.product.Product;
 import com.epam.webch.model.entity.user.User;
 import com.epam.webch.model.entity.user.UserCredentials;
 import com.epam.webch.model.service.user.UserService;
 import com.epam.webch.model.util.Encryptor;
 import com.epam.webch.model.util.Validator;
-import jakarta.xml.bind.DatatypeConverter;
 import org.apache.logging.log4j.Level;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
 import java.util.Base64;
-import java.util.List;
 import java.util.Optional;
 
 public class UserServiceImpl implements UserService {
@@ -50,16 +46,10 @@ public class UserServiceImpl implements UserService {
             String saltHex = userCredentials.get().getSaltHex();
             byte[] salt = Base64.getDecoder().decode(saltHex);
             String enteredPasswordHex;
-            try {
-               enteredPasswordHex = Encryptor.generateCredentials(password, salt);
-            } catch (UtilException e) {
-               logger.log(Level.ERROR, "UtilException at sign in user method. {}", e);
-               throw new ServiceException("UtilException at sign in user method. " + e);
-            }
+            enteredPasswordHex = Encryptor.generateCredentials(password, salt);
             String passwordFromBaseHex = userCredentials.get().getHashPasswordHex();
             if (enteredPasswordHex.equals(passwordFromBaseHex)) {
                user = userDao.findUserByEmail(email);
-
             } else {
                //todo redirect on page to enter password one more time
 
@@ -108,12 +98,7 @@ public class UserServiceImpl implements UserService {
          //todo redirect on page to enter name one more time
       }
       UserCredentials userCredentials;
-      try {
-         userCredentials = Encryptor.generateCredentials(password);
-      } catch (UtilException e) {
-         logger.log(Level.ERROR, "UtilException at signUp user method. {}", e);
-         throw new ServiceException("UtilException at signUp user method. " + e);
-      }
+      userCredentials = Encryptor.generateCredentials(password);
       String hashPassHex = userCredentials.getHashPasswordHex();
       String saltHex = userCredentials.getSaltHex();
       if (hashPassHex != null && saltHex != null) {
@@ -158,12 +143,7 @@ public class UserServiceImpl implements UserService {
          //todo redirect on page to enter name one more time
       }
       UserCredentials userCredentials;
-      try {
-         userCredentials = Encryptor.generateCredentials(password);
-      } catch (UtilException e) {
-         logger.log(Level.ERROR, "UtilException at register user method. {}", e);
-         throw new ServiceException("UtilException at register user method. " + e);
-      }
+      userCredentials = Encryptor.generateCredentials(password);
       String hashPassHex = userCredentials.getHashPasswordHex();
       String saltHex = userCredentials.getSaltHex();
       if (hashPassHex != null && saltHex != null) {
@@ -302,15 +282,14 @@ public class UserServiceImpl implements UserService {
             String saltHex = userCredentials.get().getSaltHex();
             byte[] salt = Base64.getDecoder().decode(saltHex);
             String enteredPasswordHex;
-            try {
-               enteredPasswordHex= Encryptor.generateCredentials(oldPass,salt);
-            }catch (UtilException e){
-               logger.log(Level.ERROR, "UtilException at changeUserPassword method. {}", e);
-               throw new ServiceException("UtilException at changeUserPassword method. " + e);
-            }
+            enteredPasswordHex = Encryptor.generateCredentials(oldPass, salt);
             String passwordFromBaseHex = userCredentials.get().getHashPasswordHex();
+
             if (enteredPasswordHex.equals(passwordFromBaseHex)) {
-               userDao.changeUserPassword(email, newPassword);
+               UserCredentials userCredentials1 = Encryptor.generateCredentials(newPassword);
+               String hashPassHex = userCredentials1.getHashPasswordHex();
+               String saltHex1 = userCredentials1.getSaltHex();
+               userDao.changeUserPassword(email, hashPassHex, saltHex1);
                result = true;
             } else {
                result = false;

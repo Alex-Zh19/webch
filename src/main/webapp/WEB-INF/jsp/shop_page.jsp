@@ -13,7 +13,7 @@
 
 </head>
 <body>
-<c:set var="currentRole" value="${sessionScope.CURRENT_USER}"></c:set>
+<c:set var="currentRole" value="${sessionScope.CURRENT_USER_ROLE}"></c:set>
 <c:set var="role" value="${guest}"></c:set>
 <c:if test="${currentRole==role}">
     <jsp:include page="${GUEST_NAVIGATION_BAR_FROM_ROOT}"></jsp:include>
