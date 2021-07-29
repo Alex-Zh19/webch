@@ -10,6 +10,7 @@ import java.util.Optional;
 
 public interface EmployeeService extends UserService{
     Optional<User> findUserByEmail(String emailToFind) throws ServiceException;
+    Optional<User> findUserById(Long id) throws ServiceException;
 
 
     //find all orders, change order status, find all products

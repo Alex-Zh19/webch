@@ -53,4 +53,19 @@ public class EmployeeServiceImpl extends UserServiceImpl implements EmployeeServ
         return user;
     }
 
+    @Override
+    public Optional<User> findUserById(Long id) throws ServiceException {
+        Optional<User> user = Optional.empty();
+        if (id == null) {
+            return user;
+        }
+        try {
+            user = userDao.findUserById(id);
+        } catch (DaoException e) {
+            logger.log(Level.ERROR, "DaoException at findUserByEmail method. {}", e);
+            throw new ServiceException("DaoException at findUserByEmail method. " + e);
+        }
+        return user;
+    }
+
 }

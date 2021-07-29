@@ -27,9 +27,9 @@ public class ProductServiceImpl implements ProductService {
     }
 
     @Override
-    public boolean addProduct(String name, int price) throws ServiceException {
+    public boolean addProduct(String name, int price,String description) throws ServiceException {
         try {
-            productDao.addProduct(name, price);
+            productDao.addProduct(name, price,description);
             return true;
         } catch (DaoException e) {
             logger.log(Level.ERROR, "DaoException at addProduct method. {}", e);
@@ -76,6 +76,28 @@ public class ProductServiceImpl implements ProductService {
     public boolean changeProductName(Long id, String name) throws ServiceException {
         try {
             productDao.changeProductName(id, name);
+            return true;
+        } catch (DaoException e) {
+            logger.log(Level.ERROR, "DaoException at changeProductName method. {}", e);
+            throw new ServiceException("DaoException at changeProductName method. " + e);
+        }
+    }
+
+    @Override
+    public boolean changeProductDescription(Long id, String description) throws ServiceException {
+        try {
+            productDao.changeProductDescription(id, description);
+            return true;
+        } catch (DaoException e) {
+            logger.log(Level.ERROR, "DaoException at changeProductName method. {}", e);
+            throw new ServiceException("DaoException at changeProductName method. " + e);
+        }
+    }
+
+    @Override
+    public boolean changeProductInStock(Long id, int inStock) throws ServiceException {
+        try {
+            productDao.changeProductInStock(id, inStock);
             return true;
         } catch (DaoException e) {
             logger.log(Level.ERROR, "DaoException at changeProductName method. {}", e);

@@ -1,10 +1,12 @@
 package com.epam.webch.controller.command;
 
 import com.epam.webch.controller.command.impl.*;
-import com.epam.webch.controller.command.impl.guest.OpenHomeGuestPage;
+import com.epam.webch.controller.command.impl.admin.*;
+import com.epam.webch.controller.command.impl.employee.ChangeOrderStatus;
 import com.epam.webch.controller.command.impl.locale.ChangeLocaleCommand;
 import com.epam.webch.controller.command.impl.user.ChangeUserInfo;
 import com.epam.webch.controller.command.impl.user.DeleteUser;
+import com.epam.webch.controller.command.impl.user.FindOrderByCreator;
 import com.epam.webch.controller.command.impl.user.OpenHomeUserPage;
 import org.apache.logging.log4j.Level;
 import org.apache.logging.log4j.LogManager;
@@ -23,7 +25,6 @@ public class CommandFactory {
                 case OPEN_HOME_PAGE -> new OpenHomePage();
                 case OPEN_SIGN_IN_PAGE -> new OpenSignInPage();
                 case OPEN_SIGN_UP_PAGE -> new OpenSignUpPage();
-                case OPEN_HOME_GUEST_PAGE -> new OpenHomeGuestPage();
                 case CHANGE_LANGUAGE -> new ChangeLocaleCommand();
                 case SIGN_IN_USER -> new SignInUser();
                 case SIGN_UP_USER -> new SignUpUser();
@@ -41,6 +42,20 @@ public class CommandFactory {
                 case CREATE_ORDER -> new CreateOrder();
                 case OPEN_SUCCESSFUL_OPERATION_PAGE -> new OpenSuccessfulOperationPage();
                 case OPEN_ERROR_OPERATION_PAGE -> new OpenErrorOperationPage();
+                case OPEN_EMPLOYEE_LIST -> new OpenEmployeeList();
+                case OPEN_USERS_LIST -> new OpenUsersList();
+                case OPEN_ORDERS_LIST -> new OpenOrdersList();
+                case OPEN_PRODUCTS_LIST -> new OpenProductsList();
+                case OPEN_CHANGE_PRODUCT_INFO_PAGE -> new OpenChangeProductInfoPage();
+                case OPEN_CHANGE_ENTITY_INFO_PAGE -> new OpenChangeEntityInfoPage();
+                case OPEN_CHANGE_ORDER_INFO_PAGE -> new OpenChangeOrderInfoPage();
+                case CHANGE_PRODUCT_INFO -> new ChangeProductInfo();
+                case CHANGE_ENTITY_INFO -> new ChangeEntityInfo();
+
+               //todo
+                case CHANGE_ORDER_INFO -> new ChangeOrderStatus();
+                case FIND_ORDER_BY_CREATOR -> new FindOrderByCreator();
+                case FIND_USER_BY_EMAIL -> new FindUserByEmail();
                 default -> throw new UnsupportedOperationException("such command doesnt exist");
             };
         } else {

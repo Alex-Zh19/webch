@@ -41,7 +41,31 @@ public enum LocaleKey {
     DESCRIPTION_LABEL_TEXT("description-label-text"),
     ADDRESS_LABEL_TEXT("address-label-text"),
     DATE_LABEL_TEXT("date-label-text"),
-    FULL_NAME_LABEL_TEXT("full-name-label-text");
+    FULL_NAME_LABEL_TEXT("full-name-label-text"),
+    ID_TEXT("id-text"),
+    BALANCE_TEXT("balance-text"),
+    CHANGE_USER_BUTTON_TEXT("change-user-button-text"),
+    CHANGE_PRODUCT_BUTTON_TEXT("change-product-button-text"),
+    CHANGE_ORDER_BUTTON_TEXT("change-order-button-text"),
+    ROLE_TEXT("role-text"),
+    IS_IN_STOCK_LABEL_TEXT("is-in-stock-label-text"),
+    STATUS_TEXT("status-text"),
+    USER_LABEL_TEXT("user-label-text"),
+    ORDER_LABEL_TEXT("order-label-text"),
+    ORDER_ID_TEXT("order-id-text"),
+    ORDER_ORDER_ID_TEXT("order-order-id-text"),
+    PRODUCT_NAME_TEXT("product-name-text"),
+    ORDER_STATUS_TEXT("order-status-text"),
+    ORDER_DETAILS_TEXT("order-details-text"),
+    ORDER_DATE_TEXT("order-date-text"),
+    ORDER_CREATOR_TEXT("order-creator-text"),
+    ORDER_RECIPIENT_TEXT("order-recipient-text"),
+    PRODUCT_SETTINGS_LABEL_TEXT("product-settings-label-text"),
+    PRODUCT_GENERAL_SETTINGS_TEXT("product-general-settings-text"),
+    PRODUCT_DESCRIPTION_LABEL_TEXT("product-description-label-text"),
+    USER_ROLE_LABEL_TEXT("user-role-label-text"),
+    USER_STATUS_LABEL_TEXT("user-status-label-text");
+
 
 
     private String value;

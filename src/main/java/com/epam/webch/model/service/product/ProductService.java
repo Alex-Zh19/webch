@@ -9,11 +9,13 @@ import java.util.Optional;
 
 public interface ProductService {
 
-    boolean addProduct(String name,int price) throws ServiceException;
+    boolean addProduct(String name,int price,String description) throws ServiceException;
     Optional<Product> findProductById(Long id) throws ServiceException;
     boolean deleteProduct(Product product) throws ServiceException;
     boolean changeProductPrice(Long id,int price) throws ServiceException;
     boolean changeProductName(Long id,String name) throws ServiceException;
+    boolean changeProductDescription(Long id,String description) throws ServiceException;
+    boolean changeProductInStock(Long id,int inStock) throws ServiceException;
     List<Optional<Product>> findAllProducts() throws ServiceException;
 
 

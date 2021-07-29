@@ -16,7 +16,12 @@ public enum PagePath {
     HELLO_PAGE("WEB-INF/jsp/hello.jsp"),
     FIRST_PAGE("WEB-INF/jsp/page.jsp"),
     USER_NOT_FOUND("WEB-INF/jsp/userNotFound.jsp"),
-    PRODUCT_PAGE("WEB-INF/jsp/product_page.jsp");
+    PRODUCT_PAGE("WEB-INF/jsp/product_page.jsp"),
+    ADMIN_PRODUCT_LIST_PAGE("WEB-INF/jsp/admin/product_list_page.jsp"),
+    ADMIN_ENTITY_LIST_PAGE("WEB-INF/jsp/admin/entity_list_page.jsp"),
+    ADMIN_ORDER_LIST_PAGE("WEB-INF/jsp/admin/order_list_page.jsp"),
+    ADMIN_PRODUCT_SETTINGS_PAGE("WEB-INF/jsp/admin/product_settings_page.jsp"),
+    ADMIN_ENTITY_SETTINGS_PAGE("WEB-INF/jsp/admin/entity_settings_page.jsp");
 
 
     private String value;

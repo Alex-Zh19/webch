@@ -30,7 +30,7 @@ label[type=text]:focus {
     border-color: #51CBEE;
 }
 
-.open-product-button, .add-to-cart-button {
+.open-product-button, .add-to-cart-button,.change-product-info {
     display: inline-block;
     width: 100px;
     height: 50px;

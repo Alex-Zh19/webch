@@ -31,6 +31,23 @@ public enum CommandName implements BaseEnum {
     SIGN_IN_USER("sign-in-user"),
     SIGN_UP_USER("sign-up-user"),
     SIGN_OUT_USER("sign-out-user"),
+    //
+    OPEN_EMPLOYEE_LIST("open-employee-list"),
+    OPEN_ORDERS_LIST("open-orders-list"),
+    OPEN_PRODUCTS_LIST("open-products-list"),
+    OPEN_USERS_LIST("open-users-list"),
+    OPEN_CHANGE_PRODUCT_INFO_PAGE("open-change-product-info-page"),
+    OPEN_CHANGE_ENTITY_INFO_PAGE("open-change-entity-info-page"),
+    OPEN_CHANGE_ORDER_INFO_PAGE("open-change-order-info-page"),
+   //todo
+    FIND_USER_BY_EMAIL("find-user-by-email"),
+    FIND_ORDER_BY_CREATOR("find-order-by-creator"),
+    //todo end
+    CHANGE_PRODUCT_INFO("change-product-info"),
+    CHANGE_ENTITY_INFO("change-entity-info"),
+    //todo
+    CHANGE_ORDER_INFO("change-order-info"),
+    //
     DELETE_USER("delete-user");
 
 

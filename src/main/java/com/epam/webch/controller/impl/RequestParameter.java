@@ -23,7 +23,18 @@ public enum RequestParameter implements BaseEnum {
     ADDRESS_ORDER_CREATOR("address"),
     NAME_OF_ORDER_CREATOR("name-of-order-creator"),
     SURNAME_OF_ORDER_CREATOR("surname-of-order-creator"),
-    DATE("date");
+    DATE("date"),
+    ORDER_NUMBER("order-number"),
+    ENTITY_LIST("entity-list"),
+    ENTITY_ID("entity-id"),
+    ORDER_LIST("order-list"),
+    PRODUCT_NAME("product-name"),
+    PRODUCT_PRICE("product-price"),
+    PRODUCT_IN_STOCK("product-in-stock"),
+    PRODUCT_DESCRIPTION("product-description"),
+    USER_TO_CHANGE("user-to-change"),
+    USER_ROLE_TO_CHANGE("user-role-to-change"),
+    USER_STATUS_TO_CHANGE("user-status-to-change");
 
     private String value;
 

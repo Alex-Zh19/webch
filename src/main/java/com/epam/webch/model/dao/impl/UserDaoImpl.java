@@ -133,10 +133,93 @@ public class UserDaoImpl implements UserDao {
 
 
     @Override
+    public List<Optional<User>> findAll() throws DaoException {
+        List<Optional<User>> users = new ArrayList<>();
+        UserQueryFactory factory = new UserQueryFactory();
+        String query = factory.findAllQuery();
+        Optional<ProxyConnection> optionalConnection = ConnectionPool.getInstance().getConnection();
+        Optional<User> userFromBase;
+        if (optionalConnection.isPresent()) {
+            try (ProxyConnection connection = optionalConnection.get();
+                 Statement statement = connection.createStatement();
+                 ResultSet resultSet = statement.executeQuery(query)) {
+                while (resultSet.next()) {
+                    long id = resultSet.getLong(ID_COLUMN);
+                    String email = resultSet.getString(EMAIL_COLUMN);
+                    String name = resultSet.getString(NAME_COLUMN);
+                    Optional<String> surname = Optional.of(resultSet.getString(SURNAME_COLUMN));
+                    Optional<Integer> balance = Optional.of(resultSet.getInt(BALANCE_COLUMN));
+                    String roleString = resultSet.getString(ROLE_COLUMN);
+                    String statusString = resultSet.getString(STATUS_COLUMN);
+                    User.UserRole role = User.UserRole.valueOf(roleString);
+                    User.UserStatus status = User.UserStatus.valueOf(statusString);
+                    if (surname.isPresent() && balance.isPresent()) {
+                        userFromBase = Optional.of(new User(id, email, name, surname.get(), balance.get(), role, status));
+                    } else if (surname.isPresent()) {
+                        userFromBase = Optional.of(new User(id, email, name, surname.get(), role, status));
+                    } else if (balance.isPresent()) {
+                        userFromBase = Optional.of(new User(id, email, name, balance.get(), role, status));
+                    } else {
+                        userFromBase = Optional.of(new User(id, email, name, role, status));
+                    }
+                    users.add(userFromBase);
+                }
+
+            } catch (SQLException e) {
+                logger.log(Level.ERROR, "getAllUsers SqlException {}", e);
+                throw new DaoException("getAllUsers SqlException " + e);
+            }
+        }
+        return users;
+    }
+
+    @Override
     public List<Optional<User>> findAllUsers() throws DaoException {
         List<Optional<User>> users = new ArrayList<>();
         UserQueryFactory factory = new UserQueryFactory();
         String query = factory.findAllUsersQuery();
+        Optional<ProxyConnection> optionalConnection = ConnectionPool.getInstance().getConnection();
+        Optional<User> userFromBase;
+        if (optionalConnection.isPresent()) {
+            try (ProxyConnection connection = optionalConnection.get();
+                 Statement statement = connection.createStatement();
+                 ResultSet resultSet = statement.executeQuery(query)) {
+                while (resultSet.next()) {
+                    long id = resultSet.getLong(ID_COLUMN);
+                    String email = resultSet.getString(EMAIL_COLUMN);
+                    String name = resultSet.getString(NAME_COLUMN);
+                    Optional<String> surname = Optional.of(resultSet.getString(SURNAME_COLUMN));
+                    Optional<Integer> balance = Optional.of(resultSet.getInt(BALANCE_COLUMN));
+                    String roleString = resultSet.getString(ROLE_COLUMN);
+                    String statusString = resultSet.getString(STATUS_COLUMN);
+                    User.UserRole role = User.UserRole.valueOf(roleString);
+                    User.UserStatus status = User.UserStatus.valueOf(statusString);
+                    if (surname.isPresent() && balance.isPresent()) {
+                        userFromBase = Optional.of(new User(id, email, name, surname.get(), balance.get(), role, status));
+                    } else if (surname.isPresent()) {
+                        userFromBase = Optional.of(new User(id, email, name, surname.get(), role, status));
+                    } else if (balance.isPresent()) {
+                        userFromBase = Optional.of(new User(id, email, name, balance.get(), role, status));
+                    } else {
+                        userFromBase = Optional.of(new User(id, email, name, role, status));
+                    }
+                    users.add(userFromBase);
+                }
+
+            } catch (SQLException e) {
+                logger.log(Level.ERROR, "getAllUsers SqlException {}", e);
+                throw new DaoException("getAllUsers SqlException " + e);
+            }
+        }
+        return users;
+    }
+
+
+    @Override
+    public List<Optional<User>> findAllEmployees() throws DaoException {
+        List<Optional<User>> users = new ArrayList<>();
+        UserQueryFactory factory = new UserQueryFactory();
+        String query = factory.findAllEmployeesQuery();
         Optional<ProxyConnection> optionalConnection = ConnectionPool.getInstance().getConnection();
         Optional<User> userFromBase;
         if (optionalConnection.isPresent()) {

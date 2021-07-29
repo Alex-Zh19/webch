@@ -11,9 +11,27 @@ public class UserQueryFactory {
     private static final String FIELDS_WITHOUT_BALANCE_ROLE_STATUS_SURNAME_INSERT = "(email,password,salt,name) ";
     private static final String ALL_FIELDS_FIND = "id,email,name,surname,balance,role,status ";
 
-    public String findAllUsersQuery() {
+    public String findAllQuery() {
         StringBuilder query = new StringBuilder(SELECT);
         query.append(ALL_FIELDS_FIND).append(FROM).append(USERS);
+        return query.toString();
+    }
+
+    public String findAllUsersQuery() {
+        StringBuilder query = new StringBuilder(SELECT);
+        query.append(ALL_FIELDS_FIND).append(FROM).append(USERS).append(WHERE).append("role=").append("\"user\"");
+        return query.toString();
+    }
+
+    public String findAllEmployeesQuery() {
+        StringBuilder query = new StringBuilder(SELECT);
+        query.append(ALL_FIELDS_FIND).append(FROM).append(USERS).append(WHERE).append("role=").append("\"employee\"");;
+        return query.toString();
+    }
+
+    public String findAllAdminsQuery() {
+        StringBuilder query = new StringBuilder(SELECT);
+        query.append(ALL_FIELDS_FIND).append(FROM).append(USERS).append(WHERE).append("role=").append("\"admin\"");;
         return query.toString();
     }
 

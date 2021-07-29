@@ -14,7 +14,7 @@ public class Order {
     private User creator;
     private User recipient;
 
-    class OrderDetails {
+   public class OrderDetails {
         private long id;
         private long orderId;
         private String details;

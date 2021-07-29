@@ -10,6 +10,7 @@ import java.util.Optional;
 
 public interface AdminService extends EmployeeService{
     List<Optional<User>> findAllUsers() throws ServiceException;
+    List<Optional<User>> findAllEmployees() throws ServiceException;
     boolean changeUserStatus(String email, User.UserStatus status) throws ServiceException;
     boolean changeUserRole(String email, User.UserRole role)throws ServiceException;
 

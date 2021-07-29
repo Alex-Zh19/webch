@@ -6,6 +6,6 @@ public enum SessionAttribute {
     CURRENT_USER_ROLE,
     LOCALE,
     PREVIOUS_PAGE,
-    USER_CART
+    USER_CART,
 
 }

@@ -18,7 +18,7 @@ import org.apache.logging.log4j.Logger;
 import java.util.Optional;
 
 public class ChangeUserInfo implements Command {
-    UserService userService = UserServiceImpl.getInstance();
+    private UserService userService = UserServiceImpl.getInstance();
     private static final Logger logger = LogManager.getLogger();
 
     @Override

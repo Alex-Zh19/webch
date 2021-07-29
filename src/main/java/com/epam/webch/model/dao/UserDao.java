@@ -11,7 +11,9 @@ public interface UserDao{
 
     Optional<User> findUserByEmail(String emailToFind) throws DaoException;
     Optional<User> findUserById(Long id) throws DaoException;
+    List<Optional<User>> findAll() throws DaoException;
     List<Optional<User>> findAllUsers() throws DaoException;
+    List<Optional<User>> findAllEmployees() throws DaoException;
     Optional<UserCredentials> findUserCredentialsByEmail(String emailToFind) throws DaoException;
     boolean deleteUser(Long id) throws DaoException;
     void changeUserStatus(String email, User.UserStatus status) throws DaoException;

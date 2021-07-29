@@ -23,8 +23,6 @@ public class AdminServiceImpl extends EmployeeServiceImpl implements AdminServic
     private static AdminService instance;
     private static final Logger logger = LogManager.getLogger();
     private static final UserDao userDao = UserDaoImpl.getInstance();
-    private static final OrderDao orderDao = OrderDaoImpl.getInstance();
-    private static final ProductDao productDao = ProductDaoImpl.getInstance();
 
     private AdminServiceImpl() {
     }
@@ -48,7 +46,10 @@ public class AdminServiceImpl extends EmployeeServiceImpl implements AdminServic
         return users;
     }
 
-
+    @Override
+    public List<Optional<User>> findAllEmployees() throws ServiceException {
+        return null;
+    }
 
 
     @Override
