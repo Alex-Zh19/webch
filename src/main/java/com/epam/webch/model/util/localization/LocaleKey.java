@@ -64,8 +64,22 @@ public enum LocaleKey {
     PRODUCT_GENERAL_SETTINGS_TEXT("product-general-settings-text"),
     PRODUCT_DESCRIPTION_LABEL_TEXT("product-description-label-text"),
     USER_ROLE_LABEL_TEXT("user-role-label-text"),
-    USER_STATUS_LABEL_TEXT("user-status-label-text");
-
+    USER_STATUS_LABEL_TEXT("user-status-label-text"),
+    ACCEPT_ORDER_TEXT("accept-order-text"),
+    READY_ORDER_TEXT("ready-order-text"),
+    DELETE_ORDER_TEXT("delete-order-text"),
+    SET_ORDER_STATUS_BUTTON_TEXT("set-order-status-button-text"),
+    ACTIVE_USER_LABEL_TEXT("active-user-label-text"),
+    BANNED_USER_LABEL_TEXT("banned-user-label-text"),
+    ADMIN_USER_LABEL_TEXT("admin-user-label-text"),
+    EMPLOYEE_USER_LABEL_TEXT("employee-user-label-text"),
+    USER_USER_LABEL_TEXT("user-user-label-text"),
+    EMPLOYEE_LIST_BUTTON_TEXT("employee-list-button-text"),
+    USERS_LIST_BUTTON_TEXT("users-list-button-text"),
+    ORDERS_LIST_BUTTON_TEXT("orders-list-button-text"),
+    PRODUCTS_LIST_BUTTON_TEXT("products-list-button-text"),
+    IN_STOCK_DROP_DOWN_TEXT("in-stock-drop-down-text"),
+    NOT_IN_STOCK_DROP_DOWN_TEXT("not-in-stock-drop-down-text");
 
 
     private String value;

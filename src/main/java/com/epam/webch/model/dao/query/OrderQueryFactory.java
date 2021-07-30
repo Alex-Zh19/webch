@@ -26,8 +26,8 @@ public class OrderQueryFactory {
         StringBuilder query = new StringBuilder(SELECT);
         query.append(ALL_FIELDS_ORDERS_FIND)
                 .append(FROM).append(ORDERS).append(JOIN).append(ORDERS_DETAILS).append(ON).
-                append("coffee_house.orders.order_id=coffee_house.orders_details.order_id").append(JOIN).
-                append(PRODUCTS).append(ON).append("coffee_house.orders.productName=coffee_house.products.id");
+                append("coffee_house.orders.order_id=coffee_house.orders_details.order_id ").append(JOIN).
+                append(PRODUCTS).append(ON).append("coffee_house.orders.productName=coffee_house.products.id ");
         return query.toString();
     }
 
@@ -131,7 +131,14 @@ public class OrderQueryFactory {
         StringBuilder query = new StringBuilder(UPDATE);
         query.append(ORDERS).append(SET);
         query.append("status=").append("\"").append(status).append("\"");
-        query.append(WHERE).append("id=").append(id);
+        query.append(WHERE).append("order_id=").append(id);
+        return query.toString();
+    }
+    public  String changeOrderRecipientQuery(Long id, Long userId) {
+        StringBuilder query = new StringBuilder(UPDATE);
+        query.append(ORDERS).append(SET);
+        query.append("recipient=").append("\"").append(userId).append("\"");
+        query.append(WHERE).append("order_id=").append(id);
         return query.toString();
     }
 }

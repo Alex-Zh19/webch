@@ -1,5 +1,6 @@
 package com.epam.webch.model.entity.order;
 
+import com.epam.webch.controller.BaseEnum;
 import com.epam.webch.model.entity.product.Product;
 import com.epam.webch.model.entity.user.User;
 
@@ -94,13 +95,24 @@ public class Order {
             result.append("}");
             return result.toString();
         }
-    }
+   }
 
-    public enum OrderStatus {
-        processed,
-        preparing,
-        ready,
-        deleted
+    public enum OrderStatus implements BaseEnum {
+        processed("processed"),
+        preparing("preparing"),
+        ready("ready"),
+        deleted("deleted");
+
+        private String value;
+
+        OrderStatus(String value) {
+            this.value = value;
+        }
+
+        @Override
+        public String getValue() {
+            return value;
+        }
     }
 
     public Order(long id, long orderId, Product productName,

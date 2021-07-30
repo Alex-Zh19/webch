@@ -11,6 +11,9 @@ import com.epam.webch.model.service.user.AdminService;
 import com.epam.webch.model.service.user.impl.AdminServiceImpl;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import org.apache.logging.log4j.Level;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -18,7 +21,7 @@ import java.util.Optional;
 
 public class OpenEmployeeList implements Command {//entity list form
     private AdminService adminService = AdminServiceImpl.getInstance();
-
+    private static final Logger logger= LogManager.getLogger();
     @Override
     public Router execute(HttpServletRequest request, HttpServletResponse response) {
         request.getSession().setAttribute(SessionAttribute.PREVIOUS_PAGE.name(), PagePath.ADMIN_ENTITY_LIST_PAGE);
@@ -32,6 +35,7 @@ public class OpenEmployeeList implements Command {//entity list form
             }
             request.setAttribute(RequestParameter.ENTITY_LIST.name(), employeeList);
         } catch (ServiceException e) {
+            logger.log(Level.ERROR,"service exception at OpenEmployeeList");
             return new Router(PagePath.ERROR_404_PAGE.getValue(), Router.RouterType.FORWARD);
         }
         return new Router(PagePath.ADMIN_ENTITY_LIST_PAGE.getValue(), Router.RouterType.FORWARD);

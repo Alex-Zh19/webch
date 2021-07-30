@@ -9,19 +9,19 @@
 <html>
 <head>
     <title>Title</title>
-    <link rel="stylesheet" href="${CSS_HOME_USER_PAGE}">
+    <link rel="stylesheet" href="${CSS_ADMIN_HOME_PAGE}">
 </head>
 <body style="background-color: #61ADB0">
-<jsp:include page="${USER_NAVIGATION_BAR}"></jsp:include>
+<jsp:include page="${USER_NAVIGATION_BAR_FROM_ROOT}"></jsp:include>
 <form class="userAbout" name="userAbout" method="post">
     <h2>${TEXT[WELCOME_TEXT]}, ${sessionScope.CURRENT_USER.name} ${sessionScope.CURRENT_USER.surname}!</h2>
     <button type="submit" formaction="${CONTROLLER_PATH}?${COMMAND}=${OPEN_SETTINGS_PAGE}" value="${TEXT[SETTINGS_BUTTON]}"></button>
-    <button type="submit" formaction="${CONTROLLER_PATH}?${COMMAND}=${}" value="Employee list"></button>
-    <button type="submit" formaction="${CONTROLLER_PATH}?${COMMAND}=${}" value="orders List"></button>
-    <button type="submit" formaction="${CONTROLLER_PATH}?${COMMAND}=${}" value="Products List"></button>
-    <button type="submit" formaction="${CONTROLLER_PATH}?${COMMAND}=${}" value="Users list"></button>
-    <button type="submit" formaction="${CONTROLLER_PATH}?${COMMAND}=${}" value="find user"></button>
-    <button type="submit" formaction="${CONTROLLER_PATH}?${COMMAND}=${}" value="find order"></button>
+    <button type="submit" formaction="${CONTROLLER_PATH}?${COMMAND}=${OPEN_EMPLOYEE_LIST}" value="${TEXT[EMPLOYEE_LIST_BUTTON_TEXT]}"></button>
+    <button type="submit" formaction="${CONTROLLER_PATH}?${COMMAND}=${OPEN_ORDERS_LIST}" value="${TEXT[ORDERS_LIST_BUTTON_TEXT]}"></button>
+    <button type="submit" formaction="${CONTROLLER_PATH}?${COMMAND}=${OPEN_PRODUCTS_LIST}" value="${TEXT[PRODUCTS_LIST_BUTTON_TEXT]}"></button>
+    <button type="submit" formaction="${CONTROLLER_PATH}?${COMMAND}=${OPEN_USERS_LIST}" value="${TEXT[USERS_LIST_BUTTON_TEXT]}"></button>
+    <!--<button type="submit" formaction="${CONTROLLER_PATH}?${COMMAND}=" value="find user"></button>
+    <button type="submit" formaction="${CONTROLLER_PATH}?${COMMAND}=" value="find order"></button>-->
 </form>
 </body>
 </html>

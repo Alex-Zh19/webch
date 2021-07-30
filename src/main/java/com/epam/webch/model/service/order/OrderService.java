@@ -21,6 +21,8 @@ public interface OrderService {
     boolean deleteOrder(Order order) throws ServiceException;
     boolean changeOrderStatus(Long id, Order.OrderStatus status)
             throws ServiceException;
+    boolean changeOrderRecipient(Long id, Long userId)
+            throws ServiceException;
 
     Optional<Long>findLastOrderId() throws ServiceException;
     boolean reallyDeleteOrder(Order order) throws ServiceException;

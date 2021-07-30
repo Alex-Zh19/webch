@@ -23,6 +23,8 @@ public interface OrderDao{
     void reallyDeleteOrder(Order order) throws DaoException;
     void changeOrderStatus(Long id, Order.OrderStatus status)
             throws DaoException;
+    void changeOrderRecipient(Long id, Long userId)
+            throws DaoException;
 
     Optional<Long>findLastOrderId() throws DaoException;
 }

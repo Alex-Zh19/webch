@@ -154,6 +154,17 @@ public class OrderServiceImpl implements OrderService {
         }
     }
 
+    @Override
+    public boolean changeOrderRecipient(Long id, Long userId) throws ServiceException {
+        try {
+            orderDao.changeOrderRecipient(id, userId);
+            return true;
+        } catch (DaoException e) {
+            logger.log(Level.ERROR, "DaoException at changeOrderStatus method. {}", e);
+            throw new ServiceException("DaoException at changeOrderStatus method. " + e);
+        }
+    }
+
 
     @Override
     public boolean reallyDeleteOrder(Order order) throws ServiceException {

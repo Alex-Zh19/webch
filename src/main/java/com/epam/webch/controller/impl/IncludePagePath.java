@@ -4,10 +4,10 @@ import com.epam.webch.controller.BaseEnum;
 
 public enum IncludePagePath implements BaseEnum {
     DEFAULT_NAVIGATION_BAR("templates/default_navigation_bar.jsp"),
-    GUEST_NAVIGATION_BAR("../templates/guest_nav_bar.jsp"),
-    GUEST_NAVIGATION_BAR_FROM_ROOT("templates/guest_nav_bar.jsp"),
-    USER_NAVIGATION_BAR("../templates/user_navigation_bar.jsp"),
-    USER_NAVIGATION_BAR_FROM_ROOT("templates/user_navigation_bar.jsp"),
+    GUEST_NAVIGATION_BAR_FROM_ROOT("../templates/guest_nav_bar.jsp"),
+    GUEST_NAVIGATION_BAR("templates/guest_nav_bar.jsp"),
+    USER_NAVIGATION_BAR_FROM_ROOT("../templates/user_navigation_bar.jsp"),
+    USER_NAVIGATION_BAR("templates/user_navigation_bar.jsp"),
     FORM_SIGN_IN("templates/form/sign_in_form.jsp"),
     FORM_SIGN_UP("templates/form/sign_up_form.jsp"),
     FORM_SETTINGS("templates/form/settings_form.jsp"),
@@ -30,7 +30,8 @@ public enum IncludePagePath implements BaseEnum {
     CSS_HOME_USER_PAGE("css/home_user_page.css"),
     CSS_HOME_PAGE("css/home_page.css"),
     CSS_FORM_PRODUCT("css/product_form.css"),
-    CSS_SUCCESS_OPERATION_PAGE("css/success_operation_page.css");
+    CSS_SUCCESS_OPERATION_PAGE("css/success_operation_page.css"),
+    CSS_ADMIN_HOME_PAGE("css/admin_home_page.css");
 
     private String value;
 

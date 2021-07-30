@@ -9,6 +9,7 @@ import com.epam.webch.exception.ServiceException;
 import com.epam.webch.model.entity.product.Product;
 import com.epam.webch.model.service.product.ProductService;
 import com.epam.webch.model.service.product.impl.ProductServiceImpl;
+import jakarta.persistence.criteria.CriteriaBuilder;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import org.apache.logging.log4j.Level;
@@ -27,7 +28,11 @@ public class ChangeProductInfo implements Command {
         Optional<String> name = Optional.ofNullable(request.getParameter(RequestParameter.PRODUCT_NAME.getValue()));
         Optional<String> price = Optional.ofNullable(request.getParameter(RequestParameter.PRODUCT_PRICE.getValue()));
         Optional<String> description = Optional.ofNullable(request.getParameter(RequestParameter.PRODUCT_DESCRIPTION.getValue()));
-        Optional<String> inStock = Optional.ofNullable(request.getParameter(RequestParameter.PRODUCT_IN_STOCK.getValue()));
+        Optional<String> stringInStock = Optional.ofNullable(request.getParameter(RequestParameter.PRODUCT_IN_STOCK.getValue()));
+        Integer inStock=0;
+        if(stringInStock.isPresent()){
+            inStock=Integer.parseInt(stringInStock.get());
+        }
         Optional<Product> optionalProduct;
         String stringProdId = request.getParameter(RequestParameter.PRODUCT_ID.getValue());
         Long prodId = Long.parseLong(stringProdId);
@@ -44,7 +49,7 @@ public class ChangeProductInfo implements Command {
                     productService.changeProductName(prodId, name.get());
                 } catch (ServiceException e) {
                     logger.log(Level.ERROR, "Service exception at ChangeProductInfo info {}", e);
-                    return new Router(prevPage.getValue(), Router.RouterType.FORWARD);
+                    return new Router(PagePath.ERROR_OPERATION_PAGE.getValue(), Router.RouterType.FORWARD);
                 }
             }
             if (!price.isEmpty() &&!(product.getPrice()==Integer.parseInt(price.get())) ) {
@@ -52,7 +57,7 @@ public class ChangeProductInfo implements Command {
                     productService.changeProductPrice(prodId,Integer.parseInt(price.get()));
                 } catch (ServiceException e) {
                     logger.log(Level.ERROR, "Service exception at ChangeProductInfo info {}", e);
-                    return new Router(prevPage.getValue(), Router.RouterType.FORWARD);
+                    return new Router(PagePath.ERROR_OPERATION_PAGE.getValue(), Router.RouterType.FORWARD);
                 }
             }
             if (!description.isEmpty()&&!product.getDescription().equals(description.get())  ) {
@@ -60,15 +65,15 @@ public class ChangeProductInfo implements Command {
                     productService.changeProductDescription(prodId, description.get());
                 } catch (ServiceException e) {
                     logger.log(Level.ERROR, "Service exception at ChangeProductInfo info {}", e);
-                    return new Router(prevPage.getValue(), Router.RouterType.FORWARD);
+                    return new Router(PagePath.ERROR_OPERATION_PAGE.getValue(), Router.RouterType.FORWARD);
                 }
             }
-            if (!inStock.isEmpty()&&!(product.getIsInStock()==Integer.parseInt(inStock.get()))) {
+            if (!(product.getIsInStock()==inStock)) {
                 try {
-                    productService.changeProductInStock(prodId, Integer.parseInt(inStock.get()));
+                    productService.changeProductInStock(prodId, inStock);
                 } catch (ServiceException e) {
                     logger.log(Level.ERROR, "Service exception at ChangeProductInfo info {}", e);
-                    return new Router(prevPage.getValue(), Router.RouterType.FORWARD);
+                    return new Router(PagePath.ERROR_OPERATION_PAGE.getValue(), Router.RouterType.FORWARD);
                 }
             }
 

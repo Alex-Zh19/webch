@@ -11,6 +11,9 @@ import com.epam.webch.model.service.user.UserService;
 import com.epam.webch.model.service.user.impl.UserServiceImpl;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import org.apache.logging.log4j.Level;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 import java.util.Optional;
 
@@ -19,7 +22,7 @@ public class SignUpUser implements Command {
     private final User.UserStatus DEFAULT_STATUS = User.UserStatus.active;
     private final User.UserRole DEFAULT_ROLE = User.UserRole.user;
     private final UserService userService = UserServiceImpl.getInstance();
-
+    private static final Logger logger= LogManager.getLogger();
     @Override
     public Router execute(HttpServletRequest request, HttpServletResponse response) {
         PagePath prevPage = (PagePath) request.getSession().getAttribute(SessionAttribute.PREVIOUS_PAGE.name());
@@ -34,6 +37,7 @@ public class SignUpUser implements Command {
                 return new Router(PagePath.SIGN_IN_PAGE.getValue(), Router.RouterType.FORWARD);
             }
         } catch (ServiceException e) {
+            logger.log(Level.ERROR,"service exception at SignUpUser");
             return new Router(prevPage.getValue(), Router.RouterType.FORWARD);
         }
         return new Router(prevPage.getValue(), Router.RouterType.FORWARD);

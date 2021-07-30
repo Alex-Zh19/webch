@@ -4,13 +4,9 @@ import com.epam.webch.controller.PagePath;
 import com.epam.webch.controller.command.Command;
 import com.epam.webch.controller.command.Router;
 import com.epam.webch.exception.ServiceException;
-import com.epam.webch.model.entity.product.Product;
 import com.epam.webch.model.entity.user.User;
-import com.epam.webch.model.service.product.ProductService;
-import com.epam.webch.model.service.product.impl.ProductServiceImpl;
 import com.epam.webch.model.service.user.AdminService;
 import com.epam.webch.model.service.user.impl.AdminServiceImpl;
-import com.epam.webch.model.service.user.impl.UserServiceImpl;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import org.apache.logging.log4j.Level;
@@ -21,7 +17,6 @@ import java.util.Optional;
 
 import static com.epam.webch.controller.impl.RequestParameter.ENTITY_ID;
 import static com.epam.webch.controller.impl.RequestParameter.USER_TO_CHANGE;
-
 
 public class OpenChangeEntityInfoPage implements Command {
     private AdminService adminService= AdminServiceImpl.getInstance();
@@ -38,7 +33,7 @@ public class OpenChangeEntityInfoPage implements Command {
                 request.setAttribute(USER_TO_CHANGE.name(),user.get());
             }
         }catch (ServiceException e){
-            logger.log(Level.ERROR,"service exception at OpenChangeProductInfoPage");
+            logger.log(Level.ERROR,"service exception at OpenChangeEntityInfoPage");
             return new Router(PagePath.ERROR_404_PAGE.getValue(), Router.RouterType.FORWARD);
         }
         return new Router(PagePath.ADMIN_ENTITY_SETTINGS_PAGE.getValue(), Router.RouterType.FORWARD);

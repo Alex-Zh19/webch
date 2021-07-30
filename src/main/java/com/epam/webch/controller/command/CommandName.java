@@ -39,15 +39,16 @@ public enum CommandName implements BaseEnum {
     OPEN_CHANGE_PRODUCT_INFO_PAGE("open-change-product-info-page"),
     OPEN_CHANGE_ENTITY_INFO_PAGE("open-change-entity-info-page"),
     OPEN_CHANGE_ORDER_INFO_PAGE("open-change-order-info-page"),
+
    //todo
+    OPEN_USER_INFORMATION_FOR_ADMIN_PAGE("open-user-information-for-admin-page"),
     FIND_USER_BY_EMAIL("find-user-by-email"),
     FIND_ORDER_BY_CREATOR("find-order-by-creator"),
+    FIND_ORDER_BY_RECIPIENT("find-order-by-recipient"),
     //todo end
     CHANGE_PRODUCT_INFO("change-product-info"),
     CHANGE_ENTITY_INFO("change-entity-info"),
-    //todo
     CHANGE_ORDER_INFO("change-order-info"),
-    //
     DELETE_USER("delete-user");
 
 

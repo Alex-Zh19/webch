@@ -13,6 +13,9 @@ import com.epam.webch.model.service.order.OrderService;
 import com.epam.webch.model.service.order.impl.OrderServiceImpl;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import org.apache.logging.log4j.Level;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 import java.sql.Date;
 import java.util.List;
@@ -20,6 +23,7 @@ import java.util.Optional;
 
 
 public class CreateOrder implements Command {
+    private static final Logger logger= LogManager.getLogger();
     private OrderService orderService = OrderServiceImpl.getInstance();
     private Order.OrderStatus DEFAULT_ORDER_STATUS = Order.OrderStatus.processed;
     private Date DEFAULT_DATE = new Date(19 / 07 / 2000);
@@ -62,6 +66,7 @@ public class CreateOrder implements Command {
                     }
                 }
             } catch (ServiceException e) {
+                logger.log(Level.ERROR,"service exception at CreateOrder");
                 return new Router(PagePath.ERROR_OPERATION_PAGE.getValue(), Router.RouterType.FORWARD);
             }
             return new Router(PagePath.SUCCESSFUL_OPERATION_PAGE.getValue(), Router.RouterType.FORWARD);
@@ -86,6 +91,7 @@ public class CreateOrder implements Command {
                     }
                 }
             } catch (ServiceException e) {
+                logger.log(Level.ERROR,"service exception at CreateOrder");
                 return new Router(PagePath.ERROR_OPERATION_PAGE.getValue(), Router.RouterType.FORWARD);
             }
             return new Router(PagePath.SUCCESSFUL_OPERATION_PAGE.getValue(), Router.RouterType.FORWARD);

@@ -62,6 +62,7 @@ public class OrderDaoImpl implements OrderDao {
         List<Optional<Order>> orders = new ArrayList<>();
         OrderQueryFactory factory = new OrderQueryFactory();
         String query = factory.findAllOrdersQuery();
+        System.out.println(query);
         Optional<Order> order;
         Optional<ProxyConnection> optionalConnection = ConnectionPool.getInstance().getConnection();
         if (optionalConnection.isPresent()) {
@@ -74,10 +75,11 @@ public class OrderDaoImpl implements OrderDao {
                     //product
                     long productId = resultSet.getLong(ID_PRODUCT_COLUMN);
                     String productName = resultSet.getString(NAME_PRODUCT_COLUMN);
+                    String productDescription=resultSet.getString(DESCRIPTION_PRODUCT_COLUMN);
                     int productPrice = resultSet.getInt(PRICE_PRODUCT_COLUMN);
                     int inStock = resultSet.getInt(IN_STOCK_PRODUCT_COLUMN);
                     //product
-                    Product product = new Product(productId, productName, productPrice, inStock);
+                    Product product = new Product(productId, productName, productPrice,productDescription, inStock);
 
                     String statusString = resultSet.getString(STATUS_COLUMN);
                     Order.OrderStatus status = Order.OrderStatus.valueOf(statusString);
@@ -125,9 +127,10 @@ public class OrderDaoImpl implements OrderDao {
                     long productId = resultSet.getLong(ID_PRODUCT_COLUMN);
                     String productName = resultSet.getString(NAME_PRODUCT_COLUMN);
                     int productPrice = resultSet.getInt(PRICE_PRODUCT_COLUMN);
+                    String productDescription=resultSet.getString(DESCRIPTION_PRODUCT_COLUMN);
                     int inStock = resultSet.getInt(IN_STOCK_PRODUCT_COLUMN);
                     //product
-                    Product product = new Product(productId, productName, productPrice, inStock);
+                    Product product = new Product(productId, productName, productPrice,productDescription,inStock);
 
                     String statusString = resultSet.getString(STATUS_COLUMN);
                     Order.OrderStatus status = Order.OrderStatus.valueOf(statusString);
@@ -175,9 +178,10 @@ public class OrderDaoImpl implements OrderDao {
                     long productId = resultSet.getLong(ID_PRODUCT_COLUMN);
                     String productName = resultSet.getString(NAME_PRODUCT_COLUMN);
                     int productPrice = resultSet.getInt(PRICE_PRODUCT_COLUMN);
+                    String productDescription=resultSet.getString(DESCRIPTION_PRODUCT_COLUMN);
                     int inStock = resultSet.getInt(IN_STOCK_PRODUCT_COLUMN);
                     //product
-                    Product product = new Product(productId, productName, productPrice, inStock);
+                    Product product = new Product(productId, productName, productPrice, productDescription,inStock);
 
                     String statusString = resultSet.getString(STATUS_COLUMN);
                     Order.OrderStatus status = Order.OrderStatus.valueOf(statusString);
@@ -312,6 +316,22 @@ public class OrderDaoImpl implements OrderDao {
             } catch (SQLException e) {
                 logger.log(Level.ERROR, "changeOrderStatus SqlException {}", e);
                 throw new DaoException("changeOrderStatus SqlException " + e);
+            }
+        }
+    }
+
+    @Override
+    public void changeOrderRecipient(Long id, Long userId) throws DaoException {
+        OrderQueryFactory factory = new OrderQueryFactory();
+        String query = factory.changeOrderRecipientQuery(id, userId);
+        Optional<ProxyConnection> optionalConnection = ConnectionPool.getInstance().getConnection();
+        if (optionalConnection.isPresent()) {
+            try (ProxyConnection connection = optionalConnection.get();
+                 PreparedStatement statement = connection.prepareStatement(query)) {
+                statement.executeUpdate();
+            } catch (SQLException e) {
+                logger.log(Level.ERROR, "changeOrderRecipient SqlException {}", e);
+                throw new DaoException("changeOrderRecipient SqlException " + e);
             }
         }
     }

@@ -33,6 +33,19 @@
                                     <input type="text" name="${PRODUCT_DESCRIPTION}" class="form-control mb-1"
                                            value="${product.description}">
                                 </div>
+                                <div class="dropdown">
+                                    <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton"
+                                            data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" value="product.isInStock">
+                                        ${TEXT[SET_ORDER_STATUS_BUTTON_TEXT]}
+                                    </button>
+                                    <div class="dropdown-menu" aria-labelledby="dropdownMenuButton" >
+                                        <a class="dropdown-item" href="${CONTROLLER_PATH}?${COMMAND}=${CHANGE_PRODUCT_INFO}&${PRODUCT_ID}=${product.id}&${PRODUCT_IN_STOCK}=${0}">
+                                            ${TEXT[IN_STOCK_DROP_DOWN_TEXT]}</a>
+                                        <a class="dropdown-item" href="${CONTROLLER_PATH}?${COMMAND}=${CHANGE_PRODUCT_INFO}&${PRODUCT_ID}=${product.id}&${PRODUCT_IN_STOCK}=${1}">
+                                            ${TEXT[NOT_IN_STOCK_DROP_DOWN_TEXT]}</a>
+                                    </div>
+                                </div>
+
                                 <div class="form-group">
                                     <label class="form-label">${TEXT[IS_IN_STOCK_LABEL_TEXT]}</label>
                                     <input type="text" name="${PRODUCT_IN_STOCK}" class="form-control mb-1"

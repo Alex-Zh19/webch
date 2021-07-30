@@ -12,7 +12,7 @@
     <title>Title</title>
 </head>
 <body>
-<jsp:include page="${GUEST_NAVIGATION_BAR}"></jsp:include>
+<jsp:include page="${GUEST_NAVIGATION_BAR_FROM_ROOT}"></jsp:include>
 <c:forEach var="pr" items="${sessionScope.USER_CART}">
     <c:set var="product" value="${pr}" scope="request"></c:set>
     <jsp:include page="${FORM_CART_PRODUCT_FROM_ROOT}"></jsp:include>

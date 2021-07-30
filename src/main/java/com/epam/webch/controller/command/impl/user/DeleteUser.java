@@ -10,10 +10,14 @@ import com.epam.webch.model.service.user.UserService;
 import com.epam.webch.model.service.user.impl.UserServiceImpl;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import org.apache.logging.log4j.Level;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 
 public class DeleteUser implements Command {
     private final UserService userService= UserServiceImpl.getInstance();
+    private static final Logger logger= LogManager.getLogger();
     @Override
     public Router execute(HttpServletRequest request, HttpServletResponse response) {
         User currentUser=(User)request.getSession().getAttribute(SessionAttribute.CURRENT_USER.name());
@@ -22,6 +26,7 @@ public class DeleteUser implements Command {
                 return new Router(PagePath.HOME_PAGE.getValue(), Router.RouterType.FORWARD);
             }
         }catch (ServiceException e){
+            logger.log(Level.ERROR,"service exception at DeleteUser");
             return new Router(PagePath.ERROR_404_PAGE.getValue(), Router.RouterType.FORWARD);
         }
         return new Router(PagePath.ERROR_404_PAGE.getValue(), Router.RouterType.FORWARD);

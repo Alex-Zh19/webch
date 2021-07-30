@@ -39,7 +39,7 @@ public class ChangeUserInfo implements Command {
                 user.setEmail(email.get());
             } catch (ServiceException e) {
                 logger.log(Level.ERROR, "Service exception at changeUser info {}", e);
-                return new Router(prevPage.getValue(), Router.RouterType.FORWARD);
+                return new Router(PagePath.ERROR_OPERATION_PAGE.getValue(), Router.RouterType.FORWARD);
             }
         }
         if (!user.getName().equals(name)&&!name.isEmpty()) {
@@ -48,7 +48,7 @@ public class ChangeUserInfo implements Command {
                 user.setName(name.get());
             } catch (ServiceException e) {
                 logger.log(Level.ERROR, "Service exception at changeUser info {}", e);
-                return new Router(prevPage.getValue(), Router.RouterType.FORWARD);
+                return new Router(PagePath.ERROR_OPERATION_PAGE.getValue(), Router.RouterType.FORWARD);
             }
         }
         if (!user.getSurname().equals(surname)&&!surname.isEmpty()) {
@@ -57,7 +57,7 @@ public class ChangeUserInfo implements Command {
                 user.setSurname(surname.get());
             } catch (ServiceException e) {
                 logger.log(Level.ERROR, "Service exception at changeUser info {}", e);
-                return new Router(prevPage.getValue(), Router.RouterType.FORWARD);
+                return new Router(PagePath.ERROR_OPERATION_PAGE.getValue(), Router.RouterType.FORWARD);
             }
         }
         if (!currentPassword.isEmpty() && !newPassword.isEmpty()&& !confirmNewPassword.isEmpty()) {
@@ -66,7 +66,7 @@ public class ChangeUserInfo implements Command {
                         confirmNewPassword.get());
             } catch (ServiceException e) {
                 logger.log(Level.ERROR, "Service exception at changeUser info {}", e);
-                return new Router(prevPage.getValue(), Router.RouterType.FORWARD);
+                return new Router(PagePath.ERROR_OPERATION_PAGE.getValue(), Router.RouterType.FORWARD);
             }
         }
         return new Router(PagePath.HOME_USER_PAGE.getValue(), Router.RouterType.FORWARD);

@@ -12,12 +12,16 @@ import com.epam.webch.model.service.product.ProductService;
 import com.epam.webch.model.service.product.impl.ProductServiceImpl;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import org.apache.logging.log4j.Level;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 import java.util.List;
 import java.util.Optional;
 
 public class DeleteFromCart implements Command {
     private ProductService productService = ProductServiceImpl.getInstance();
+    private static final Logger logger= LogManager.getLogger();
     @Override
     public Router execute(HttpServletRequest request, HttpServletResponse response) {
         Router result;
@@ -26,6 +30,7 @@ public class DeleteFromCart implements Command {
         try {
             productOptional = productService.findProductById(Long.parseLong(productId));
         } catch (ServiceException e) {
+            logger.log(Level.ERROR,"service exception at DeleteFromCart");
             result = new Router(PagePath.ERROR_404_PAGE.getValue(), Router.RouterType.FORWARD);
         }
         if (productOptional.isPresent()) {
@@ -33,6 +38,7 @@ public class DeleteFromCart implements Command {
             productList.remove(productOptional.get());
             result = new Router(PagePath.SHOP_PAGE.getValue(), Router.RouterType.FORWARD, CommandName.OPEN_CART_PAGE);
         }else{
+            logger.log(Level.ERROR,"service exception at DeleteFromCart");
             result=new Router(PagePath.ERROR_404_PAGE.getValue(), Router.RouterType.FORWARD);
         }
         return result;

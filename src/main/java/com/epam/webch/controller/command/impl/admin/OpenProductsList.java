@@ -11,6 +11,9 @@ import com.epam.webch.model.service.product.ProductService;
 import com.epam.webch.model.service.product.impl.ProductServiceImpl;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import org.apache.logging.log4j.Level;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -18,7 +21,7 @@ import java.util.Optional;
 
 public class OpenProductsList implements Command {
     private ProductService productService = ProductServiceImpl.getInstance();
-
+    private static final Logger logger= LogManager.getLogger();
     @Override
     public Router execute(HttpServletRequest request, HttpServletResponse response) {
         request.getSession().setAttribute(SessionAttribute.PREVIOUS_PAGE.name(), PagePath.ADMIN_PRODUCT_LIST_PAGE);
@@ -32,6 +35,7 @@ public class OpenProductsList implements Command {
             }
             request.setAttribute(RequestParameter.PRODUCT_LIST.name(), productList);
         } catch (ServiceException e) {
+            logger.log(Level.ERROR,"service exception at OpenEmployeeList");
             return new Router(PagePath.ERROR_404_PAGE.getValue(), Router.RouterType.FORWARD);
         }
         return new Router(PagePath.ADMIN_PRODUCT_LIST_PAGE.getValue(), Router.RouterType.FORWARD);

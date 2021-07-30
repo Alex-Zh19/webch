@@ -4,6 +4,7 @@ import com.epam.webch.controller.BaseEnum;
 import com.epam.webch.controller.command.CommandName;
 import com.epam.webch.controller.impl.IncludePagePath;
 import com.epam.webch.controller.impl.RequestParameter;
+import com.epam.webch.model.entity.order.Order;
 import com.epam.webch.model.entity.user.User;
 import jakarta.servlet.ServletContext;
 import jakarta.servlet.ServletContextEvent;
@@ -18,6 +19,7 @@ public class ServletContextListener implements jakarta.servlet.ServletContextLis
         setEnumVariables(sce.getServletContext(), RequestParameter.values());
         setEnumVariables(sce.getServletContext(), CommandName.values());
         setEnumVariables(sce.getServletContext(), User.UserRole.values());
+        setEnumVariables(sce.getServletContext(), Order.OrderStatus.values());
     }
 
 

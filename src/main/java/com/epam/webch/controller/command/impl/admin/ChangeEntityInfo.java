@@ -40,21 +40,23 @@ public class ChangeEntityInfo implements Command {
             if (!role.isEmpty() && !(user.getUserRole()== User.UserRole.valueOf(role.get()))) {
                 try {
                     adminService.changeUserRole(email, User.UserRole.valueOf(role.get()));
+                    request.setAttribute(RequestParameter.USER_TO_CHANGE.name(), user);
                 } catch (ServiceException e) {
-                    logger.log(Level.ERROR, "Service exception at ChangeProductInfo info {}", e);
-                    return new Router(prevPage.getValue(), Router.RouterType.FORWARD);
+                    logger.log(Level.ERROR, "Service exception at ChangeEntityInfo info {}", e);
+                    return new Router(PagePath.ERROR_OPERATION_PAGE.getValue(), Router.RouterType.FORWARD);
                 }
             }
             if (!status.isEmpty() && !(user.getUserStatus() == User.UserStatus.valueOf(status.get()))) {
                 try {
                     adminService.changeUserStatus(email, User.UserStatus.valueOf(status.get()));
+                    request.setAttribute(RequestParameter.USER_TO_CHANGE.name(), user);
                 } catch (ServiceException e) {
-                    logger.log(Level.ERROR, "Service exception at ChangeProductInfo info {}", e);
-                    return new Router(prevPage.getValue(), Router.RouterType.FORWARD);
+                    logger.log(Level.ERROR, "Service exception at ChangeEntityInfo info {}", e);
+                    return new Router(PagePath.ERROR_OPERATION_PAGE.getValue(), Router.RouterType.FORWARD);
                 }
             }
         }
-        return new Router(PagePath.HOME_USER_PAGE.getValue(), Router.RouterType.FORWARD);
+        return new Router(PagePath.ADMIN_ENTITY_SETTINGS_PAGE.getValue(), Router.RouterType.FORWARD);
 
     }
 }

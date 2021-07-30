@@ -4,7 +4,7 @@
 h2{
     text-align: center;
 }
-input[type=button], input[type=submit], input[type=reset], a[type=button],button[type=submit] {
+button[type=submit] {
     background-color:#0d0d0d;
     border: none;
     color: white;
@@ -26,14 +26,7 @@ input[type=button], input[type=submit], input[type=reset], a[type=button],button
     transition: all 0.3s ease-in-out;
 }
 
-input[type=button]:hover, input[type=submit]:hover, input[type=reset]:hover,a[type=button]:hover,button[type=submit]:hover {
-    background-color: #0d0d0d;
-}
-
-input[type=button]:active, input[type=submit]:active, input[type=reset]:active,a[type=button]:active,button[type=submit]:active {
-    -moz-transform: scale(0.95);
-    -webkit-transform: scale(0.95);
-    -o-transform: scale(0.95);
-    -ms-transform: scale(0.95);
-    transform: scale(0.95);
+/* Add a background color on hover */
+button[type=submit]:hover {
+    background-color: #cccccc;
 }

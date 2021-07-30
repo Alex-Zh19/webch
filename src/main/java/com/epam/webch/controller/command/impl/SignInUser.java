@@ -11,11 +11,14 @@ import com.epam.webch.model.service.user.UserService;
 import com.epam.webch.model.service.user.impl.UserServiceImpl;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import org.apache.logging.log4j.Level;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 import java.util.Optional;
 
 public class SignInUser implements Command {
-
+    private static final Logger logger= LogManager.getLogger();
     private final UserService userService = UserServiceImpl.getInstance();
 
     @Override
@@ -34,15 +37,28 @@ public class SignInUser implements Command {
                     request.getSession().setAttribute(SessionAttribute.CURRENT_USER_ROLE.name(), user.get().getUserRole());
                     request.getSession().setAttribute(SessionAttribute.CURRENT_USER.name(), user.get());
                     request.getSession().setAttribute(SessionAttribute.PREVIOUS_PAGE.name(), PagePath.HOME_USER_PAGE);
-                    router = new Router(PagePath.HOME_USER_PAGE.getValue(), Router.RouterType.FORWARD);
+
+                    if(user.get().getUserStatus()== User.UserStatus.blocked||
+                            user.get().getUserStatus()== User.UserStatus.deleted){
+                        router = new Router(PagePath.ERROR_404_PAGE.getValue(), Router.RouterType.FORWARD);
+                    }else if(user.get().getUserRole()== User.UserRole.admin){
+                        router = new Router(PagePath.HOME_ADMIN_PAGE.getValue(), Router.RouterType.FORWARD);
+                    }else if(user.get().getUserRole()== User.UserRole.employee){
+                        router = new Router(PagePath.HOME_USER_PAGE.getValue(), Router.RouterType.FORWARD);//todo
+                    }else {
+                        router = new Router(PagePath.HOME_USER_PAGE.getValue(), Router.RouterType.FORWARD);
+                    }
+
                 } else {
                     router = new Router(prevPage.getValue(), Router.RouterType.FORWARD);
                 }
 
             } catch (ServiceException e) {
+                logger.log(Level.ERROR,"service exception at SignInUser");
                 router = new Router(prevPage.getValue(), Router.RouterType.FORWARD);
             }
         } else {
+            logger.log(Level.ERROR,"service exception at SignInUser");
             router = new Router(prevPage.getValue(), Router.RouterType.FORWARD);
         }
         return router;

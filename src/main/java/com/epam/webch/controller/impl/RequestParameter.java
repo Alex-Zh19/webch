@@ -34,7 +34,9 @@ public enum RequestParameter implements BaseEnum {
     PRODUCT_DESCRIPTION("product-description"),
     USER_TO_CHANGE("user-to-change"),
     USER_ROLE_TO_CHANGE("user-role-to-change"),
-    USER_STATUS_TO_CHANGE("user-status-to-change");
+    USER_STATUS_TO_CHANGE("user-status-to-change"),
+    ORDER_STATUS_TO_CHANGE("order-status-to-change"),
+    USER_TO_FIND("user-to-find");
 
     private String value;
 
