@@ -35,16 +35,12 @@ public class CreateOrder implements Command {
     public Router execute(HttpServletRequest request, HttpServletResponse response) {
         long last;
         String name = request.getParameter(RequestParameter.NAME_OF_ORDER_CREATOR.getValue());
-        System.out.println(name);
         String surname = request.getParameter(RequestParameter.SURNAME_OF_ORDER_CREATOR.getValue());
-        System.out.println(surname);
         String address = request.getParameter(RequestParameter.ADDRESS_ORDER_CREATOR.getValue());
-        System.out.println(address);
         StringBuilder details = new StringBuilder(NAME_LABEL);
         details.append(name).append(", ").append(SURNAME_LABEL).append(surname).append(", ").
                 append(ADDRESS_LABEL).append(address);
         String stringDate = request.getParameter(RequestParameter.DATE.getValue());
-        System.out.println(stringDate);
         User.UserRole currentRole =
                 (User.UserRole) request.getSession().getAttribute(SessionAttribute.CURRENT_USER_ROLE.name());
         Date date=Date.valueOf(stringDate);

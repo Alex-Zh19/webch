@@ -103,8 +103,8 @@
 
                 </div>
             </div>
-            <button type="submit"
-                    formaction="${CONTROLLER_PATH}?${COMMAND}=${OPEN_HOME_USER_PAGE}">${TEXT[PAGE_HOME]}</button>
+            <button class="sub" type="submit"
+                    formaction="${CONTROLLER_PATH}?${COMMAND}=${OPEN_HOME_PAGE}">${TEXT[PAGE_HOME]}</button>
         </form>
     </fieldset>
 

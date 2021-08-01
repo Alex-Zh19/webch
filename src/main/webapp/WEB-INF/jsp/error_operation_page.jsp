@@ -57,7 +57,7 @@
     <c:set var="roleEmployee" value="${employee}"></c:set>
     <c:set var="roleAdmin" value="${admin}"></c:set>
 
-    <button class="go-to-home-button" formaction="${CONTROLLER_PATH}?${COMMAND}=${OPEN_HOME_PAGE}" value="${TEXT[PAGE_HOME]}"></button>
+    <button class="go-to-home-button" formaction="${CONTROLLER_PATH}?${COMMAND}=${OPEN_HOME_PAGE}">${TEXT[PAGE_HOME]}</button>
 
 </form>
 </body>

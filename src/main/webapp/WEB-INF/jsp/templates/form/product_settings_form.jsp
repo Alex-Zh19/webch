@@ -2,7 +2,7 @@
 <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
 <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
 <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <div class="container light-style flex-grow-1 container-p-y">
     <h4 class="font-weight-bold py-3 mb-4">
         ${TEXT[PRODUCT_SETTINGS_LABEL_TEXT]}
@@ -33,25 +33,24 @@
                                     <input type="text" name="${PRODUCT_DESCRIPTION}" class="form-control mb-1"
                                            value="${product.description}">
                                 </div>
+                                <c:if test="${product.isInStock!=0}">
+                                    <label class="form-label">${TEXT[IS_IN_STOCK_LABEL_TEXT]}</label>
+                                </c:if>
+                                <c:if test="${product.isInStock==0}">
+                                    <label class="form-label">${TEXT[NOT_IS_IN_STOCK_LABEL_TEXT]}</label>
+                                </c:if>
                                 <div class="dropdown">
                                     <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton"
                                             data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" value="product.isInStock">
                                         ${TEXT[SET_ORDER_STATUS_BUTTON_TEXT]}
                                     </button>
                                     <div class="dropdown-menu" aria-labelledby="dropdownMenuButton" >
-                                        <a class="dropdown-item" href="${CONTROLLER_PATH}?${COMMAND}=${CHANGE_PRODUCT_INFO}&${PRODUCT_ID}=${product.id}&${PRODUCT_IN_STOCK}=${0}">
-                                            ${TEXT[IN_STOCK_DROP_DOWN_TEXT]}</a>
-                                        <a class="dropdown-item" href="${CONTROLLER_PATH}?${COMMAND}=${CHANGE_PRODUCT_INFO}&${PRODUCT_ID}=${product.id}&${PRODUCT_IN_STOCK}=${1}">
-                                            ${TEXT[NOT_IN_STOCK_DROP_DOWN_TEXT]}</a>
+                                       <li> <a class="dropdown-item" href="${CONTROLLER_PATH}?${COMMAND}=${CHANGE_PRODUCT_INFO}&${PRODUCT_ID}=${product.id}&${PRODUCT_IN_STOCK}=${0}">
+                                            ${TEXT[IN_STOCK_DROP_DOWN_TEXT]}</a></li>
+                                       <li> <a class="dropdown-item" href="${CONTROLLER_PATH}?${COMMAND}=${CHANGE_PRODUCT_INFO}&${PRODUCT_ID}=${product.id}&${PRODUCT_IN_STOCK}=${1}">
+                                            ${TEXT[NOT_IN_STOCK_DROP_DOWN_TEXT]}</a></li>
                                     </div>
                                 </div>
-
-                                <div class="form-group">
-                                    <label class="form-label">${TEXT[IS_IN_STOCK_LABEL_TEXT]}</label>
-                                    <input type="text" name="${PRODUCT_IN_STOCK}" class="form-control mb-1"
-                                           value="${product.isInStock}">
-                                </div>
-
                             </div>
                         </div>
                     </div>

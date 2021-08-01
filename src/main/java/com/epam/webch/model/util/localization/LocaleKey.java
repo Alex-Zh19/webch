@@ -82,7 +82,8 @@ public enum LocaleKey {
     NOT_IN_STOCK_DROP_DOWN_TEXT("not-in-stock-drop-down-text"),
     CHECKOUT_ORDER_BUTTON_TEXT("checkout-order-button-text"),
     BAN_TEXT("ban-text"),
-    DENIED_ACCESS_TEXT("denied-access-text");
+    DENIED_ACCESS_TEXT("denied-access-text"),
+    SEARCH_BUTTON_TEXT("search-button-text");
 
 
     private String value;

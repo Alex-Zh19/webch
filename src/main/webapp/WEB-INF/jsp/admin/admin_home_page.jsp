@@ -8,6 +8,11 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
+    <style >
+        input[type=search]{
+            width: 300px;
+        }
+    </style>
     <title>Title</title>
     <link rel="stylesheet" href="${CSS_ADMIN_HOME_PAGE}">
 </head>
@@ -20,7 +25,15 @@
     <button type="submit" formaction="${CONTROLLER_PATH}?${COMMAND}=${OPEN_ORDERS_LIST}" >${TEXT[ORDERS_LIST_BUTTON_TEXT]}</button>
     <button type="submit" formaction="${CONTROLLER_PATH}?${COMMAND}=${OPEN_PRODUCTS_LIST}">${TEXT[PRODUCTS_LIST_BUTTON_TEXT]}</button>
     <button type="submit" formaction="${CONTROLLER_PATH}?${COMMAND}=${OPEN_USERS_LIST}">${TEXT[USERS_LIST_BUTTON_TEXT]}</button>
-    <!--<button type="submit" formaction="${CONTROLLER_PATH}?${COMMAND}=" value="find user"></button>
+    <form class="input-group">
+        <div class="form-outline">
+            <input type="search" id="form1" class="form-control" name="${USER_EMAIL_TO_FIND}" value="${TEXT[SEARCH_BUTTON_TEXT]}" />
+        </div>
+        <button type="submit" formaction="${CONTROLLER_PATH}?${COMMAND}=${FIND_USER_BY_EMAIL}"
+                class="btn btn-primary">${TEXT[SEARCH_BUTTON_TEXT]}
+        </button>
+    </form>
+    <!--<button type="submit" formaction="" value="find user"></button>
     <button type="submit" formaction="${CONTROLLER_PATH}?${COMMAND}=" value="find order"></button>-->
 </form>
 </body>

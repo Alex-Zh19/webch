@@ -26,6 +26,11 @@ public class ChangeLocaleCommand implements Command {
             router = new Router(path.getValue(), Router.RouterType.FORWARD,CommandName.OPEN_PRODUCTS_LIST);
         }else if(path == PagePath.ADMIN_EMPLOYEE_ORDER_LIST_PAGE){
             router = new Router(path.getValue(), Router.RouterType.FORWARD,CommandName.OPEN_ORDERS_LIST);
+        }else if(path == PagePath.HOME_ADMIN_PAGE||path == PagePath.HOME_EMPLOYEE_PAGE||
+                path == PagePath.HOME_USER_PAGE||path == PagePath.HOME_PAGE){
+            router = new Router(path.getValue(), Router.RouterType.FORWARD,CommandName.OPEN_HOME_PAGE);
+        }else if(path == PagePath.GUEST_CART_PAGE||path == PagePath.USER_CART_PAGE){
+            router = new Router(path.getValue(), Router.RouterType.FORWARD,CommandName.OPEN_CART_PAGE);
         }else {
             router = new Router(path.getValue(), Router.RouterType.FORWARD);
         }
