@@ -48,7 +48,14 @@ public class AdminServiceImpl extends EmployeeServiceImpl implements AdminServic
 
     @Override
     public List<Optional<User>> findAllEmployees() throws ServiceException {
-        return null;
+        List<Optional<User>> employee;
+        try {
+            employee = userDao.findAllEmployees();
+        } catch (DaoException e) {
+            logger.log(Level.ERROR, "DaoException at findAllEmployees method. {}", e);
+            throw new ServiceException("DaoException at findAllEmployees method. " + e);
+        }
+        return employee;
     }
 
 

@@ -15,7 +15,7 @@
             <div class="form-group">
                 <label class="col-sm-3 control-label" for="entity-email">${TEXT[EMAIL_TEXT]}: </label>
                 <div class="col-sm-9">
-                    <label type="text" class="form-control" name="entity-email" id="entity-email">${entity.emaild} </label>
+                    <label type="text" class="form-control" name="entity-email" id="entity-email">${entity.email} </label>
                 </div>
             </div>
             <div class="form-group">
@@ -39,13 +39,13 @@
             <div class="form-group">
                 <label class="col-sm-3 control-label" for="entity-role">${TEXT[ROLE_TEXT]}: </label>
                 <div class="col-sm-9">
-                    <label type="text" class="form-control" name="entity-role" id="entity-role">${entity.role}</label>
+                    <label type="text" class="form-control" name="entity-role" id="entity-role">${entity.userRole}</label>
                 </div>
             </div>
             <div class="form-group">
                 <label class="col-sm-3 control-label" for="entity-status">${TEXT[STATUS_TEXT]}: </label>
                 <div class="col-sm-9">
-                    <label type="text" class="form-control" name="entity-status" id="entity-status">${entity.status}</label>
+                    <label type="text" class="form-control" name="entity-status" id="entity-status">${entity.userStatus}</label>
                 </div>
             </div>
             <div class="form-group">

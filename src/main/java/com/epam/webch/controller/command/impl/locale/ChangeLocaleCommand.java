@@ -20,7 +20,13 @@ public class ChangeLocaleCommand implements Command {
         Router router;
         if (path == PagePath.SHOP_PAGE) {
             router = new Router(path.getValue(), Router.RouterType.FORWARD,CommandName.OPEN_SHOP_PAGE);
-        } else {
+        } else if(path == PagePath.ADMIN_ENTITY_LIST_PAGE){
+            router = new Router(path.getValue(), Router.RouterType.FORWARD,CommandName.OPEN_HOME_PAGE);
+        }else if(path == PagePath.ADMIN_PRODUCT_LIST_PAGE){
+            router = new Router(path.getValue(), Router.RouterType.FORWARD,CommandName.OPEN_PRODUCTS_LIST);
+        }else if(path == PagePath.ADMIN_EMPLOYEE_ORDER_LIST_PAGE){
+            router = new Router(path.getValue(), Router.RouterType.FORWARD,CommandName.OPEN_ORDERS_LIST);
+        }else {
             router = new Router(path.getValue(), Router.RouterType.FORWARD);
         }
         String requestedLocale = request.getParameter(RequestParameter.LANGUAGE.getValue());

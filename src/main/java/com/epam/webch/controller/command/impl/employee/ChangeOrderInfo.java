@@ -3,6 +3,7 @@ package com.epam.webch.controller.command.impl.employee;
 import com.epam.webch.controller.PagePath;
 import com.epam.webch.controller.SessionAttribute;
 import com.epam.webch.controller.command.Command;
+import com.epam.webch.controller.command.CommandName;
 import com.epam.webch.controller.command.Router;
 import com.epam.webch.controller.impl.RequestParameter;
 import com.epam.webch.exception.ServiceException;
@@ -21,6 +22,7 @@ public class ChangeOrderInfo implements Command {
     private static final Logger logger = LogManager.getLogger();
     @Override
     public Router execute(HttpServletRequest request, HttpServletResponse response) {
+        request.getSession().setAttribute(SessionAttribute.PREVIOUS_PAGE.name(), PagePath.ADMIN_EMPLOYEE_ORDER_LIST_PAGE);
         String stringId = (String) request.getParameter(RequestParameter.ORDER_NUMBER.getValue());
         Long orderNumber = Long.parseLong(stringId);
         User currentUser = (User) request.getSession().getAttribute(SessionAttribute.CURRENT_USER.name());
@@ -43,7 +45,7 @@ public class ChangeOrderInfo implements Command {
             logger.log(Level.ERROR, "Service exception at preparingCase Change Order Status {}", e);
             return new Router(PagePath.ERROR_OPERATION_PAGE.getValue(), Router.RouterType.FORWARD);
         }
-        return new Router(PagePath.ADMIN_EMPLOYEE_ORDER_LIST_PAGE.name(), Router.RouterType.FORWARD);
+        return new Router(PagePath.ADMIN_EMPLOYEE_ORDER_LIST_PAGE.name(), Router.RouterType.FORWARD, CommandName.OPEN_ORDERS_LIST);
     }
     private Router readyCase( Long orderNumber) {
         try {
@@ -52,7 +54,7 @@ public class ChangeOrderInfo implements Command {
             logger.log(Level.ERROR, "Service exception at readyCase Change Order Status {}", e);
             return new Router(PagePath.ERROR_OPERATION_PAGE.getValue(), Router.RouterType.FORWARD);
         }
-        return new Router(PagePath.ADMIN_EMPLOYEE_ORDER_LIST_PAGE.name(), Router.RouterType.FORWARD);
+        return new Router(PagePath.ADMIN_EMPLOYEE_ORDER_LIST_PAGE.name(), Router.RouterType.FORWARD, CommandName.OPEN_ORDERS_LIST);
     }
     private Router deleteCase( Long orderNumber) {
         try {
@@ -61,6 +63,6 @@ public class ChangeOrderInfo implements Command {
             logger.log(Level.ERROR, "Service exception at deleteCase Change Order Status {}", e);
             return new Router(PagePath.ERROR_OPERATION_PAGE.getValue(), Router.RouterType.FORWARD);
         }
-        return new Router(PagePath.ADMIN_EMPLOYEE_ORDER_LIST_PAGE.name(), Router.RouterType.FORWARD);
+        return new Router(PagePath.ADMIN_EMPLOYEE_ORDER_LIST_PAGE.name(), Router.RouterType.FORWARD, CommandName.OPEN_ORDERS_LIST);
     }
 }

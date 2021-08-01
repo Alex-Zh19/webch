@@ -24,7 +24,7 @@ public class OpenEmployeeList implements Command {//entity list form
     private static final Logger logger= LogManager.getLogger();
     @Override
     public Router execute(HttpServletRequest request, HttpServletResponse response) {
-        request.getSession().setAttribute(SessionAttribute.PREVIOUS_PAGE.name(), PagePath.ADMIN_ENTITY_LIST_PAGE);
+        request.getSession().setAttribute(SessionAttribute.PREVIOUS_PAGE.name(), PagePath.HOME_ADMIN_PAGE);
         List<User> employeeList = new ArrayList<>();
         try {
             List<Optional<User>> list = adminService.findAllEmployees();
@@ -33,6 +33,7 @@ public class OpenEmployeeList implements Command {//entity list form
                     employeeList.add(employee.get());
                 }
             }
+            System.out.println(employeeList.size());
             request.setAttribute(RequestParameter.ENTITY_LIST.name(), employeeList);
         } catch (ServiceException e) {
             logger.log(Level.ERROR,"service exception at OpenEmployeeList");

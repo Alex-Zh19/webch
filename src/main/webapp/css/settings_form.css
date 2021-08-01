@@ -14,7 +14,7 @@ body{
     color: #4e5155;
 }
 
-label.btn {
+label.btn,output.btn {
     margin-bottom: 0;
 }
 
@@ -44,7 +44,7 @@ label.btn {
     color: #fff;
 }
 
-.card {
+.card-body {
     background-clip: padding-box;
     box-shadow: 0 1px 4px rgba(24,28,33,0.012);
 }

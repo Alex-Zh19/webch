@@ -10,15 +10,17 @@
 <html>
 <head>
     <title>Title</title>
+    <link rel="stylesheet" href="${CSS_SETTINGS_FORM}">
 </head>
-<body>
-<jsp:include page="${NAVIGATION_BAR_FROM_ROOT}"></jsp:include>
+<body style="background-color: #61ADB0">
+<jsp:include page="${USER_NAVIGATION_BAR_FROM_ROOT}"></jsp:include>
 <c:forEach var="pr" items="${sessionScope.USER_CART}">
     <c:set var="product" value="${pr}" scope="request"></c:set>
     <jsp:include page="${FORM_CART_PRODUCT_FROM_ROOT}"></jsp:include>
 </c:forEach>
 <form method="post" class="submit-button-form">
-    <button type="submit" formaction="${CONTROLLER_PATH}?${COMMAND}=${OPEN_ORDERING_PAGE}" >oformit' zakaz</button>
+    <button type="submit" formaction="${CONTROLLER_PATH}?${COMMAND}=${OPEN_ORDERING_PAGE}" >
+        ${TEXT[CHECKOUT_ORDER_BUTTON_TEXT]}</button>
 </form>
 </body>
 </html>

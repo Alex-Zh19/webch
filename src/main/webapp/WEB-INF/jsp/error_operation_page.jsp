@@ -57,18 +57,8 @@
     <c:set var="roleEmployee" value="${employee}"></c:set>
     <c:set var="roleAdmin" value="${admin}"></c:set>
 
-    <c:if test="${currentRole==roleGuest}">
-        <button class="go-to-home-button" formaction="${CONTROLLER_PATH}?${COMMAND}=${OPEN_HOME_PAGE}" value="${TEXT[PAGE_HOME]}"></button>
-    </c:if>
-    <c:if test="${currentRole==roleUser}">
-        <button class="go-to-home-button" formaction="${CONTROLLER_PATH}?${COMMAND}=${OPEN_HOME_USER_PAGE}" value="${TEXT[PAGE_HOME]}"></button>
-    </c:if>
-    <c:if test="${currentRole==roleEmployee}">
-        <button class="go-to-home-button" formaction="${CONTROLLER_PATH}?${COMMAND}=${OPEN_HOME_EMPLOYEE_PAGE}" value="${TEXT[PAGE_HOME]}"></button>
-    </c:if>
-    <c:if test="${currentRole==roleAdmin}">
-        <button class="go-to-home-button" formaction="${CONTROLLER_PATH}?${COMMAND}=${OPEN_HOME_ADMIN_PAGE}" value="${TEXT[PAGE_HOME]}"></button>
-    </c:if>
+    <button class="go-to-home-button" formaction="${CONTROLLER_PATH}?${COMMAND}=${OPEN_HOME_PAGE}" value="${TEXT[PAGE_HOME]}"></button>
+
 </form>
 </body>
 </html>

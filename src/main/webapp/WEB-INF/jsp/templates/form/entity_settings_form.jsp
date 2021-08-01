@@ -1,67 +1,113 @@
+<script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
+<link href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+<script src="//netdna.bootstrapcdn.com/bootstrap/3.0.0/js/bootstrap.min.js"></script>
+
 <link rel="stylesheet" href="${CSS_SETTINGS_FORM}">
-<link href="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
-<script src="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
-<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-
-<div class="container light-style flex-grow-1 container-p-y">
-    <h4 class="font-weight-bold py-3 mb-4">
-        ${TEXT[ACCOUNT_SETTINGS_TEXT]}
-    </h4>
-    <form class="text-right mt-3" method="post">
-        <div class="card overflow-hidden">
-            <div class="row no-gutters row-bordered row-border-light">
-                <div class="col-md-3 pt-0">
-                    <div class="list-group list-group-flush account-settings-links">
-                        <a class="list-group-item list-group-item-action active" data-toggle="list"
-                           href="#account-general">${TEXT[GENERAL_SETTINGS_FIELD_TEXT]}</a>
-                    </div>
-                </div>
-
-                <div class="col-md-9">
-                    <div class="tab-content">
-                        <div class="tab-pane fade active show" id="account-general">
-                            <div class="card-body">
-                                <div class="form-group">
-                                    <label class="form-label">${TEXT[EMAIL_TEXT]}</label>
-                                    <label type="text" class="form-control mb-1">${entity.email}</label>
-                                </div>
-                                <div class="form-group">
-                                    <label class="form-label">${TEXT[NAME_TEXT]}</label>
-                                    <label type="text" class="form-control mb-1">${entity.name}</label>
-                                </div>
-                                <div class="form-group">
-                                    <label class="form-label">${TEXT[SURNAME_TEXT]}</label>
-                                    <label type="text" class="form-control mb-1">${entity.surname}</label>
-                                </div>
-                                <div class="dropdown">
-                                    <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" value="${entity.userRole}">
-                                        ${TEXT[USER_ROLE_LABEL_TEXT]}
-                                    </button>
-                                    <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                                        <a class="dropdown-item" href="${CONTROLLER_PATH}?${COMMAND}=${CHANGE_ENTITY_INFO}&${USER_TO_CHANGE}=${entity.id}&${USER_ROLE_TO_CHANGE}=${admin}">
-                                            ${TEXT[ADMIN_USER_LABEL_TEXT]}</a>
-                                        <a class="dropdown-item" href="${CONTROLLER_PATH}?${COMMAND}=${CHANGE_ENTITY_INFO}&${USER_TO_CHANGE}=${entity.id}&${USER_ROLE_TO_CHANGE}=${employee}">
-                                            ${TEXT[EMPLOYEE_USER_LABEL_TEXT]}</a>
-                                        <a class="dropdown-item" href="${CONTROLLER_PATH}?${COMMAND}=${CHANGE_ENTITY_INFO}&${USER_TO_CHANGE}=${entity.id}&${USER_ROLE_TO_CHANGE}=${user}">
-                                            ${TEXT[USER_USER_LABEL_TEXT]}</a>
-                                    </div>
-                                </div>
-                                <div class="dropdown">
-                                    <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" value="${entity.userStatus}">
-                                        ${TEXT[USER_STATUS_LABEL_TEXT]}
-                                    </button>
-                                    <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                                        <a class="dropdown-item" href="${CONTROLLER_PATH}?${COMMAND}=${CHANGE_ENTITY_INFO}&${USER_TO_CHANGE}=${entity.id}&${USER_STATUS_TO_CHANGE}=${active}">
-                                            ${TEXT[ACTIVE_USER_LABEL_TEXT]}</a>
-                                        <a class="dropdown-item" href="${CONTROLLER_PATH}?${COMMAND}=${CHANGE_ENTITY_INFO}&${USER_TO_CHANGE}=${entity.id}&${USER_STATUS_TO_CHANGE}=${blocked}">
-                                            ${TEXT[BANNED_USER_LABEL_TEXT]}</a>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+<form class="form-horizontal" role="form" method="post">
+    <fieldset>
+        <legend>${TEXT[USER_LABEL_TEXT]} ${entity.id} </legend>
+        <div class="form-group">
+            <label class="col-sm-3 control-label" for="entity-id">${TEXT[ID_TEXT]}: </label>
+            <div class="col-sm-9">
+                <label type="text" class="form-control" name="entity-id" id="entity-id"> ${entity.id} </label>
             </div>
         </div>
-    </form>
+        <div class="form-group">
+            <label class="col-sm-3 control-label" for="entity-email">${TEXT[EMAIL_TEXT]}: </label>
+            <div class="col-sm-9">
+                <label type="text" class="form-control" name="entity-email"
+                       id="entity-email">${entity.email} </label>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="col-sm-3 control-label" for="entity-name">${TEXT[NAME_TEXT]}: </label>
+            <div class="col-sm-9">
+                <label type="text" class="form-control" name="entity-name" id="entity-name">${entity.name}</label>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="col-sm-3 control-label" for="entity-surname">${TEXT[SURNAME_TEXT]}: </label>
+            <div class="col-sm-9">
+                <label type="text" class="form-control" name="entity-surname"
+                       id="entity-surname">${entity.surname}</label>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="col-sm-3 control-label" for="entity-balance">${TEXT[BALANCE_TEXT]}: </label>
+            <div class="col-sm-9">
+                <label type="text" class="form-control" name="entity-balance"
+                       id="entity-balance">${entity.balance}</label>
+            </div>
+        </div>
+        <form class="all_drops" method="post">
+            <div class="dropdown">
+                <button class="btn btn-secondary dropdown-toggle" type="button"
+                        id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true"
+                        aria-expanded="false" value="${entity.userRole}">
+                    ${TEXT[USER_ROLE_LABEL_TEXT]}
+                </button>
+                <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+
+                    <li>
+                        <form method="post">
+                            <button type="submit" class="dropdown-item"
+                                    formaction="${CONTROLLER_PATH}?${COMMAND}=${CHANGE_ENTITY_INFO}&${ENTITY_ID}=${entity.id}&${USER_ROLE_TO_CHANGE}=${admin}">
+                                ${TEXT[ADMIN_USER_LABEL_TEXT]}</button>
+                        </form>
+                    </li>
+
+
+                    <li>
+                        <form method="post">
+                            <button type="submit" class="dropdown-item"
+                                    formaction="${CONTROLLER_PATH}?${COMMAND}=${CHANGE_ENTITY_INFO}&${ENTITY_ID}=${entity.id}&${USER_ROLE_TO_CHANGE}=${employee}">
+                                ${TEXT[EMPLOYEE_USER_LABEL_TEXT]}</button>
+                        </form>
+                    </li>
+
+
+                    <li>
+                        <form method="post">
+                            <button type="submit" class="dropdown-item"
+                                    formaction="${CONTROLLER_PATH}?${COMMAND}=${CHANGE_ENTITY_INFO}&${ENTITY_ID}=${entity.id}&${USER_ROLE_TO_CHANGE}=${user}">
+                                ${TEXT[USER_USER_LABEL_TEXT]}</button>
+                        </form>
+                    </li>
+
+                </div>
+            </div>
+            <div class="dropdown">
+                <button class="btn btn-secondary dropdown-toggle" type="button"
+                        id="dropdownMenuButton2" data-toggle="dropdown" aria-haspopup="true"
+                        aria-expanded="false" value="${entity.userStatus}">
+                    ${TEXT[USER_STATUS_LABEL_TEXT]}
+                </button>
+                <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+
+                    <li>
+                        <form method="post">
+                            <button type="submit" class="dropdown-item"
+                                    formaction="${CONTROLLER_PATH}?${COMMAND}=${CHANGE_ENTITY_INFO}&${ENTITY_ID}=${entity.id}&${USER_STATUS_TO_CHANGE}=${active}">
+                                ${TEXT[ACTIVE_USER_LABEL_TEXT]}</button>
+                        </form>
+                    </li>
+
+
+                    <li>
+                        <form method="post">
+                            <button type="submit" class="dropdown-item"
+                                    formaction="${CONTROLLER_PATH}?${COMMAND}=${CHANGE_ENTITY_INFO}&${ENTITY_ID}=${entity.id}&${USER_STATUS_TO_CHANGE}=${blocked}">
+                                ${TEXT[BANNED_USER_LABEL_TEXT]}</button>
+                        </form>
+                    </li>
+
+                </div>
+            </div>
+            <button type="submit"
+                    formaction="${CONTROLLER_PATH}?${COMMAND}=${OPEN_HOME_USER_PAGE}">${TEXT[PAGE_HOME]}</button>
+        </form>
+    </fieldset>
+
+</form>
+
 </div>

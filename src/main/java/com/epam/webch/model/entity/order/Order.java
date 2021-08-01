@@ -173,11 +173,11 @@ public class Order {
         this.status = status;
     }
 
-    public OrderDetails getDetails() {
+    public OrderDetails getOrderDetails() {
         return orderDetails;
     }
 
-    public void setDetails(OrderDetails details) {
+    public void setOrderDetails(OrderDetails details) {
         this.orderDetails = details;
     }
 

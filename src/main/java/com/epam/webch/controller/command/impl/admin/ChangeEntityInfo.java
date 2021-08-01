@@ -22,7 +22,7 @@ public class ChangeEntityInfo implements Command {
     private AdminService adminService = AdminServiceImpl.getInstance();
     @Override
     public Router execute(HttpServletRequest request, HttpServletResponse response) {
-        PagePath prevPage = (PagePath) request.getSession().getAttribute(SessionAttribute.PREVIOUS_PAGE.name());
+        request.getSession().setAttribute(SessionAttribute.PREVIOUS_PAGE.name(), PagePath.ADMIN_ENTITY_SETTINGS_PAGE);
         Optional<String> role = Optional.ofNullable(request.getParameter(RequestParameter.USER_ROLE_TO_CHANGE.getValue()));
         Optional<String> status = Optional.ofNullable(request.getParameter(RequestParameter.USER_STATUS_TO_CHANGE.getValue()));
         Optional<User> optionalUser;

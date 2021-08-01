@@ -40,11 +40,11 @@ public class SignInUser implements Command {
 
                     if(user.get().getUserStatus()== User.UserStatus.blocked||
                             user.get().getUserStatus()== User.UserStatus.deleted){
-                        router = new Router(PagePath.ERROR_404_PAGE.getValue(), Router.RouterType.FORWARD);
+                        router = new Router(PagePath.BAN_PAGE.getValue(), Router.RouterType.FORWARD);
                     }else if(user.get().getUserRole()== User.UserRole.admin){
                         router = new Router(PagePath.HOME_ADMIN_PAGE.getValue(), Router.RouterType.FORWARD);
                     }else if(user.get().getUserRole()== User.UserRole.employee){
-                        router = new Router(PagePath.HOME_USER_PAGE.getValue(), Router.RouterType.FORWARD);//todo
+                        router = new Router(PagePath.HOME_USER_PAGE.getValue(), Router.RouterType.FORWARD);
                     }else {
                         router = new Router(PagePath.HOME_USER_PAGE.getValue(), Router.RouterType.FORWARD);
                     }

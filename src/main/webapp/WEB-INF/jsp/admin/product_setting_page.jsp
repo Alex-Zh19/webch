@@ -11,7 +11,8 @@
 <head>
     <title>Title</title>
 </head>
-<body>
+<body style="background-color: #61ADB0">
+<jsp:include page="${USER_NAVIGATION_BAR_FROM_ROOT}"></jsp:include>
 <c:set var="product" value="${PRODUCT}" scope="request"></c:set>
 <jsp:include page="${FORM_PRODUCT_SETTINGS_PAGE}"></jsp:include>
 </body>

@@ -6,6 +6,7 @@ public enum PagePath {
     SIGN_UP_PAGE("WEB-INF/jsp/sign_up_page.jsp"),
     HOME_USER_PAGE("WEB-INF/jsp/user/user_home_page.jsp"),
     HOME_ADMIN_PAGE("WEB-INF/jsp/admin/admin_home_page.jsp"),
+    HOME_EMPLOYEE_PAGE("WEB-INF/jsp/employee/employee_home_page.jsp"),
     SHOP_PAGE("WEB-INF/jsp/shop_page.jsp"),
     ERROR_404_PAGE("WEB-INF/error_page/error_404.jsp"),
     SETTINGS_PAGE("WEB-INF/jsp/settings_page.jsp"),
@@ -21,9 +22,13 @@ public enum PagePath {
     ADMIN_PRODUCT_LIST_PAGE("WEB-INF/jsp/admin/product_list_page.jsp"),
     ADMIN_ENTITY_LIST_PAGE("WEB-INF/jsp/admin/entity_list_page.jsp"),
     ADMIN_EMPLOYEE_ORDER_LIST_PAGE("WEB-INF/jsp/admin/order_list_page.jsp"),
+    USER_ORDER_LIST_PAGE("WEB-INF/jsp/user/user_order_list_page.jsp"),
     ADMIN_PRODUCT_SETTINGS_PAGE("WEB-INF/jsp/admin/product_settings_page.jsp"),
     ADMIN_ENTITY_SETTINGS_PAGE("WEB-INF/jsp/admin/entity_settings_page.jsp"),
-    USER_INFORMATION_FOR_ADMIN_PAGE("WEB-INF/jsp/admin/user_information_for_admin_page.jsp");
+    USER_INFORMATION_FOR_ADMIN_PAGE("WEB-INF/jsp/admin/user_information_for_admin_page.jsp"),
+
+    BAN_PAGE("WEB-INF/jsp/ban_page.jsp"),
+    DENIED_ACCESS_PAGE("WEB-INF/jsp/denied_access_page.jsp");
 
 
     private String value;

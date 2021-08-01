@@ -23,7 +23,7 @@ public class ChangeUserInfo implements Command {
 
     @Override
     public Router execute(HttpServletRequest request, HttpServletResponse response) {
-        PagePath prevPage = (PagePath) request.getSession().getAttribute(SessionAttribute.PREVIOUS_PAGE.name());
+        request.getSession().setAttribute(SessionAttribute.PREVIOUS_PAGE.name(), PagePath.SETTINGS_PAGE);
         Optional<String> name = Optional.ofNullable(request.getParameter(RequestParameter.NAME.getValue()));
         Optional<String> surname = Optional.ofNullable(request.getParameter(RequestParameter.SURNAME.getValue()));
         Optional<String> email = Optional.ofNullable(request.getParameter(RequestParameter.EMAIL.getValue()));

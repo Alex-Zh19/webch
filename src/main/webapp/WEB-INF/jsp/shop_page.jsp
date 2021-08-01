@@ -19,7 +19,7 @@
     <jsp:include page="${GUEST_NAVIGATION_BAR}"></jsp:include>
 </c:if>
 <c:if test="${currentRole!=role}">
-    <jsp:include page="${NAVIGATION_BAR}"></jsp:include>
+    <jsp:include page="${USER_NAVIGATION_BAR}"></jsp:include>
 </c:if>
 <c:forEach var="pr" items="${PRODUCT_LIST}">
     <c:set var="product" value="${pr}" scope="request"></c:set>

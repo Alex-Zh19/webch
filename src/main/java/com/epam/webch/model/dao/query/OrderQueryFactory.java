@@ -18,7 +18,7 @@ public class OrderQueryFactory {
     private static final String ALL_FIELDS_ORDERS_INSERT = "(order_id,productName,status,details,creator) ";
     private static final String INSERT_WITHOUT_CREATOR = "(order_id,productName,status,details) ";
     private static final String ALL_FIELDS_ORDERS_FIND =
-            "orders.id,orders.status,orders.creator,orders.recipient,orders_details.id," +
+            "orders.id,orders.order_id,orders.status,orders.creator,orders.recipient,orders_details.id," +
                     "orders_details.details,orders_details.order_date,products.id,products.name,products.price," +
                     "products.description,products.inStock ";
 
@@ -38,7 +38,6 @@ public class OrderQueryFactory {
         query.append(order_id).append(",");
         query.append("\"").append(details).append("\"").append(",");
         query.append("\"").append(order_date).append("\"").append(")");
-        System.out.println(query);
         return query.toString();
     }
 
@@ -46,7 +45,6 @@ public class OrderQueryFactory {
         StringBuilder query=new StringBuilder(SELECT);
         query.append(MAX).append("(").append(ORDER_ID_FIELD_ORDERS_DETAILS_FIND).append(") ").append(AS).append("id ").
                 append(FROM).append(ORDERS_DETAILS);
-        System.out.println(query);
         return query.toString();
     }
 
@@ -55,7 +53,6 @@ public class OrderQueryFactory {
         StringBuilder query = new StringBuilder(SELECT);
         query.append(ID_FIELD_ORDERS_DETAILS_FIND)
                 .append(FROM).append(ORDERS_DETAILS).append(WHERE).append("order_id=").append(details_Id);
-        System.out.println(query);
         return query.toString();
     }
 
@@ -66,7 +63,6 @@ public class OrderQueryFactory {
         query.append(order_id).append(",").append(prodId).append(",");
         query.append("\"").append(status).append("\"").append(",");
         query.append(details).append(")");
-        System.out.println(query);
         return query.toString();
     }
 
@@ -77,8 +73,7 @@ public class OrderQueryFactory {
         query.append(order_id).append(",").append(prodId).append(",");
         query.append("\"").append(status).append("\"").append(",");
         query.append(details).append(",");
-        query.append("\"").append(creator).append("\"").append(")");
-        System.out.println(query);
+        query.append("\"").append(creator.getId()).append("\"").append(")");
         return query.toString();
     }
 
@@ -101,8 +96,8 @@ public class OrderQueryFactory {
         StringBuilder query = new StringBuilder(SELECT);
         query.append(ALL_FIELDS_ORDERS_FIND)
                 .append(FROM).append(ORDERS).append(JOIN).append(ORDERS_DETAILS).append(ON).
-                append("coffee_house.orders.order_id=coffee_house.orders_details.order_id").append(JOIN).
-                append(PRODUCTS).append(ON).append("coffee_house.orders.productName=coffee_house.products.id").
+                append("coffee_house.orders.order_id=coffee_house.orders_details.order_id ").append(JOIN).
+                append(PRODUCTS).append(ON).append("coffee_house.orders.productName=coffee_house.products.id ").
                 append(WHERE).append("orders.order_id=").append(order.getId());
         return query.toString();
     }
@@ -111,8 +106,8 @@ public class OrderQueryFactory {
         StringBuilder query = new StringBuilder(SELECT);
         query.append(ALL_FIELDS_ORDERS_FIND)
                 .append(FROM).append(ORDERS).append(JOIN).append(ORDERS_DETAILS).append(ON).
-                append("coffee_house.orders.order_id=coffee_house.orders_details.order_id").append(JOIN).
-                append(PRODUCTS).append(ON).append("coffee_house.orders.productName=coffee_house.products.id").
+                append("coffee_house.orders.order_id=coffee_house.orders_details.order_id ").append(JOIN).
+                append(PRODUCTS).append(ON).append("coffee_house.orders.productName=coffee_house.products.id ").
                 append(WHERE).append("orders.creator=").append(creator.getId());
         return query.toString();
     }
@@ -121,8 +116,8 @@ public class OrderQueryFactory {
         StringBuilder query = new StringBuilder(SELECT);
         query.append(ALL_FIELDS_ORDERS_FIND)
                 .append(FROM).append(ORDERS).append(JOIN).append(ORDERS_DETAILS).append(ON).
-                append("coffee_house.orders.order_id=coffee_house.orders_details.order_id").append(JOIN).
-                append(PRODUCTS).append(ON).append("coffee_house.orders.productName=coffee_house.products.id").
+                append("coffee_house.orders.order_id=coffee_house.orders_details.order_id ").append(JOIN).
+                append(PRODUCTS).append(ON).append("coffee_house.orders.productName=coffee_house.products.id ").
                 append(WHERE).append("orders.order_id=").append(id);
         return query.toString();
     }

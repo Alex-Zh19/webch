@@ -4,6 +4,7 @@ import com.epam.webch.exception.DaoException;
 import com.epam.webch.model.connection.ConnectionPool;
 import com.epam.webch.model.connection.ProxyConnection;
 import com.epam.webch.model.dao.OrderDao;
+import com.epam.webch.model.dao.UserDao;
 import com.epam.webch.model.dao.query.OrderQueryFactory;
 import com.epam.webch.model.entity.order.Order;
 import com.epam.webch.model.entity.product.Product;
@@ -12,11 +13,11 @@ import org.apache.logging.log4j.Level;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
+import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
-import java.sql.Date;
 import java.util.List;
 import java.util.Optional;
 
@@ -79,7 +80,7 @@ public class OrderDaoImpl implements OrderDao {
                     int productPrice = resultSet.getInt(PRICE_PRODUCT_COLUMN);
                     int inStock = resultSet.getInt(IN_STOCK_PRODUCT_COLUMN);
                     //product
-                    Product product = new Product(productId, productName, productPrice,productDescription, inStock);
+                    Product product = new Product(productId, productName, productPrice, productDescription, inStock);
 
                     String statusString = resultSet.getString(STATUS_COLUMN);
                     Order.OrderStatus status = Order.OrderStatus.valueOf(statusString);
@@ -89,15 +90,31 @@ public class OrderDaoImpl implements OrderDao {
                     String details = resultSet.getString(DETAILS_ORDER_DETAILS_COLUMN);
                     Date detailsDate = resultSet.getDate(DATE_ORDER_COLUMN);
                     //details
-                    User orderCreator = (User) resultSet.getObject(CREATOR_COLUMN);
-
-                    Optional<User> orderRecipient = Optional.of((User) resultSet.getObject(RECIPIENT_COLUMN));
-                    if (orderRecipient.isPresent()) {
+                    Long orderCreatorId = resultSet.getLong(CREATOR_COLUMN);
+                    UserDao userDao = UserDaoImpl.getInstance();
+                    Optional<User> orderCreator;
+                    try {
+                        orderCreator = userDao.findUserById(orderCreatorId);
+                    } catch (DaoException e) {
+                        logger.log(Level.ERROR, "findUserById at find all orders  DAOException {}", e);
+                        throw new DaoException("findUserById at find all orders  DAOException " + e);
+                    }
+                    Optional<Long> orderRecipientId = Optional.ofNullable( resultSet.getLong(RECIPIENT_COLUMN));
+                    Optional<User> orderRecipient=Optional.empty();
+                    if (orderRecipientId.isPresent()) {
+                        try {
+                            orderRecipient = userDao.findUserById(orderCreatorId);
+                        } catch (DaoException e) {
+                            logger.log(Level.ERROR, "findUserById at find all orders  DAOException {}", e);
+                            throw new DaoException("findUserById at find all orders  DAOException " + e);
+                        }
+                    }
+                    if (!orderRecipient.isEmpty()) {
                         order = Optional.of(new Order(orderId, order_id, product, status, detailsId, details_id, details,
-                                detailsDate, orderCreator, orderRecipient.get()));
+                                detailsDate, orderCreator.get(), orderRecipient.get()));
                     } else {
                         order = Optional.of(new Order(orderId, order_id, product, status, detailsId, details_id, details,
-                                detailsDate, orderCreator));
+                                detailsDate, orderCreator.get()));
                     }
                     orders.add(order);
                 }
@@ -140,15 +157,32 @@ public class OrderDaoImpl implements OrderDao {
                     String details = resultSet.getString(DETAILS_ORDER_DETAILS_COLUMN);
                     Date detailsDate = resultSet.getDate(DATE_ORDER_COLUMN);
                     //details
-                    User orderCreator = (User) resultSet.getObject(CREATOR_COLUMN);
+                    Long orderCreatorId = resultSet.getLong(CREATOR_COLUMN);
+                    UserDao userDao = UserDaoImpl.getInstance();
+                    Optional<User> orderCreator;
+                    try {
+                        orderCreator = userDao.findUserById(orderCreatorId);
+                    } catch (DaoException e) {
+                        logger.log(Level.ERROR, "findUserById at findOrdersByCreator  DAOException {}", e);
+                        throw new DaoException("findUserById at findOrdersByCreator  DAOException " + e);
+                    }
 
-                    Optional<User> orderRecipient = Optional.of((User) resultSet.getObject(RECIPIENT_COLUMN));
-                    if (orderRecipient.isPresent()) {
+                    Optional<Long> orderRecipientId = Optional.ofNullable(resultSet.getLong(RECIPIENT_COLUMN));
+                    Optional<User> orderRecipient=Optional.empty();
+                    if (orderRecipientId.isPresent()) {
+                        try {
+                            orderRecipient = userDao.findUserById(orderRecipientId.get());
+                        } catch (DaoException e) {
+                            logger.log(Level.ERROR, "findUserById at find all orders  DAOException {}", e);
+                            throw new DaoException("findUserById at find all orders  DAOException " + e);
+                        }
+                    }
+                    if (!orderRecipient.isEmpty()) {
                         order = Optional.of(new Order(orderId, order_id, product, status, detailsId, details_id, details,
-                                detailsDate, orderCreator, orderRecipient.get()));
+                                detailsDate, orderCreator.get(), orderRecipient.get()));
                     } else {
                         order = Optional.of(new Order(orderId, order_id, product, status, detailsId, details_id, details,
-                                detailsDate, orderCreator));
+                                detailsDate, orderCreator.get()));
                     }
                     orders.add(order);
                 }
@@ -191,15 +225,32 @@ public class OrderDaoImpl implements OrderDao {
                     String details = resultSet.getString(DETAILS_ORDER_DETAILS_COLUMN);
                     Date detailsDate = resultSet.getDate(DATE_ORDER_COLUMN);
                     //details
-                    User orderCreator = (User) resultSet.getObject(CREATOR_COLUMN);
+                    Long orderCreatorId = resultSet.getLong(CREATOR_COLUMN);
+                    UserDao userDao = UserDaoImpl.getInstance();
+                    Optional<User> orderCreator;
+                    try {
+                        orderCreator = userDao.findUserById(orderCreatorId);
+                    } catch (DaoException e) {
+                        logger.log(Level.ERROR, "findUserById at findOrder  DAOException {}", e);
+                        throw new DaoException("findUserById at findOrder  DAOException " + e);
+                    }
 
-                    Optional<User> orderRecipient = Optional.of((User) resultSet.getObject(RECIPIENT_COLUMN));
-                    if (orderRecipient.isPresent()) {
+                    Optional<Long> orderRecipientId = Optional.ofNullable( resultSet.getLong(RECIPIENT_COLUMN));
+                    Optional<User> orderRecipient=Optional.empty();
+                    if (orderRecipientId.isPresent()) {
+                        try {
+                            orderRecipient = userDao.findUserById(orderCreatorId);
+                        } catch (DaoException e) {
+                            logger.log(Level.ERROR, "findUserById at find all orders  DAOException {}", e);
+                            throw new DaoException("findUserById at find all orders  DAOException " + e);
+                        }
+                    }
+                    if (!orderRecipient.isEmpty()) {
                         order = Optional.of(new Order(orderId, idOrder, product, status, detailsId, details_id, details,
-                                detailsDate, orderCreator, orderRecipient.get()));
+                                detailsDate, orderCreator.get(), orderRecipient.get()));
                     } else {
                         order = Optional.of(new Order(orderId, idOrder, product, status, detailsId, details_id, details,
-                                detailsDate, orderCreator));
+                                detailsDate, orderCreator.get()));
                     }
                     list.add(order);
                 }

@@ -1,6 +1,7 @@
 package com.epam.webch.controller.command.impl.admin;
 
 import com.epam.webch.controller.PagePath;
+import com.epam.webch.controller.SessionAttribute;
 import com.epam.webch.controller.command.Command;
 import com.epam.webch.controller.command.Router;
 import com.epam.webch.exception.ServiceException;
@@ -25,6 +26,7 @@ public class OpenChangeProductInfoPage implements Command {
 
     @Override
     public Router execute(HttpServletRequest request, HttpServletResponse response) {
+        request.getSession().setAttribute(SessionAttribute.PREVIOUS_PAGE.name(), PagePath.ADMIN_PRODUCT_SETTINGS_PAGE);
         String stringId=request.getParameter(PRODUCT_ID.getValue());
         Long prodId=Long.parseLong(stringId);
         Optional<Product> product;

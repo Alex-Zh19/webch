@@ -8,7 +8,6 @@ import com.epam.webch.controller.command.impl.locale.ChangeLocaleCommand;
 import com.epam.webch.controller.command.impl.user.ChangeUserInfo;
 import com.epam.webch.controller.command.impl.user.DeleteUser;
 import com.epam.webch.controller.command.impl.user.FindOrderByCreator;
-import com.epam.webch.controller.command.impl.user.OpenHomeUserPage;
 import org.apache.logging.log4j.Level;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -31,7 +30,6 @@ public class CommandFactory {
                 case SIGN_UP_USER -> new SignUpUser();
                 case SIGN_OUT_USER -> new SignOutUser();
                 case DELETE_USER -> new DeleteUser();
-                case OPEN_HOME_USER_PAGE -> new OpenHomeUserPage();
                 case OPEN_SETTINGS_PAGE -> new OpenSettingsPage();
                 case CHANGE_USER_INFO -> new ChangeUserInfo();
                 case OPEN_SHOP_PAGE -> new OpenShopPage();
@@ -52,8 +50,8 @@ public class CommandFactory {
                 case CHANGE_PRODUCT_INFO -> new ChangeProductInfo();
                 case CHANGE_ENTITY_INFO -> new ChangeEntityInfo();
                 case CHANGE_ORDER_INFO -> new ChangeOrderInfo();
-                //todo
                 case FIND_ORDER_BY_CREATOR -> new FindOrderByCreator();
+                //todo
                 case FIND_USER_BY_EMAIL -> new FindUserByEmail();
                 default -> throw new UnsupportedOperationException("such command doesnt exist");
             };

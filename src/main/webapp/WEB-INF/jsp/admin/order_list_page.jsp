@@ -11,7 +11,8 @@
 <head>
     <title>Title</title>
 </head>
-<body>
+<body style="background-color: #61ADB0">
+<jsp:include page="${USER_NAVIGATION_BAR_FROM_ROOT}"></jsp:include>
 <c:forEach var="ord" items="${ORDER_LIST}">
     <c:set var="order" value="${ord}" scope="request"></c:set>
     <jsp:include page="${FORM_ORDER_ADMIN_LIST}"></jsp:include>

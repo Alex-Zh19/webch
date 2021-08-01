@@ -13,9 +13,12 @@
 </head>
 <body style="background-color: #61ADB0">
 <jsp:include page="${USER_NAVIGATION_BAR_FROM_ROOT}"></jsp:include>
-<form class="userAbout" name="userAbout" action="${CONTROLLER_PATH}?${COMMAND}=${OPEN_SETTINGS_PAGE}" method="post">
+<form class="userAbout" name="userAbout" method="post">
     <h2>${TEXT[WELCOME_TEXT]}, ${sessionScope.CURRENT_USER.name} ${sessionScope.CURRENT_USER.surname}!</h2>
-    <input type="submit"  value="${TEXT[SETTINGS_BUTTON]}">
+    <button type="submit" formaction="${CONTROLLER_PATH}?${COMMAND}=${OPEN_SETTINGS_PAGE}">
+        ${TEXT[SETTINGS_BUTTON]}</button>
+    <button type="submit" formaction="${CONTROLLER_PATH}?${COMMAND}=${FIND_ORDER_BY_CREATOR}">
+        ${TEXT[ORDERS_LIST_BUTTON_TEXT]}</button>
 </form>
 </body>
 </html>

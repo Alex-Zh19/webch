@@ -56,19 +56,6 @@
                     </div>
                 </div>
             </c:if>
-            <div class="dropdown">
-                <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                   ${TEXT[SET_ORDER_STATUS_BUTTON_TEXT]}
-                </button>
-                <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                    <a class="dropdown-item" href="${CONTROLLER_PATH}?${COMMAND}=${CHANGE_ORDER_INFO}&${ORDER_NUMBER}=${order.orderId}&${ORDER_STATUS_TO_CHANGE}=${preparing}">
-                       ${TEXT[ACCEPT_ORDER_TEXT]}</a>
-                    <a class="dropdown-item" href="${CONTROLLER_PATH}?${COMMAND}=${CHANGE_ORDER_INFO}&${ORDER_NUMBER}=${order.orderId}&${ORDER_STATUS_TO_CHANGE}=${ready}">
-                        ${TEXT[READY_ORDER_TEXT]}</a>
-                    <a class="dropdown-item" href="${CONTROLLER_PATH}?${COMMAND}=${CHANGE_ORDER_INFO}&${ORDER_NUMBER}=${order.orderId}&${ORDER_STATUS_TO_CHANGE}=${deleted}">
-                       ${TEXT[DELETE_ORDER_TEXT]}</a>
-                </div>
-            </div>
         </fieldset>
     </form>
 </div>

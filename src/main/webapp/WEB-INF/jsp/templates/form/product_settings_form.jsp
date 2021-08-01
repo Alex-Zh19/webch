@@ -61,7 +61,7 @@
         <button type="submit" formaction="${CONTROLLER_PATH}?${COMMAND}=${CHANGE_PRODUCT_INFO}&${PRODUCT_ID}=${product.id}"
                 class="btn btn-primary">
             ${TEXT[SAVE_CHANGES_TEXT]}</button>
-        <button type="submit" formaction="${CONTROLLER_PATH}?${COMMAND}=${OPEN_HOME_ADMIN_PAGE}" class="btn btn-default">
+        <button type="submit" formaction="${CONTROLLER_PATH}?${COMMAND}=${OPEN_HOME_PAGE}" class="btn btn-default">
             ${TEXT[CANCEL_TEXT]}</button>
     </form>
 </div>

@@ -92,7 +92,7 @@ public class UserQueryFactory {
         StringBuilder query = new StringBuilder(UPDATE);
         query.append(USERS).append(SET);
         query.append("status=").append("\"").append("deleted").append("\" ");
-        query.append(WHERE).append("id=").append("\"").append(id).append("\"");
+        query.append(WHERE).append("id=").append(id);
         return query.toString();
 
     }
@@ -108,7 +108,7 @@ public class UserQueryFactory {
     public String reallyDeleteUserQuery(User user) {//
         StringBuilder query = new StringBuilder(DELETE);
         query.append(FROM).append(USERS);
-        query.append(WHERE).append("id=").append("\"").append(user.getId()).append("\"");
+        query.append(WHERE).append("id=").append(user.getId());
         return query.toString();
 
     }
@@ -124,8 +124,7 @@ public class UserQueryFactory {
     public String findUserByIdQuery(Long id) {
         StringBuilder query = new StringBuilder(SELECT);
         query.append(ALL_FIELDS_FIND);
-        query.append(FROM).append(USERS).append(WHERE).append("id=").
-                append("\"").append(id).append("\"");
+        query.append(FROM).append(USERS).append(WHERE).append("id=").append(id);
         return query.toString();
     }
 
@@ -147,7 +146,7 @@ public class UserQueryFactory {
         query.append("balance=").append("\"").append(balance).append("\"").append(",");
         query.append("role=").append("\"").append(role).append("\"").append(",");
         query.append("status=").append("\"").append(status).append("\" ");
-        query.append(WHERE).append("id=").append("\"").append(id).append("\"");
+        query.append(WHERE).append("id=").append(id);
         return query.toString();
     }
 

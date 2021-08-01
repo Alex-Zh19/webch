@@ -24,7 +24,7 @@ public class ChangeProductInfo implements Command {
 
     @Override
     public Router execute(HttpServletRequest request, HttpServletResponse response) {
-        PagePath prevPage = (PagePath) request.getSession().getAttribute(SessionAttribute.PREVIOUS_PAGE.name());
+        request.getSession().setAttribute(SessionAttribute.PREVIOUS_PAGE.name(), PagePath.ADMIN_PRODUCT_SETTINGS_PAGE);
         Optional<String> name = Optional.ofNullable(request.getParameter(RequestParameter.PRODUCT_NAME.getValue()));
         Optional<String> price = Optional.ofNullable(request.getParameter(RequestParameter.PRODUCT_PRICE.getValue()));
         Optional<String> description = Optional.ofNullable(request.getParameter(RequestParameter.PRODUCT_DESCRIPTION.getValue()));

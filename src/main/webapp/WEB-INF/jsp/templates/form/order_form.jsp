@@ -44,7 +44,7 @@
         <div class="row mt-3">
             <div class="col-12">
                 <button type="submit" id="btnSubmit" formaction="${CONTROLLER_PATH}?${COMMAND}=${CREATE_ORDER}"
-                        class="btn btn-dark d-block mx-auto btn-submit">Submit
+                        class="btn btn-dark d-block mx-auto btn-submit">csfa
                 </button>
             </div>
         </div>
