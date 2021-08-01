@@ -19,7 +19,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
-public class OpenEmployeeList implements Command {//entity list form
+public class OpenEmployeeList implements Command {
     private AdminService adminService = AdminServiceImpl.getInstance();
     private static final Logger logger= LogManager.getLogger();
     @Override
@@ -33,7 +33,6 @@ public class OpenEmployeeList implements Command {//entity list form
                     employeeList.add(employee.get());
                 }
             }
-            System.out.println(employeeList.size());
             request.setAttribute(RequestParameter.ENTITY_LIST.name(), employeeList);
         } catch (ServiceException e) {
             logger.log(Level.ERROR,"service exception at OpenEmployeeList");

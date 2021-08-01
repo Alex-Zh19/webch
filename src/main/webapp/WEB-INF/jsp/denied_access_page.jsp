@@ -10,7 +10,7 @@
 <head>
     <title>Title</title>
 </head>
-<body>
+<body style="background-color: #61ADB0">
 <h1 style="text-align: center">${TEXT[DENIED_ACCESS_TEXT]}</h1>
 </body>
 </html>
