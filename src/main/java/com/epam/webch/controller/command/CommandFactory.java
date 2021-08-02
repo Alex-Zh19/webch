@@ -51,7 +51,6 @@ public class CommandFactory {
                 case CHANGE_ENTITY_INFO -> new ChangeEntityInfo();
                 case CHANGE_ORDER_INFO -> new ChangeOrderInfo();
                 case FIND_ORDER_BY_CREATOR -> new FindOrderByCreator();
-                //todo
                 case FIND_USER_BY_EMAIL -> new FindUserByEmail();
                 default -> throw new UnsupportedOperationException("such command doesnt exist");
             };

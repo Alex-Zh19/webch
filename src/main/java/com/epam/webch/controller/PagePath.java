@@ -21,7 +21,7 @@ public enum PagePath {
     PRODUCT_PAGE("WEB-INF/jsp/product_page.jsp"),
     ADMIN_PRODUCT_LIST_PAGE("WEB-INF/jsp/admin/product_list_page.jsp"),
     ADMIN_ENTITY_LIST_PAGE("WEB-INF/jsp/admin/entity_list_page.jsp"),
-    ADMIN_EMPLOYEE_ORDER_LIST_PAGE("WEB-INF/jsp/admin/order_list_page.jsp"),
+    ADMIN_EMPLOYEE_ORDER_LIST_PAGE("WEB-INF/jsp/employee/order_list_page.jsp"),
     USER_ORDER_LIST_PAGE("WEB-INF/jsp/user/user_order_list_page.jsp"),
     ADMIN_PRODUCT_SETTINGS_PAGE("WEB-INF/jsp/admin/product_settings_page.jsp"),
     ADMIN_ENTITY_SETTINGS_PAGE("WEB-INF/jsp/admin/entity_settings_page.jsp"),

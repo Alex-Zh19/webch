@@ -44,14 +44,8 @@ public class Controller extends HttpServlet {
 
     private void processRequest(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
         String commandFromPage = request.getParameter(COMMAND);
-        System.out.println(commandFromPage);
         Command command = CommandFactory.createCommand(commandFromPage);
         Router router = command.execute(request, response);
-        Optional<CommandName> optionalCommand = router.getCommandOptional();
-        if (optionalCommand.isPresent()) {
-            Command command1=CommandFactory.createCommand(optionalCommand.get().getValue());
-            router = command1.execute(request,response);
-        }
         switch (router.getRouterType()) {
             case FORWARD:
                 request.getRequestDispatcher(router.getPathToNextPage()).forward(request, response);

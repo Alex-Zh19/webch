@@ -17,7 +17,6 @@ import org.apache.logging.log4j.Logger;
 import java.util.Optional;
 
 import static com.epam.webch.controller.impl.RequestParameter.ENTITY_ID;
-import static com.epam.webch.controller.impl.RequestParameter.USER_TO_CHANGE;
 
 public class OpenChangeEntityInfoPage implements Command {
     private AdminService adminService= AdminServiceImpl.getInstance();
@@ -32,7 +31,7 @@ public class OpenChangeEntityInfoPage implements Command {
         try{
             user=adminService.findUserById(entId);
             if(user.isPresent()){
-                request.setAttribute(USER_TO_CHANGE.name(),user.get());
+                request.getSession().setAttribute(SessionAttribute.CURRENT_ENTITY_TO_DISPLAY.name(), user.get());
             }
         }catch (ServiceException e){
             logger.log(Level.ERROR,"service exception at OpenChangeEntityInfoPage");

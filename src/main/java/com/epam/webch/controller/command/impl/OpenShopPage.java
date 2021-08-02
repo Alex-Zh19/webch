@@ -29,7 +29,7 @@ public class OpenShopPage implements Command {
                     productList.add(product.get());
                 }
             }
-            request.setAttribute(RequestParameter.PRODUCT_LIST.name(), productList);
+            request.getSession().setAttribute(SessionAttribute.CURRENT_ENTITY_TO_DISPLAY.name(), productList);
         } catch (ServiceException e) {
             return new Router(PagePath.ERROR_404_PAGE.getValue(), Router.RouterType.FORWARD);
         }

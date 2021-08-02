@@ -14,7 +14,7 @@
 </head>
 <body style="background-color: #61ADB0">
 <jsp:include page="${USER_NAVIGATION_BAR_FROM_ROOT}"></jsp:include>
-<c:forEach var="pr" items="${PRODUCT_LIST}">
+<c:forEach var="pr" items="${CURRENT_ENTITY_TO_DISPLAY}">
     <c:set var="product" value="${pr}" scope="request"></c:set>
     <jsp:include page="${FORM_PRODUCT_ADMIN_LIST}"></jsp:include>
 </c:forEach>

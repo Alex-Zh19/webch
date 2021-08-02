@@ -27,6 +27,7 @@ public class AddToCart implements Command {
         Router result;
         String productId = request.getParameter(RequestParameter.PRODUCT_ID.getValue());
         Optional<Product> productOptional = Optional.empty();
+        PagePath prevPage=(PagePath) request.getSession().getAttribute(SessionAttribute.PREVIOUS_PAGE.name());
         try {
             productOptional = productService.findProductById(Long.parseLong(productId));
         } catch (ServiceException e) {
@@ -36,7 +37,7 @@ public class AddToCart implements Command {
         if (productOptional.isPresent()) {
             List<Product> productList = (List<Product>) request.getSession().getAttribute(SessionAttribute.USER_CART.name());
             productList.add(productOptional.get());
-            result = new Router(PagePath.SHOP_PAGE.getValue(), Router.RouterType.FORWARD, CommandName.OPEN_SHOP_PAGE);
+            result = new Router(prevPage.getValue(), Router.RouterType.FORWARD);
         }else{
             logger.log(Level.ERROR,"service exception at AddToCart");
             result=new Router(PagePath.ERROR_404_PAGE.getValue(), Router.RouterType.FORWARD);

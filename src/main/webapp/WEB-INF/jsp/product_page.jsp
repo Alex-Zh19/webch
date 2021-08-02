@@ -13,14 +13,14 @@
 </head>
 <body>
 <c:set var="currentRole" value="${sessionScope.CURRENT_USER_ROLE}"></c:set>
-<c:set var="role" value="${guest}"></c:set>
-<c:if test="${currentRole==role}">
-    <jsp:include page="${GUEST_NAVIGATION_BAR_FROM_ROOT}"></jsp:include>
+<c:set var="guest" value="${guest}"></c:set>
+<c:set var="product" value="${CURRENT_ENTITY_TO_DISPLAY}" scope="request"></c:set>
+<c:if test="${currentRole==guest}">
+    <jsp:include page="${GUEST_NAVIGATION_BAR}"></jsp:include>
 </c:if>
-<c:if test="${currentRole!=role}">
-    <jsp:include page="${NAVIGATION_BAR_FROM_ROOT}"></jsp:include>
+<c:if test="${currentRole!=guest}">
+    <jsp:include page="${USER_NAVIGATION_BAR}"></jsp:include>
 </c:if>
-<c:set var="product" value="${PRODUCT}" scope="request"></c:set>
-<jsp:include page="${FORM_PRODUCT}"></jsp:include>
+<jsp:include page="${FORM_PRODUCT_VIEW}"></jsp:include>
 </body>
 </html>

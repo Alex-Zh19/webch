@@ -29,7 +29,7 @@ public class OpenProductPage implements Command {
             return new Router(PagePath.ERROR_404_PAGE.getValue(), Router.RouterType.FORWARD);
         }
         if(product.isPresent()){
-            request.setAttribute(RequestParameter.PRODUCT.name(),product.get());
+            request.getSession().setAttribute(SessionAttribute.CURRENT_ENTITY_TO_DISPLAY.name(),product.get());
             return new Router(PagePath.PRODUCT_PAGE.getValue(), Router.RouterType.FORWARD);
         }
         return new Router(PagePath.ERROR_404_PAGE.getValue(), Router.RouterType.FORWARD);

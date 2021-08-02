@@ -13,7 +13,7 @@
 </head>
 <body style="background-color: #61ADB0">
 <jsp:include page="${USER_NAVIGATION_BAR_FROM_ROOT}"></jsp:include>
-<c:set var="entity" value="${USER_TO_CHANGE}" scope="request"></c:set>
+<c:set var="entity" value="${CURRENT_ENTITY_TO_DISPLAY}" scope="request"></c:set>
 <jsp:include page="${FORM_ENTITY_SETTINGS_PAGE}"></jsp:include>
 </body>
 </html>

@@ -19,9 +19,6 @@ public class OpenCartPage implements Command {
         Router router;
         if(currentRole== User.UserRole.guest){
             request.getSession().setAttribute(SessionAttribute.PREVIOUS_PAGE.name(), PagePath.GUEST_CART_PAGE);
-            List<Product> productList=(List<Product>)
-                    request.getSession().getAttribute(SessionAttribute.USER_CART.name());
-            System.out.println(productList);
             router=new Router(PagePath.GUEST_CART_PAGE.getValue(), Router.RouterType.FORWARD);
         }else{
             request.getSession().setAttribute(SessionAttribute.PREVIOUS_PAGE.name(), PagePath.USER_CART_PAGE);

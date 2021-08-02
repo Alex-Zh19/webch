@@ -21,7 +21,7 @@
 <c:if test="${currentRole!=role}">
     <jsp:include page="${USER_NAVIGATION_BAR}"></jsp:include>
 </c:if>
-<c:forEach var="pr" items="${PRODUCT_LIST}">
+<c:forEach var="pr" items="${sessionScope.CURRENT_ENTITY_TO_DISPLAY}">
     <c:set var="product" value="${pr}" scope="request"></c:set>
     <jsp:include page="${FORM_PRODUCT}"></jsp:include>
 </c:forEach>

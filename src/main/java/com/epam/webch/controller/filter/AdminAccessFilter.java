@@ -10,10 +10,11 @@ import jakarta.servlet.http.HttpServletResponse;
 
 import java.io.IOException;
 
-@WebFilter("/admin/*")
+@WebFilter("/admin")
 public class AdminAccessFilter implements Filter {
     @Override
     public void doFilter(ServletRequest servletRequest, ServletResponse servletResponse, FilterChain filterChain) throws IOException, ServletException {
+        System.out.println("admin access");
         HttpServletRequest request=(HttpServletRequest) servletRequest;
         HttpServletResponse response=(HttpServletResponse) servletResponse;
         User.UserRole role = (User.UserRole) request.getSession().getAttribute(SessionAttribute.CURRENT_USER_ROLE.name());

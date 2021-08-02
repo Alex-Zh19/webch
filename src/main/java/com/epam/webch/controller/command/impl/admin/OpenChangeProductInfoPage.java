@@ -33,7 +33,7 @@ public class OpenChangeProductInfoPage implements Command {
         try{
             product=productService.findProductById(prodId);
             if(product.isPresent()){
-                request.setAttribute(PRODUCT.name(),product.get());
+                request.getSession().setAttribute(SessionAttribute.CURRENT_ENTITY_TO_DISPLAY.name(), product.get());
             }
         }catch (ServiceException e){
             logger.log(Level.ERROR,"service exception at OpenChangeProductInfoPage");

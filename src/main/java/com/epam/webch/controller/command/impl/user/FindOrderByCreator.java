@@ -35,7 +35,7 @@ public class FindOrderByCreator implements Command {
                     orderList.add(order.get());
                 }
             }
-            request.setAttribute(RequestParameter.ORDER_LIST.name(), orderList);
+            request.getSession().setAttribute(SessionAttribute.CURRENT_ENTITY_TO_DISPLAY.name(), orderList);
         } catch (ServiceException e) {
             logger.log(Level.ERROR,"service exception at FindOrderByCreator");
             return new Router(PagePath.ERROR_404_PAGE.getValue(), Router.RouterType.FORWARD);

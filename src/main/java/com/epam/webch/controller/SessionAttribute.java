@@ -7,5 +7,6 @@ public enum SessionAttribute {
     LOCALE,
     PREVIOUS_PAGE,
     USER_CART,
+    CURRENT_ENTITY_TO_DISPLAY
 
 }

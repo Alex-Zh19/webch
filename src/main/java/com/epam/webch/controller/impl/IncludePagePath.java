@@ -15,6 +15,8 @@ public enum IncludePagePath implements BaseEnum {
     FORM_PRODUCT_FROM_ROOT("../templates/form/product_form.jsp"),
     FORM_CART_PRODUCT("templates/form/product_cart_form.jsp"),
     FORM_CART_PRODUCT_FROM_ROOT("../templates/form/product_cart_form.jsp"),
+    FORM_PRODUCT_VIEW("templates/form/product_view_form.jsp"),
+    FORM_PRODUCT_VIEW_FROM_ROOT(".../templates/form/product_view_form.jsp"),
     FORM_ORDER("templates/form/order_form.jsp"),
     FORM_PRODUCT_ADMIN_LIST("../templates/form/product_admin_list_form.jsp"),
     FORM_ENTITY_ADMIN_LIST("../templates/form/entity_list_form.jsp"),

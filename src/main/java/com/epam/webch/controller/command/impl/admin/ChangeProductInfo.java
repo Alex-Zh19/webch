@@ -47,7 +47,7 @@ public class ChangeProductInfo implements Command {
         }
         if (optionalProduct.isPresent()) {
             Product product=optionalProduct.get();
-            request.setAttribute(PRODUCT.name(),product);
+            request.getSession().setAttribute(SessionAttribute.CURRENT_ENTITY_TO_DISPLAY.name(),product );
             if ( !name.isEmpty()&&!product.getName().equals(name.get()) ) {
                 try {
                     productService.changeProductName(prodId, name.get());
@@ -83,7 +83,7 @@ public class ChangeProductInfo implements Command {
 
         }
 
-        return new Router(PagePath.ADMIN_PRODUCT_SETTINGS_PAGE.getValue(), Router.RouterType.FORWARD, CommandName.OPEN_CHANGE_PRODUCT_INFO_PAGE);
+        return new Router(PagePath.ADMIN_PRODUCT_SETTINGS_PAGE.getValue(), Router.RouterType.FORWARD);
     }
 }
 

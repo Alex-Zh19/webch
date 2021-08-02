@@ -14,7 +14,6 @@ public enum RequestParameter implements BaseEnum {
     CONFIRM_NEW_PASSWORD("confirm-new-password"),
     CONFIRM_PASSWORD("confirm-password"),
     NEW_EMAIL("new-email"),
-    PRODUCT_LIST("product-list"),
     PRODUCT_ID("product-id"),
     PRODUCT("product"),
     LANGUAGE("language"),
@@ -25,9 +24,7 @@ public enum RequestParameter implements BaseEnum {
     SURNAME_OF_ORDER_CREATOR("surname-of-order-creator"),
     DATE("date"),
     ORDER_NUMBER("order-number"),
-    ENTITY_LIST("entity-list"),
     ENTITY_ID("entity-id"),
-    ORDER_LIST("order-list"),
     PRODUCT_NAME("product-name"),
     PRODUCT_PRICE("product-price"),
     PRODUCT_IN_STOCK("product-in-stock"),
@@ -36,7 +33,6 @@ public enum RequestParameter implements BaseEnum {
     USER_ROLE_TO_CHANGE("user-role-to-change"),
     USER_STATUS_TO_CHANGE("user-status-to-change"),
     ORDER_STATUS_TO_CHANGE("order-status-to-change"),
-    USER_TO_FIND("user-to-find"),
     USER_EMAIL_TO_FIND("user-email-to-find");
 
     private String value;

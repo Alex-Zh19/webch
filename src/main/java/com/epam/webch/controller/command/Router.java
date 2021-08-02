@@ -9,17 +9,10 @@ public class Router {
 
     private String pathToNextPage;
     private RouterType routerType;
-    private Optional<CommandName> commandOptional = Optional.empty();
 
     public Router(String pathToNextPage, RouterType routerType) {
         this.pathToNextPage = pathToNextPage;
         this.routerType = routerType;
-    }
-
-    public Router(String pathToNextPage, RouterType routerType, CommandName command) {
-        this.pathToNextPage = pathToNextPage;
-        this.routerType = routerType;
-        commandOptional = Optional.of(command);
     }
 
     public String getPathToNextPage() {
@@ -30,8 +23,5 @@ public class Router {
         return routerType;
     }
 
-    public Optional<CommandName> getCommandOptional() {
-        return commandOptional;
-    }
 
 }

@@ -11,7 +11,7 @@
     <title>Title</title>
 </head>
 <body  style="background-color: #61ADB0">
-<jsp:include page="${NAVIGATION_BAR_FROM_ROOT}"></jsp:include>
+<jsp:include page="${USER_NAVIGATION_BAR}"></jsp:include>
 <jsp:include page="${FORM_SETTINGS}"></jsp:include>
 </body>
 </html>

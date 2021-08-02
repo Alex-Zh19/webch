@@ -45,7 +45,7 @@ public class ChangeOrderInfo implements Command {
             logger.log(Level.ERROR, "Service exception at preparingCase Change Order Status {}", e);
             return new Router(PagePath.ERROR_OPERATION_PAGE.getValue(), Router.RouterType.FORWARD);
         }
-        return new Router(PagePath.ADMIN_EMPLOYEE_ORDER_LIST_PAGE.name(), Router.RouterType.FORWARD, CommandName.OPEN_ORDERS_LIST);
+        return new Router(PagePath.ADMIN_EMPLOYEE_ORDER_LIST_PAGE.name(), Router.RouterType.FORWARD);
     }
     private Router readyCase( Long orderNumber) {
         try {
@@ -54,7 +54,7 @@ public class ChangeOrderInfo implements Command {
             logger.log(Level.ERROR, "Service exception at readyCase Change Order Status {}", e);
             return new Router(PagePath.ERROR_OPERATION_PAGE.getValue(), Router.RouterType.FORWARD);
         }
-        return new Router(PagePath.ADMIN_EMPLOYEE_ORDER_LIST_PAGE.name(), Router.RouterType.FORWARD, CommandName.OPEN_ORDERS_LIST);
+        return new Router(PagePath.ADMIN_EMPLOYEE_ORDER_LIST_PAGE.name(), Router.RouterType.FORWARD);
     }
     private Router deleteCase( Long orderNumber) {
         try {
@@ -63,6 +63,6 @@ public class ChangeOrderInfo implements Command {
             logger.log(Level.ERROR, "Service exception at deleteCase Change Order Status {}", e);
             return new Router(PagePath.ERROR_OPERATION_PAGE.getValue(), Router.RouterType.FORWARD);
         }
-        return new Router(PagePath.ADMIN_EMPLOYEE_ORDER_LIST_PAGE.name(), Router.RouterType.FORWARD, CommandName.OPEN_ORDERS_LIST);
+        return new Router(PagePath.ADMIN_EMPLOYEE_ORDER_LIST_PAGE.name(), Router.RouterType.FORWARD);
     }
 }

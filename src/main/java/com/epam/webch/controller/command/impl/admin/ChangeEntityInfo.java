@@ -40,7 +40,7 @@ public class ChangeEntityInfo implements Command {
             if (!role.isEmpty() && !(user.getUserRole()== User.UserRole.valueOf(role.get()))) {
                 try {
                     adminService.changeUserRole(email, User.UserRole.valueOf(role.get()));
-                    request.setAttribute(RequestParameter.USER_TO_CHANGE.name(), user);
+                    request.getSession().setAttribute(SessionAttribute.CURRENT_ENTITY_TO_DISPLAY.name(),user );
                 } catch (ServiceException e) {
                     logger.log(Level.ERROR, "Service exception at ChangeEntityInfo info {}", e);
                     return new Router(PagePath.ERROR_OPERATION_PAGE.getValue(), Router.RouterType.FORWARD);

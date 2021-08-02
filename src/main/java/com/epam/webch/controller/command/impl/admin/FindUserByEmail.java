@@ -1,6 +1,7 @@
 package com.epam.webch.controller.command.impl.admin;
 
 import com.epam.webch.controller.PagePath;
+import com.epam.webch.controller.SessionAttribute;
 import com.epam.webch.controller.command.Command;
 import com.epam.webch.controller.command.Router;
 import com.epam.webch.controller.impl.RequestParameter;
@@ -26,7 +27,7 @@ public class FindUserByEmail implements Command {
         try {
             Optional<User> user = adminService.findUserByEmail(userEmail);
             if (user.isPresent()) {
-                request.setAttribute(RequestParameter.USER_TO_CHANGE.name(), user.get());
+                request.getSession().setAttribute(SessionAttribute.CURRENT_ENTITY_TO_DISPLAY.name(), user.get());
                 result = new Router(PagePath.ADMIN_ENTITY_SETTINGS_PAGE.getValue(), Router.RouterType.FORWARD);
             } else {
                 result = new Router(PagePath.HOME_ADMIN_PAGE.getValue(), Router.RouterType.FORWARD);
