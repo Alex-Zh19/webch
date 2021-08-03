@@ -5,7 +5,7 @@ import com.epam.webch.controller.PagePath;
 import com.epam.webch.controller.SessionAttribute;
 import com.epam.webch.controller.command.Command;
 import com.epam.webch.controller.command.Router;
-import com.epam.webch.controller.impl.RequestParameter;
+import com.epam.webch.controller.command.impl.impl.RequestParameter;
 import com.epam.webch.model.util.localization.LocaleAttribute;
 import com.epam.webch.model.util.localization.LocalizationManager;
 import jakarta.servlet.http.HttpServletRequest;

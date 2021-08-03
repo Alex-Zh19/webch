@@ -5,7 +5,7 @@ import com.epam.webch.controller.PagePath;
 import com.epam.webch.controller.SessionAttribute;
 import com.epam.webch.controller.command.Command;
 import com.epam.webch.controller.command.Router;
-import com.epam.webch.controller.impl.RequestParameter;
+import com.epam.webch.controller.command.impl.impl.RequestParameter;
 import com.epam.webch.exception.ServiceException;
 import com.epam.webch.model.entity.user.User;
 import com.epam.webch.model.service.user.UserService;
@@ -16,9 +16,6 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
 import java.util.Optional;
-
-import static com.epam.webch.model.entity.user.User.UserRole.*;
-import static com.epam.webch.model.entity.user.User.UserRole.admin;
 
 public class SignUpUser implements Command {
     private final int DEFAULT_BALANCE = 0;

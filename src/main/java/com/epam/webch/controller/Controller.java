@@ -44,19 +44,19 @@ public class Controller extends HttpServlet {
         String commandFromPage = request.getParameter(COMMAND);
         Command command = CommandFactory.createCommand(commandFromPage);
         if (AllowedRoleChecker.isRoleAllowed(command, request)) {
-            request.getRequestDispatcher(PagePath.DENIED_ACCESS_PAGE.getValue()).forward(request, response);
+            Router router = command.execute(request);
+            switch (router.getRouterType()) {
+                case FORWARD:
+                    request.getRequestDispatcher(router.getPathToNextPage()).forward(request, response);
+                    break;
+                case REDIRECT:
+                    response.sendRedirect(router.getPathToNextPage());
+                    break;
+                default:
+                    logger.log(Level.ERROR, "unknown routerType exception");
+                    request.getRequestDispatcher(PagePath.ERROR_404_PAGE.getValue()).forward(request, response);
+            }
         }
-        Router router = command.execute(request);
-        switch (router.getRouterType()) {
-            case FORWARD:
-                request.getRequestDispatcher(router.getPathToNextPage()).forward(request, response);
-                break;
-            case REDIRECT:
-                response.sendRedirect(router.getPathToNextPage());
-                break;
-            default:
-                logger.log(Level.ERROR, "unknown routerType exception");
-                //todo redirect to error page
-        }
+        request.getRequestDispatcher(PagePath.DENIED_ACCESS_PAGE.getValue()).forward(request, response);
     }
 }

@@ -1,4 +1,4 @@
-package com.epam.webch.controller.impl;
+package com.epam.webch.controller.command.impl.impl;
 
 import com.epam.webch.controller.command.BaseType;
 

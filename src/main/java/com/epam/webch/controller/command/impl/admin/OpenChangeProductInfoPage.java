@@ -17,7 +17,7 @@ import org.apache.logging.log4j.Logger;
 
 import java.util.Optional;
 
-import static com.epam.webch.controller.impl.RequestParameter.PRODUCT_ID;
+import static com.epam.webch.controller.command.impl.impl.RequestParameter.PRODUCT_ID;
 import static com.epam.webch.model.entity.user.User.UserRole.admin;
 
 public class OpenChangeProductInfoPage implements Command {

@@ -5,7 +5,7 @@ import com.epam.webch.controller.PagePath;
 import com.epam.webch.controller.SessionAttribute;
 import com.epam.webch.controller.command.Command;
 import com.epam.webch.controller.command.Router;
-import com.epam.webch.controller.impl.RequestParameter;
+import com.epam.webch.controller.command.impl.impl.RequestParameter;
 import com.epam.webch.exception.ServiceException;
 import com.epam.webch.model.entity.product.Product;
 import com.epam.webch.model.service.product.ProductService;
@@ -17,9 +17,6 @@ import org.apache.logging.log4j.Logger;
 
 import java.util.List;
 import java.util.Optional;
-
-import static com.epam.webch.model.entity.user.User.UserRole.*;
-import static com.epam.webch.model.entity.user.User.UserRole.admin;
 
 public class DeleteFromCart implements Command {
     private ProductService productService = ProductServiceImpl.getInstance();

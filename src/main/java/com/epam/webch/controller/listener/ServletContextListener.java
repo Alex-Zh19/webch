@@ -2,8 +2,8 @@ package com.epam.webch.controller.listener;
 
 import com.epam.webch.controller.command.BaseType;
 import com.epam.webch.controller.command.CommandName;
-import com.epam.webch.controller.impl.IncludePagePath;
-import com.epam.webch.controller.impl.RequestParameter;
+import com.epam.webch.controller.command.impl.impl.IncludePagePath;
+import com.epam.webch.controller.command.impl.impl.RequestParameter;
 import com.epam.webch.model.entity.order.Order;
 import com.epam.webch.model.entity.user.User;
 import jakarta.servlet.ServletContext;
