@@ -1,6 +1,6 @@
 package com.epam.webch.model.entity.user;
 
-import com.epam.webch.controller.BaseEnum;
+import com.epam.webch.controller.command.BaseType;
 
 public class User {
     private long id;
@@ -11,7 +11,7 @@ public class User {
     private UserRole userRole;
     private UserStatus userStatus;
 
-    public enum UserRole implements BaseEnum {
+    public enum UserRole implements BaseType {
         root("root"),
         admin("admin"),
         employee("employee"),
@@ -28,7 +28,7 @@ public class User {
         }
     }
 
-    public enum UserStatus implements BaseEnum{
+    public enum UserStatus implements BaseType {
         active("active"),
         blocked("blocked"),
         deleted("deleted");

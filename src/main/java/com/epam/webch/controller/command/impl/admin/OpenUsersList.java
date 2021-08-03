@@ -1,21 +1,15 @@
 package com.epam.webch.controller.command.impl.admin;
 
+import com.epam.webch.controller.AllowedRole;
 import com.epam.webch.controller.PagePath;
 import com.epam.webch.controller.SessionAttribute;
 import com.epam.webch.controller.command.Command;
 import com.epam.webch.controller.command.Router;
-import com.epam.webch.controller.impl.RequestParameter;
 import com.epam.webch.exception.ServiceException;
-import com.epam.webch.model.entity.product.Product;
 import com.epam.webch.model.entity.user.User;
-import com.epam.webch.model.service.product.ProductService;
-import com.epam.webch.model.service.product.impl.ProductServiceImpl;
 import com.epam.webch.model.service.user.AdminService;
-import com.epam.webch.model.service.user.UserService;
 import com.epam.webch.model.service.user.impl.AdminServiceImpl;
-import com.epam.webch.model.service.user.impl.UserServiceImpl;
 import jakarta.servlet.http.HttpServletRequest;
-import jakarta.servlet.http.HttpServletResponse;
 import org.apache.logging.log4j.Level;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -24,11 +18,15 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
-public class OpenUsersList implements Command {//entity list form
+import static com.epam.webch.model.entity.user.User.UserRole.admin;
+
+public class OpenUsersList implements Command {
     private AdminService adminService = AdminServiceImpl.getInstance();
     private static final Logger logger= LogManager.getLogger();
+
+    @AllowedRole({admin})
     @Override
-    public Router execute(HttpServletRequest request, HttpServletResponse response) {
+    public Router execute(HttpServletRequest request) {
         request.getSession().setAttribute(SessionAttribute.PREVIOUS_PAGE.name(), PagePath.ADMIN_ENTITY_LIST_PAGE);
         List<User> userList = new ArrayList<>();
         try {

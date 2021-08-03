@@ -3,7 +3,6 @@ package com.epam.webch.controller;
 
 import com.epam.webch.controller.command.Command;
 import com.epam.webch.controller.command.CommandFactory;
-import com.epam.webch.controller.command.CommandName;
 import com.epam.webch.controller.command.Router;
 import com.epam.webch.model.connection.ConnectionPool;
 import jakarta.servlet.ServletException;
@@ -16,7 +15,6 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
 import java.io.IOException;
-import java.util.Optional;
 
 @WebServlet(name = "Controller", urlPatterns = "/controller")
 public class Controller extends HttpServlet {
@@ -45,7 +43,7 @@ public class Controller extends HttpServlet {
     private void processRequest(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
         String commandFromPage = request.getParameter(COMMAND);
         Command command = CommandFactory.createCommand(commandFromPage);
-        Router router = command.execute(request, response);
+        Router router = command.execute(request);
         switch (router.getRouterType()) {
             case FORWARD:
                 request.getRequestDispatcher(router.getPathToNextPage()).forward(request, response);

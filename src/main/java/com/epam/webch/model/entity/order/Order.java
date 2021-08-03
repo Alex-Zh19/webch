@@ -1,6 +1,6 @@
 package com.epam.webch.model.entity.order;
 
-import com.epam.webch.controller.BaseEnum;
+import com.epam.webch.controller.command.BaseType;
 import com.epam.webch.model.entity.product.Product;
 import com.epam.webch.model.entity.user.User;
 
@@ -97,7 +97,7 @@ public class Order {
         }
    }
 
-    public enum OrderStatus implements BaseEnum {
+    public enum OrderStatus implements BaseType {
         processed("processed"),
         preparing("preparing"),
         ready("ready"),

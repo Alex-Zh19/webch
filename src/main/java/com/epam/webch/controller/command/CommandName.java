@@ -1,10 +1,8 @@
 package com.epam.webch.controller.command;
 
-import com.epam.webch.controller.BaseEnum;
-
 import java.util.Optional;
 
-public enum CommandName implements BaseEnum {
+public enum CommandName implements BaseType {
     CONTROLLER_PATH("http://localhost:8080/webch_war_exploded/controller"),
     COMMAND("command"),
 

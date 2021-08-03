@@ -1,13 +1,14 @@
 package com.epam.webch.controller.command;
 
-import com.epam.webch.controller.command.impl.*;
 import com.epam.webch.controller.command.impl.admin.*;
+import com.epam.webch.controller.command.impl.all.*;
 import com.epam.webch.controller.command.impl.employee.ChangeOrderInfo;
 import com.epam.webch.controller.command.impl.employee.OpenOrdersList;
 import com.epam.webch.controller.command.impl.locale.ChangeLocaleCommand;
 import com.epam.webch.controller.command.impl.user.ChangeUserInfo;
 import com.epam.webch.controller.command.impl.user.DeleteUser;
 import com.epam.webch.controller.command.impl.user.FindOrderByCreator;
+import com.epam.webch.controller.command.impl.user.SignOutUser;
 import org.apache.logging.log4j.Level;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;

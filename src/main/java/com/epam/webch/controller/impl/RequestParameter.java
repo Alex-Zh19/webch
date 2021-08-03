@@ -1,8 +1,8 @@
 package com.epam.webch.controller.impl;
 
-import com.epam.webch.controller.BaseEnum;
+import com.epam.webch.controller.command.BaseType;
 
-public enum RequestParameter implements BaseEnum {
+public enum RequestParameter implements BaseType {
 
 
     NAME("name"),

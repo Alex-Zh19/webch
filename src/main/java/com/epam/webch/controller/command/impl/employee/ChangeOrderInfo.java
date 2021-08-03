@@ -1,9 +1,9 @@
 package com.epam.webch.controller.command.impl.employee;
 
+import com.epam.webch.controller.AllowedRole;
 import com.epam.webch.controller.PagePath;
 import com.epam.webch.controller.SessionAttribute;
 import com.epam.webch.controller.command.Command;
-import com.epam.webch.controller.command.CommandName;
 import com.epam.webch.controller.command.Router;
 import com.epam.webch.controller.impl.RequestParameter;
 import com.epam.webch.exception.ServiceException;
@@ -12,16 +12,18 @@ import com.epam.webch.model.entity.user.User;
 import com.epam.webch.model.service.order.OrderService;
 import com.epam.webch.model.service.order.impl.OrderServiceImpl;
 import jakarta.servlet.http.HttpServletRequest;
-import jakarta.servlet.http.HttpServletResponse;
 import org.apache.logging.log4j.Level;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
+import static com.epam.webch.model.entity.user.User.UserRole.*;
+
 public class ChangeOrderInfo implements Command {
     private OrderService orderService = OrderServiceImpl.getInstance();
     private static final Logger logger = LogManager.getLogger();
+    @AllowedRole({employee,admin})
     @Override
-    public Router execute(HttpServletRequest request, HttpServletResponse response) {
+    public Router execute(HttpServletRequest request) {
         request.getSession().setAttribute(SessionAttribute.PREVIOUS_PAGE.name(), PagePath.ADMIN_EMPLOYEE_ORDER_LIST_PAGE);
         String stringId = (String) request.getParameter(RequestParameter.ORDER_NUMBER.getValue());
         Long orderNumber = Long.parseLong(stringId);

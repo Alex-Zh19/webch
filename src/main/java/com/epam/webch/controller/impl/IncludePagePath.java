@@ -1,8 +1,8 @@
 package com.epam.webch.controller.impl;
 
-import com.epam.webch.controller.BaseEnum;
+import com.epam.webch.controller.command.BaseType;
 
-public enum IncludePagePath implements BaseEnum {
+public enum IncludePagePath implements BaseType {
     DEFAULT_NAVIGATION_BAR("templates/default_navigation_bar.jsp"),
     GUEST_NAVIGATION_BAR_FROM_ROOT("../templates/guest_nav_bar.jsp"),
     GUEST_NAVIGATION_BAR("templates/guest_nav_bar.jsp"),

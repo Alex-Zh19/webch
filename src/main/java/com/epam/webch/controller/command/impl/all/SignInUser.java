@@ -1,5 +1,6 @@
-package com.epam.webch.controller.command.impl;
+package com.epam.webch.controller.command.impl.all;
 
+import com.epam.webch.controller.AllowedRole;
 import com.epam.webch.controller.PagePath;
 import com.epam.webch.controller.SessionAttribute;
 import com.epam.webch.controller.command.Command;
@@ -10,19 +11,22 @@ import com.epam.webch.model.entity.user.User;
 import com.epam.webch.model.service.user.UserService;
 import com.epam.webch.model.service.user.impl.UserServiceImpl;
 import jakarta.servlet.http.HttpServletRequest;
-import jakarta.servlet.http.HttpServletResponse;
 import org.apache.logging.log4j.Level;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
 import java.util.Optional;
 
+import static com.epam.webch.model.entity.user.User.UserRole.*;
+import static com.epam.webch.model.entity.user.User.UserRole.admin;
+
 public class SignInUser implements Command {
     private static final Logger logger= LogManager.getLogger();
     private final UserService userService = UserServiceImpl.getInstance();
 
+    @AllowedRole({guest,user,employee,admin})
     @Override
-    public Router execute(HttpServletRequest request, HttpServletResponse response) {
+    public Router execute(HttpServletRequest request) {
         String baseEnum = (String) request.getServletContext().getAttribute(RequestParameter.EMAIL.getValue());
         System.out.println(baseEnum);
         Router router;

@@ -1,6 +1,6 @@
 package com.epam.webch.controller.listener;
 
-import com.epam.webch.controller.BaseEnum;
+import com.epam.webch.controller.command.BaseType;
 import com.epam.webch.controller.command.CommandName;
 import com.epam.webch.controller.impl.IncludePagePath;
 import com.epam.webch.controller.impl.RequestParameter;
@@ -31,7 +31,7 @@ public class ServletContextListener implements jakarta.servlet.ServletContextLis
     private <T extends Enum<?>> void setEnumVariables(ServletContext servletContext, T[] enumVar) {
         for (T var : enumVar) {
             String enumElName = var.name();
-            BaseEnum enumVarEl = (BaseEnum) var;
+            BaseType enumVarEl = (BaseType) var;
             servletContext.setAttribute(enumElName, enumVarEl.getValue());
         }
     }

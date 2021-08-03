@@ -1,5 +1,6 @@
 package com.epam.webch.controller.command.impl.admin;
 
+import com.epam.webch.controller.AllowedRole;
 import com.epam.webch.controller.PagePath;
 import com.epam.webch.controller.SessionAttribute;
 import com.epam.webch.controller.command.Command;
@@ -10,18 +11,21 @@ import com.epam.webch.model.entity.user.User;
 import com.epam.webch.model.service.user.AdminService;
 import com.epam.webch.model.service.user.impl.AdminServiceImpl;
 import jakarta.servlet.http.HttpServletRequest;
-import jakarta.servlet.http.HttpServletResponse;
 import org.apache.logging.log4j.Level;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
 import java.util.Optional;
 
+import static com.epam.webch.model.entity.user.User.UserRole.admin;
+
 public class FindUserByEmail implements Command {
     private AdminService adminService= AdminServiceImpl.getInstance();
     private static final Logger logger = LogManager.getLogger();
+
+    @AllowedRole({admin})
     @Override
-    public Router execute(HttpServletRequest request, HttpServletResponse response) {
+    public Router execute(HttpServletRequest request) {
         String userEmail = request.getParameter(RequestParameter.USER_EMAIL_TO_FIND.getValue());
         Router result;
         try {

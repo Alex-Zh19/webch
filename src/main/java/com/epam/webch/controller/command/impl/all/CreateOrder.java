@@ -1,5 +1,6 @@
-package com.epam.webch.controller.command.impl;
+package com.epam.webch.controller.command.impl.all;
 
+import com.epam.webch.controller.AllowedRole;
 import com.epam.webch.controller.PagePath;
 import com.epam.webch.controller.SessionAttribute;
 import com.epam.webch.controller.command.Command;
@@ -12,7 +13,6 @@ import com.epam.webch.model.entity.user.User;
 import com.epam.webch.model.service.order.OrderService;
 import com.epam.webch.model.service.order.impl.OrderServiceImpl;
 import jakarta.servlet.http.HttpServletRequest;
-import jakarta.servlet.http.HttpServletResponse;
 import org.apache.logging.log4j.Level;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -20,6 +20,9 @@ import org.apache.logging.log4j.Logger;
 import java.sql.Date;
 import java.util.List;
 import java.util.Optional;
+
+import static com.epam.webch.model.entity.user.User.UserRole.*;
+import static com.epam.webch.model.entity.user.User.UserRole.admin;
 
 
 public class CreateOrder implements Command {
@@ -31,8 +34,9 @@ public class CreateOrder implements Command {
     private final String SURNAME_LABEL = "Surname: ";
     private final String ADDRESS_LABEL = "Address: ";
 
+    @AllowedRole({guest,user,employee,admin})
     @Override
-    public Router execute(HttpServletRequest request, HttpServletResponse response) {
+    public Router execute(HttpServletRequest request) {
         long last;
         String name = request.getParameter(RequestParameter.NAME_OF_ORDER_CREATOR.getValue());
         String surname = request.getParameter(RequestParameter.SURNAME_OF_ORDER_CREATOR.getValue());
