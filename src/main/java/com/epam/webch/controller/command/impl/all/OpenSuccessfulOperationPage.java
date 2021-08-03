@@ -11,7 +11,7 @@ import static com.epam.webch.model.entity.user.User.UserRole.*;
 import static com.epam.webch.model.entity.user.User.UserRole.admin;
 
 public class OpenSuccessfulOperationPage implements Command {
-    @AllowedRole({guest,user,employee,admin})
+    @AllowedRole
     @Override
     public Router execute(HttpServletRequest request) {
         request.getSession().setAttribute(SessionAttribute.PREVIOUS_PAGE.name(), PagePath.SUCCESSFUL_OPERATION_PAGE.getValue());

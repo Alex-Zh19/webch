@@ -15,7 +15,7 @@ import static com.epam.webch.model.entity.user.User.UserRole.admin;
 
 public class OpenOrderingPage implements Command {
 
-    @AllowedRole({guest,user,employee,admin})
+    @AllowedRole
     @Override
     public Router execute(HttpServletRequest request) {
         Router result;

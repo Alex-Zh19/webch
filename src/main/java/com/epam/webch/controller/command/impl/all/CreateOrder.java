@@ -34,7 +34,7 @@ public class CreateOrder implements Command {
     private final String SURNAME_LABEL = "Surname: ";
     private final String ADDRESS_LABEL = "Address: ";
 
-    @AllowedRole({guest,user,employee,admin})
+    @AllowedRole
     @Override
     public Router execute(HttpServletRequest request) {
         long last;

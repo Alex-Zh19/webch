@@ -20,7 +20,7 @@ import static com.epam.webch.model.entity.user.User.UserRole.admin;
 public class OpenProductPage implements Command {
     private ProductService productService = ProductServiceImpl.getInstance();
 
-    @AllowedRole({guest,user,employee,admin})
+    @AllowedRole
     @Override
     public Router execute(HttpServletRequest request) {
         request.getSession().setAttribute(SessionAttribute.PREVIOUS_PAGE.name(), PagePath.PRODUCT_PAGE);

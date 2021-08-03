@@ -24,7 +24,7 @@ public class SignInUser implements Command {
     private static final Logger logger= LogManager.getLogger();
     private final UserService userService = UserServiceImpl.getInstance();
 
-    @AllowedRole({guest,user,employee,admin})
+    @AllowedRole
     @Override
     public Router execute(HttpServletRequest request) {
         String baseEnum = (String) request.getServletContext().getAttribute(RequestParameter.EMAIL.getValue());

@@ -12,7 +12,7 @@ import static com.epam.webch.model.entity.user.User.UserRole.*;
 import static com.epam.webch.model.entity.user.User.UserRole.admin;
 
 public class OpenCartPage implements Command {
-    @AllowedRole({guest,user,employee,admin})
+    @AllowedRole
     @Override
     public Router execute(HttpServletRequest request) {
         User.UserRole currentRole=(User.UserRole) request.getSession().

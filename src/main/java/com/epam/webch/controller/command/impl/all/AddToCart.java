@@ -25,7 +25,7 @@ public class AddToCart implements Command {
     private ProductService productService = ProductServiceImpl.getInstance();
     private static final Logger logger= LogManager.getLogger();
 
-    @AllowedRole({guest,user,employee,admin})
+    @AllowedRole
     @Override
     public Router execute(HttpServletRequest request) {
         Router result;

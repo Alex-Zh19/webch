@@ -26,7 +26,7 @@ public class SignUpUser implements Command {
     private final User.UserRole DEFAULT_ROLE = User.UserRole.user;
     private final UserService userService = UserServiceImpl.getInstance();
     private static final Logger logger= LogManager.getLogger();
-    @AllowedRole({guest,user,employee,admin})
+    @AllowedRole
     @Override
     public Router execute(HttpServletRequest request) {
         PagePath prevPage = (PagePath) request.getSession().getAttribute(SessionAttribute.PREVIOUS_PAGE.name());

@@ -24,7 +24,7 @@ import static com.epam.webch.model.entity.user.User.UserRole.admin;
 public class DeleteFromCart implements Command {
     private ProductService productService = ProductServiceImpl.getInstance();
     private static final Logger logger= LogManager.getLogger();
-    @AllowedRole({guest,user,employee,admin})
+    @AllowedRole
     @Override
     public Router execute(HttpServletRequest request) {
         Router result;
