@@ -2,7 +2,6 @@ package com.epam.webch.model.service.user.impl;
 
 import com.epam.webch.exception.DaoException;
 import com.epam.webch.exception.ServiceException;
-import com.epam.webch.exception.UtilException;
 import com.epam.webch.model.dao.OrderDao;
 import com.epam.webch.model.dao.UserDao;
 import com.epam.webch.model.dao.impl.OrderDaoImpl;
@@ -11,7 +10,7 @@ import com.epam.webch.model.entity.user.User;
 import com.epam.webch.model.entity.user.UserCredentials;
 import com.epam.webch.model.service.user.UserService;
 import com.epam.webch.model.util.Encryptor;
-import com.epam.webch.model.util.Validator;
+import com.epam.webch.model.util.DataValidator;
 import org.apache.logging.log4j.Level;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -77,7 +76,7 @@ public class UserServiceImpl implements UserService {
       if (user.isPresent()) {
          return false;
       }
-      if (!Validator.checkEmailOnCorrectness(email)) {
+      if (!DataValidator.checkEmailOnCorrectness(email)) {
          return false;
          //todo redirect on page to enter email one more time
       }
@@ -85,15 +84,15 @@ public class UserServiceImpl implements UserService {
          return false;
          //todo redirect on page to enter confirmPassword one more time
       }
-      if (!Validator.validatePassword(password)) {
+      if (!DataValidator.validatePassword(password)) {
          return false;
          //todo redirect on page to enter password one more time
       }
-      if (!Validator.validateName(name)) {
+      if (!DataValidator.validateName(name)) {
          return false;
          //todo redirect on page to enter name one more time
       }
-      if (surname.isPresent() && !Validator.validateSurname(surname.get())) {
+      if (surname.isPresent() && !DataValidator.validateSurname(surname.get())) {
          return false;
          //todo redirect on page to enter name one more time
       }
@@ -122,7 +121,7 @@ public class UserServiceImpl implements UserService {
    @Override
    public boolean signUpUser(String email, String password, String confirmPassword, String name, Optional<String> surname,
                              int balance, User.UserRole role, User.UserStatus status) throws ServiceException {
-      if (!Validator.checkEmailOnCorrectness(email)) {
+      if (!DataValidator.checkEmailOnCorrectness(email)) {
          return false;
          //todo redirect on page to enter email one more time
       }
@@ -130,15 +129,15 @@ public class UserServiceImpl implements UserService {
          return false;
          //todo redirect on page to enter confirmPassword one more time
       }
-      if (!Validator.validatePassword(password)) {
+      if (!DataValidator.validatePassword(password)) {
          return false;
          //todo redirect on page to enter password one more time
       }
-      if (!Validator.validateName(name)) {
+      if (!DataValidator.validateName(name)) {
          return false;
          //todo redirect on page to enter name one more time
       }
-      if (surname.isPresent() && !Validator.validateSurname(surname.get())) {
+      if (surname.isPresent() && !DataValidator.validateSurname(surname.get())) {
          return false;
          //todo redirect on page to enter name one more time
       }
@@ -185,7 +184,7 @@ public class UserServiceImpl implements UserService {
 
    @Override
    public boolean changeUserName(String email, String name) throws ServiceException {
-      if (!Validator.validateName(name)) {
+      if (!DataValidator.validateName(name)) {
          return false;
       }
       boolean result;
@@ -207,7 +206,7 @@ public class UserServiceImpl implements UserService {
 
    @Override
    public boolean changeUserSurname(String email, String surname) throws ServiceException {
-      if (!Validator.validateSurname(surname)) {
+      if (!DataValidator.validateSurname(surname)) {
          return false;
       }
       boolean result;
@@ -229,10 +228,10 @@ public class UserServiceImpl implements UserService {
 
    @Override
    public boolean changeUserEmail(String email, String newEmail) throws ServiceException {
-      if (!Validator.checkEmailOnCorrectness(email)) {
+      if (!DataValidator.checkEmailOnCorrectness(email)) {
          return false;
       }
-      if (!Validator.checkEmailOnCorrectness(newEmail)) {
+      if (!DataValidator.checkEmailOnCorrectness(newEmail)) {
          //todo redirect on page to enter email again
          return false;
       }
@@ -267,11 +266,11 @@ public class UserServiceImpl implements UserService {
          return false;
          //todo redirect on page to enter confirmPassword one more time
       }
-      if (!Validator.validatePassword(newPassword)) {
+      if (!DataValidator.validatePassword(newPassword)) {
          return false;
          //todo redirect on page to enter password one more time
       }
-      if (!Validator.validatePassword(oldPass)) {
+      if (!DataValidator.validatePassword(oldPass)) {
          return false;
          //todo redirect on page to enter password one more time
       }

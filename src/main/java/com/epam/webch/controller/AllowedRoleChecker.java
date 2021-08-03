@@ -11,7 +11,6 @@ public class AllowedRoleChecker {
 
     private AllowedRoleChecker() {
     }
-
     public static boolean isRoleAllowed(Command command, HttpServletRequest request) {
         User.UserRole currentRole = (User.UserRole) request.getSession().
                 getAttribute(SessionAttribute.CURRENT_USER_ROLE.name());
