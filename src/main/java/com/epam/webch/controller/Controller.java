@@ -43,6 +43,9 @@ public class Controller extends HttpServlet {
     private void processRequest(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
         String commandFromPage = request.getParameter(COMMAND);
         Command command = CommandFactory.createCommand(commandFromPage);
+        if (AllowedRoleChecker.isRoleAllowed(command, request)) {
+            request.getRequestDispatcher(PagePath.DENIED_ACCESS_PAGE.getValue()).forward(request, response);
+        }
         Router router = command.execute(request);
         switch (router.getRouterType()) {
             case FORWARD:

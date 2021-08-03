@@ -10,8 +10,6 @@ import com.epam.webch.model.util.localization.LocaleAttribute;
 import com.epam.webch.model.util.localization.LocalizationManager;
 import jakarta.servlet.http.HttpServletRequest;
 
-import static com.epam.webch.model.entity.user.User.UserRole.*;
-
 
 public class ChangeLocaleCommand implements Command {
     @AllowedRole
