@@ -91,9 +91,9 @@ public class OrderServiceImpl implements OrderService {
     }
 
     @Override
-    public boolean addOrderDetails(long detailsId, String details, Date date) throws ServiceException {
+    public boolean addOrderDetails(long detailsId, String details) throws ServiceException {
         try {
-            orderDao.addOrderDetails(detailsId, details, date);
+            orderDao.addOrderDetails(detailsId, details);
             return true;
         } catch (DaoException e) {
             logger.log(Level.ERROR, "DaoException at addOrderDetails method. {}", e);

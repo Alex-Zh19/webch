@@ -8,9 +8,9 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
-    <title>Error 404</title>
+    <title>${Text[TITLE_ERROR_404_PAGE]}</title>
 </head>
-<body>
-<h1> Not found </h1>
+<body style="background-color: #61ADB0">
+<h1 style="text-align: center">${TEXT[ERROR_404_PAGE_TEXT]}</h1>
 </body>
 </html>

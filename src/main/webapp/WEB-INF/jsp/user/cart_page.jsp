@@ -9,7 +9,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <html>
 <head>
-    <title>Title</title>
+    <title>${TEXT[TITLE_USER_CART_PAGE]}</title>
     <link rel="stylesheet" href="${CSS_SETTINGS_FORM}">
 </head>
 <body style="background-color: #61ADB0">

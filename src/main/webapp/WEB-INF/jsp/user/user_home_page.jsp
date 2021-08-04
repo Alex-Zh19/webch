@@ -8,7 +8,7 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
-    <title>Title</title>
+    <title>${TEXT[TITLE_USER_HOME_PAGE]}</title>
     <link rel="stylesheet" href="${CSS_HOME_USER_PAGE}">
 </head>
 <body style="background-color: #61ADB0">

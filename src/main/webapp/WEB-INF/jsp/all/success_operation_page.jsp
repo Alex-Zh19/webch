@@ -10,7 +10,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <html>
 <head>
-  <title>Title</title>
+  <title>${Text[TITLE_SUCCESS_OPERATION_PAGE]}</title>
   <style>
     button {
       background-color: #56baed;

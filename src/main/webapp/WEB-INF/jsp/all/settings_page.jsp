@@ -8,7 +8,7 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
-    <title>Title</title>
+    <title>${TEXT[TITLE_SETTINGS_PAGE]}</title>
 </head>
 <body  style="background-color: #61ADB0">
 <jsp:include page="${USER_NAVIGATION_BAR}"></jsp:include>

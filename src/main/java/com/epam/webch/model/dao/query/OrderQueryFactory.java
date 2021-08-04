@@ -8,7 +8,6 @@ import java.sql.Date;
 import static com.epam.webch.model.dao.query.SQLQuery.*;
 
 public class OrderQueryFactory {
-//maybe cross join
     private static final String ORDERS = "coffee_house.orders ";
     private static final String ORDERS_DETAILS = "coffee_house.orders_details ";
     private static final String PRODUCTS = "coffee_house.products ";
@@ -31,13 +30,13 @@ public class OrderQueryFactory {
         return query.toString();
     }
 
-    public String addOrderDetailsQuery(long order_id, String details, Date order_date){
+    public String addOrderDetailsQuery(long order_id, String details){
         StringBuilder query = new StringBuilder(INSERT);
         query.append(INTO).append(ORDERS_DETAILS).append(ALL_FIELDS_ORDERS_DETAILS_INSERT);
         query.append("values(");
         query.append(order_id).append(",");
         query.append("\"").append(details).append("\"").append(",");
-        query.append("\"").append(order_date).append("\"").append(")");
+        query.append("CURRENT_DATE()").append(")");
         return query.toString();
     }
 

@@ -21,7 +21,6 @@
                 </div>
             </div>
 
-
             <div class="row mt-3 mx-4">
                 <div class="col-12">
                     <label class="order-form-label">${TEXT[ADDRESS_LABEL_TEXT]}</label>
@@ -30,21 +29,11 @@
                     <input class="order-form-input" name="${ADDRESS_ORDER_CREATOR}" required placeholder="${TEXT[ADDRESS_LABEL_TEXT]}">
                 </div>
             </div>
-
-            <div class="row mt-3 mx-4">
-                <div class="col-12">
-                    <label class="order-form-label">${TEXT[DATE_LABEL_TEXT]}</label>
-                </div>
-                <div class="col-12">
-                    <input class="order-form-input" name="${DATE}" required type="date" placeholder="${TEXT[DATE_LABEL_TEXT]}">
-                </div>
-            </div>
         </div>
-
         <div class="row mt-3">
             <div class="col-12">
                 <button type="submit" id="btnSubmit" formaction="${CONTROLLER_PATH}?${COMMAND}=${CREATE_ORDER}"
-                        class="btn btn-dark d-block mx-auto btn-submit">csfa
+                        class="btn btn-dark d-block mx-auto btn-submit">${TEXT[CREATE_ORDER_BUTTON]}
                 </button>
             </div>
         </div>

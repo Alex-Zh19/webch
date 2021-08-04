@@ -9,7 +9,7 @@
 <html>
 <head>
 
-    <title>Title</title>
+    <title>${TEXT[TITLE_SIGN_IN_PAGE]}</title>
 </head>
 <body style="background-color: #61ADB0">
 <jsp:include page="${GUEST_NAVIGATION_BAR}"></jsp:include>

@@ -15,7 +15,7 @@ public interface OrderDao{
     List<Optional<Order>> findAllOrders() throws DaoException;
     List<Optional<Order>> findOrdersByCreator(User creator) throws DaoException;
     List< Optional<Order>> findOrder(Long order_id) throws DaoException;
-    boolean addOrderDetails(long detailsId, String details, Date date) throws DaoException;
+    boolean addOrderDetails(long detailsId, String details) throws DaoException;
     Optional<Long> findOrderDetails(long detailsId) throws DaoException;
     void addOrder(long orderId,long productId, Order.OrderStatus status,  long detailsId,  User creator) throws DaoException;
     void addOrder(long orderId,long productId, Order.OrderStatus status,  long detailsId) throws DaoException;

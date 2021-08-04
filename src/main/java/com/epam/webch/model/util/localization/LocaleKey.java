@@ -83,7 +83,34 @@ public enum LocaleKey {
     CHECKOUT_ORDER_BUTTON_TEXT("checkout-order-button-text"),
     BAN_TEXT("ban-text"),
     DENIED_ACCESS_TEXT("denied-access-text"),
-    SEARCH_BUTTON_TEXT("search-button-text");
+    SEARCH_BUTTON_TEXT("search-button-text"),
+    CREATE_ORDER_BUTTON("create-order-button"),
+    ERROR_404_PAGE_TEXT("error-404-page-text"),
+    //titles
+
+    TITLE_SUCCESS_OPERATION_PAGE("title-success-operation-page"),
+    TITLE_SIGN_UP_PAGE("title-sign-up-page"),
+    TITLE_SIGN_IN_PAGE("title-sign-in-page"),
+    TITLE_SHOP_PAGE("title-shop-page"),
+    TITLE_SETTINGS_PAGE("title-settings-page"),
+    TITLE_PRODUCT_PAGE("title-product-page"),
+    TITLE_ORDERING_PAGE("title-ordering-page"),
+    TITLE_HOME_PAGE("title-home-page"),
+    TITLE_ERROR_OPERATION_PAGE("title-error-operation-page"),
+    TITLE_DENIED_ACCESS_PAGE("title-denied-access-page"),
+    TITLE_BAN_PAGE("title-ban-page"),
+    TITLE_USER_CART_PAGE("title-user-cart-page"),
+    TITLE_USER_HOME_PAGE("title-user-home-page"),
+    TITLE_USER_ORDER_LIST_PAGE("title-user-order-list-page"),
+    TITLE_GUEST_CART_PAGE("title-guest-cart-page"),
+    TITLE_EMPLOYEE_HOME_PAGE("title-employee-home-page"),
+    TITLE_ORDER_LIST_PAGE("title-order-list-page"),
+    TITLE_ADMIN_HOME_PAGE("title-admin-home-page"),
+    TITLE_ENTITY_LIST_PAGE("title-entity-list-page"),
+    TITLE_ENTITY_SETTINGS_PAGE("title-entity-settings-page"),
+    TITLE_PRODUCT_LIST_PAGE("title-product-list-page"),
+    TITLE_PRODUCT_SETTINGS_PAGE("title-product-settings-page"),
+    TITLE_ERROR_404_PAGE("title-error-404-page");
 
 
     private String value;

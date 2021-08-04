@@ -388,17 +388,13 @@ public class OrderDaoImpl implements OrderDao {
     }
 
 
-    public boolean addOrderDetails(long detailsId, String details, Date date) throws DaoException {
-        System.out.println("add order details impl");
+    public boolean addOrderDetails(long detailsId, String details) throws DaoException {
         OrderQueryFactory factory = new OrderQueryFactory();
-        String query = factory.addOrderDetailsQuery(detailsId, details, date);
-        System.out.println("factory working");
+        String query = factory.addOrderDetailsQuery(detailsId, details);
         Optional<ProxyConnection> optionalConnection = ConnectionPool.getInstance().getConnection();
         if (optionalConnection.isPresent()) {
             try (ProxyConnection connection = optionalConnection.get();
                  PreparedStatement statement = connection.prepareStatement(query)) {
-                System.out.println(date);
-                System.out.println(query);
                 statement.executeUpdate();
             } catch (SQLException e) {
                 logger.log(Level.ERROR, "addOrderDetails SqlException {}", e);

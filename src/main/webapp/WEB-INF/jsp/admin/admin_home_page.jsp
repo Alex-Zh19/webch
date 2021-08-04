@@ -13,7 +13,7 @@
             width: 300px;
         }
     </style>
-    <title>Title</title>
+    <title>${TEXT[TITLE_ADMIN_HOME_PAGE]}</title>
     <link rel="stylesheet" href="${CSS_ADMIN_HOME_PAGE}">
 </head>
 <body style="background-color: #61ADB0">

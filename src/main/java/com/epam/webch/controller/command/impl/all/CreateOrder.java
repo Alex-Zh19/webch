@@ -41,23 +41,21 @@ public class CreateOrder implements Command {
         StringBuilder details = new StringBuilder(NAME_LABEL);
         details.append(name).append(", ").append(SURNAME_LABEL).append(surname).append(", ").
                 append(ADDRESS_LABEL).append(address);
-        String stringDate = request.getParameter(RequestParameter.DATE.getValue());
         User.UserRole currentRole =
                 (User.UserRole) request.getSession().getAttribute(SessionAttribute.CURRENT_USER_ROLE.name());
-        Date date=Date.valueOf(stringDate);
         if (currentRole== User.UserRole.guest) {
             List<Product> productList = (List<Product>) request.getSession().getAttribute(SessionAttribute.USER_CART.name());
             try {
                 Optional<Long> lastId = orderService.findLastOrderId();
                 if (!lastId.isPresent()) {
                     last=0;
-                    orderService.addOrderDetails( last, details.toString(), date);
+                    orderService.addOrderDetails( last, details.toString());
                     for (Product product : productList) {
                         orderService.addOrder(last,product.getId(), DEFAULT_ORDER_STATUS, last);
                     }
                 } else {
                     last = lastId.get() + 1;
-                    orderService.addOrderDetails( last, details.toString(), date);
+                    orderService.addOrderDetails( last, details.toString());
                     for (Product product : productList) {
                         orderService.addOrder(last,product.getId(), DEFAULT_ORDER_STATUS, last);
                     }
@@ -76,13 +74,13 @@ public class CreateOrder implements Command {
                 Optional<Long> lastId = orderService.findLastOrderId();
                 if (!lastId.isPresent()) {
                     last = 0;
-                    orderService.addOrderDetails( last, details.toString(), date);
+                    orderService.addOrderDetails( last, details.toString());
                     for (Product product : productList) {
                         orderService.addOrder(last,product.getId(), DEFAULT_ORDER_STATUS, last,currentUser.get());
                     }
                 } else {
                     last = lastId.get() + 1;
-                    orderService.addOrderDetails( last, details.toString(), date);
+                    orderService.addOrderDetails( last, details.toString());
                     for (Product product : productList) {
                         orderService.addOrder(last,product.getId(), DEFAULT_ORDER_STATUS, last, currentUser.get());
                     }
